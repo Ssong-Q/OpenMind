@@ -1,0 +1,82 @@
+// user agent stylesheet 초기화
+import { createGlobalStyle } from 'styled-components';
+
+export const StyledGlobal = createGlobalStyle`
+  :root {
+    --red: #b93333;
+    --yellow: #fee500;
+    --blue: #1877f2;
+
+    --gray60: #000;
+    --gray50: #515151;
+    --gray40: #818181;
+    --gray30: #cfcfcf;
+    --gray20: #f9f9f9;
+    --gray10: #ffffff;
+
+    --brown50: #341909;
+    --brown40: #542f1a;
+    --brown30: #c7bbb5;
+    --brown20: #e4d5c9;
+    --brown10: #f5f1ee;
+
+    --shadow-1pt: 0px 4px 4px 0px rgba(140, 140, 140, 0.25);
+    --shadow-2pt: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --shadow-3pt: 0px 16px 20px 0px rgba(48, 48, 48, 0.62);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Pretendard";
+    word-break: keep-all;
+  }
+
+  html,
+  body {
+    font-size: 62.5%;
+    background-color: var(--gray20);
+  }
+
+  h1 {
+    color: var(--gray60);
+    font-family: "Actor";
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  h2 {
+    color: var(--gray60);
+    font-family: "Actor";
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  h3 {
+    color: var(--gray60);
+    font-family: "Actor";
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  button {
+    border: none;
+    padding: unset;
+    background-color: unset;
+    cursor: pointer;
+  }
+`;
