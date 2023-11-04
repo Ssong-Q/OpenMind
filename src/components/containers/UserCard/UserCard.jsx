@@ -9,7 +9,7 @@ function UserCard({ src, name, count }) {
       </Styled.ProfileContainer>
       <Styled.InfoContainer>
         <Styled.Div>
-          <Styled.MessageIcon fill="var(--gray40)" />
+          <Styled.MessageIcon />
           <Styled.P>받은 질문</Styled.P>
         </Styled.Div>
         <Styled.P>{count}개</Styled.P>
