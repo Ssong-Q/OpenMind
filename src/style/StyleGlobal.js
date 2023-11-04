@@ -78,6 +78,8 @@ export const StyledGlobal = createGlobalStyle`
     outline: none;
   }
 
+  -webkit-tap-highlight-color : transparent;
+
   button {
     padding: unset;
     border: none;
