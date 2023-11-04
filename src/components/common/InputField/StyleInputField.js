@@ -9,7 +9,8 @@ export const InputFieldBox = styled.div`
   gap: 10px;
   border-radius: 8px;
   border: 1px solid
-    ${({ isFocused }) => (isFocused ? `var(--brown40)` : `var(--gray40)`)};
+    ${({ isfocused }) =>
+      isfocused === 'true' ? `var(--brown40)` : `var(--gray40)`};
 `;
 
 export const PersonImg = styled.div`

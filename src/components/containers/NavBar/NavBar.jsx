@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ButtonBox } from 'components';
+import { ButtonBoxWithArrow } from 'components';
 import * as Styled from './StyleNavBar';
 import logoImg from 'assets/logo.svg';
 
@@ -17,7 +17,7 @@ const NavBar = ({ children }) => {
   return (
     <Styled.NavBarContainer>
       <Styled.NavBarLogo src={logoImg} ref={imageRef} />
-      <ButtonBox>{children}</ButtonBox>
+      <ButtonBoxWithArrow>{children}</ButtonBoxWithArrow>
     </Styled.NavBarContainer>
   );
 };

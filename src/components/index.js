@@ -1,5 +1,6 @@
 export { default as App } from './App';
-export { default as InputFiled } from './common/InputField/InputField';
+export { default as InputField } from './common/InputField/InputField';
+export { default as ButtonBoxWithArrow } from './common/ButtonBox/ButtonBoxWithArrow';
 export { default as ButtonBox } from './common/ButtonBox/ButtonBox';
 export { default as ButtonEdit } from './common/ButtonEdit/ButtonEdit';
 export { default as DropDown } from './containers/DropDown/DropDown';
