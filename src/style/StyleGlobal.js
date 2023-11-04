@@ -29,14 +29,15 @@ export const StyledGlobal = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border: 0;
     font-family: "Pretendard";
     word-break: keep-all;
   }
 
   html,
   body {
-    font-size: 62.5%;
     background-color: var(--gray20);
+    font-size: 62.5%;
   }
 
   h1 {
@@ -63,6 +64,10 @@ export const StyledGlobal = createGlobalStyle`
     font-weight: 400;
   }
 
+  ol, ul {
+    list-style: none;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -74,8 +79,8 @@ export const StyledGlobal = createGlobalStyle`
   }
 
   button {
-    border: none;
     padding: unset;
+    border: none;
     background-color: unset;
     cursor: pointer;
   }
