@@ -2,14 +2,14 @@ import { useState } from 'react';
 import * as Styled from './StyleInputTextArea.js';
 
 const InputTextArea = () => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState('false');
 
   const handleInputFocus = () => {
-    setIsFocused(!isFocused);
+    setIsFocused('true');
   };
 
   const handleInputBlur = () => {
-    setIsFocused(!isFocused);
+    setIsFocused('false');
   };
 
   return (
