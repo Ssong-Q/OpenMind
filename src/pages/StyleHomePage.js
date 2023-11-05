@@ -1,25 +1,30 @@
 import styled from 'styled-components';
 import logoImg from 'assets/logo.svg';
-import twoGuysImg from 'assets/two-guys.svg';
+import twoGuysImage from 'assets/two-guys-image.png';
 
 export const MainContainer = styled.div`
-  width: 100%;
-  height: 350px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  gap: 20px;
+  background-color: transparent;
 `;
 
 export const LogoImg = styled.div`
+  z-index: 10;
+  width: 450px;
+  height: 176px;
+  margin-top: 160px;
   background-image: url(${logoImg});
   background-size: cover;
   background-position: center;
-  width: 450px;
-  height: 170px;
 `;
 
 export const InputBox = styled.div`
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -30,11 +35,16 @@ export const InputBox = styled.div`
   background-color: var(--gray10);
 `;
 
-export const TwoGuysImg = styled.div`
-  width: 100%;
-  height: 200px;
-  background-image: url(${twoGuysImg});
+export const TwoGuysImage = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100vw;
+  max-width: 1800px;
+  height: 100vh;
+  background-image: url(${twoGuysImage});
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
 `;
