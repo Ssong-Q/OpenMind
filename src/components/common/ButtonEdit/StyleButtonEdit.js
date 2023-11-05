@@ -24,7 +24,7 @@ export const Button = styled.button`
     fill: var(--gray60);
   }
 
-  &:active {
+  &:focus {
     background-color: var(--gray10);
     color: var(--blue);
     fill: var(--blue);
