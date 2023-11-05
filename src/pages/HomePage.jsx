@@ -34,7 +34,7 @@ const HomePage = () => {
 
   return (
     <>
-      <NavBar>질문하러 가기</NavBar>
+      <NavBar link="/list">질문하러 가기</NavBar>
       <Styled.MainContainer>
         <Styled.LogoImg />
         <Styled.InputBox>
