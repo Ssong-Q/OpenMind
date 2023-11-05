@@ -15,9 +15,13 @@ export const Button = styled.button`
   width: 100%;
   padding: 6px 16px;
   background-color: transparent;
-  text-align: start;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 18px;
   color: ${({ select }) => (select ? `var(--blue)` : `var(--gray50)`)};
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--gray20);
+  }
 `;

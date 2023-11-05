@@ -15,4 +15,5 @@ export const Div = styled.div`
   line-height: 1.8rem;
   color: ${({ status }) =>
     status === 'false' ? `var(--gray40)` : `var(--gray60)`};
+  cursor: pointer;
 `;
