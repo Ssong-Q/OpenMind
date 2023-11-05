@@ -1,8 +1,8 @@
-import * as Styled from './StyleDropDown';
+import { useState } from 'react';
 import { ReactComponent as ArrowDown } from 'assets/icon/arrow-down.svg';
 import { ReactComponent as ArrowUp } from 'assets/icon/arrow-up.svg';
-import { useState } from 'react';
-import DropDownList from '../../common/DropDownList/DropDownList';
+import { DropDownList } from 'components';
+import * as Styled from './StyleDropDown';
 
 function DropDown() {
   const [isOpen, setIsOpen] = useState('false');
