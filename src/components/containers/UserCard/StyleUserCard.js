@@ -9,7 +9,7 @@ export const MessageIcon = styled(Messages)`
   width: 18px;
   height: 18px;
 
-  @media max-width: 767px {
+  @media (max-width: 767px) {
     width: 16px;
     height: 16px;
   }
@@ -35,7 +35,7 @@ export const Container = styled.div`
 export const Name = styled.p`
   font-family: Actor;
   font-size: 2rem;
-  line-height: 2.5rem%;
+  line-height: 2.5rem;
   color: var(--gray60);
 
   @media (max-width: 767px) {
