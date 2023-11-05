@@ -1,9 +1,13 @@
 export { default as App } from './App';
 export { default as InputField } from './common/InputField/InputField';
+export { default as InputTextArea } from './common/InputTextArea/InputTextArea';
 export { default as ButtonBoxWithArrow } from './common/ButtonBox/ButtonBoxWithArrow';
 export { default as ButtonBox } from './common/ButtonBox/ButtonBox';
 export { default as ButtonEdit } from './common/ButtonEdit/ButtonEdit';
+export { default as CompleteBadge } from './common/ButtonBadge/CompleteBadge';
+export { default as IncompleteBadge } from './common/ButtonBadge/IncompleteBadge';
+export { default as DropDownList } from './common/DropDownList/DropDownList';
+export { default as ButtonShare } from './common/ButtonShare/ButtonShare';
 export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
-export { default as ButtonShare } from './containers/ButtonShare/ButtonShare';
 export { default as UserCard } from './containers/UserCard/UserCard';
