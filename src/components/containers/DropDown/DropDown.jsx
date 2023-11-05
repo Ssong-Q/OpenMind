@@ -2,7 +2,7 @@ import * as Styled from './StyleDropDown';
 import { ReactComponent as ArrowDown } from 'assets/icon/arrow-down.svg';
 import { ReactComponent as ArrowUp } from 'assets/icon/arrow-up.svg';
 import { useState } from 'react';
-import PopOverSort from '../PopOverSort/PopOverSort';
+import DropDownList from '../../common/DropDownList/DropDownList';
 
 function DropDown() {
   const [isOpen, setIsOpen] = useState('false');
@@ -36,7 +36,7 @@ function DropDown() {
         )}
       </Styled.Div>
       {isOpen === 'true' && (
-        <PopOverSort
+        <DropDownList
           onNameClick={handleNameClick}
           onNewestClick={handleNewestClick}
           sort={sort}
