@@ -10,6 +10,7 @@ export const ButtonBox = styled.button`
   border-radius: 8px;
   border: 1px solid var(--brown40);
   background-color: var(--brown10);
+  cursor: pointer;
 `;
 
 export const ArrowRight = styled.div`
