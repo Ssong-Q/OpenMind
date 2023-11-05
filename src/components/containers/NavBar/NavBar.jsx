@@ -5,18 +5,22 @@ import * as Styled from './StyleNavBar';
 import logoImg from 'assets/logo.svg';
 
 const NavBar = ({ children, link }) => {
-  const imageRef = useRef();
+  const imageBoxRef = useRef();
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === '/') {
-      imageRef.current.style.visibility = 'hidden';
+      imageBoxRef.current.style.visibility = 'hidden';
     }
   }, [location]);
 
   return (
     <Styled.NavBarContainer>
-      <Styled.NavBarLogo src={logoImg} ref={imageRef} />
+      <Styled.NavBarLogoBox ref={imageBoxRef}>
+        <Link to={'/'}>
+          <Styled.NavBarLogo src={logoImg} />
+        </Link>
+      </Styled.NavBarLogoBox>
       <Link to={link}>
         <ButtonBoxWithArrow>{children}</ButtonBoxWithArrow>
       </Link>

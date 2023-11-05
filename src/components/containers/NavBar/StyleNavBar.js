@@ -15,6 +15,8 @@ export const NavBarContainer = styled.div`
   }
 `;
 
+export const NavBarLogoBox = styled.div``;
+
 export const NavBarLogo = styled.img`
   width: 146px;
   height: 57px;
