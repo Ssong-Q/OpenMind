@@ -12,9 +12,9 @@ const StyledButtonText = styled(Styled.ButtonText)`
   font-family: 'Pretendard';
 `;
 
-const ButtonBox = ({ children }) => {
+const ButtonBox = ({ onClick, children }) => {
   return (
-    <StyledButtonBox>
+    <StyledButtonBox onClick={onClick}>
       <StyledButtonText>{children}</StyledButtonText>
     </StyledButtonBox>
   );

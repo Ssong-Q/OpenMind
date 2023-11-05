@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as Styled from './StyleInputField';
 
-const InputField = () => {
+const InputField = ({ onChange }) => {
   const [isFocused, setIsFocused] = useState('false');
 
   const handleInputFocus = () => {
@@ -12,12 +12,17 @@ const InputField = () => {
     setIsFocused('false');
   };
 
+  const handleInputChange = (e) => {
+    onChange(e.target.value);
+  };
+
   return (
     <Styled.InputFieldBox isfocused={isFocused}>
       <Styled.PersonImg />
       <Styled.InputField
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        onChange={handleInputChange}
         placeholder="이름을 입력하세요"
       />
     </Styled.InputFieldBox>
