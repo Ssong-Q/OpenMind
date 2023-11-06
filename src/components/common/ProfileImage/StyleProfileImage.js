@@ -18,7 +18,7 @@ export const Img = styled.img`
   width: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
   height: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
 
-  @media (min-width: 375px) and (max-width: 767px) {
+  @media max-width: 767px {
     width: ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
     height: 
