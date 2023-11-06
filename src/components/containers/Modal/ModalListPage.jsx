@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -5,6 +6,11 @@ import ModalPortal from 'Portal';
 import { StyledGlobal } from 'style/StyleGlobal';
 import { getLocalStorage } from 'utils/function';
 import { getSubjects } from 'api/api';
+=======
+import styled from 'styled-components';
+import { StyledGlobal } from 'style/StyleGlobal';
+import ModalPortal from 'Portal';
+>>>>>>> c6d9cee (feat: 모달창 구현, Nav Bar 일부 수정, checkLocalStorage 함수 구현)
 import { InputBox } from 'pages/StyleHomePage';
 import { InputField, ButtonBox } from 'components';
 import * as Styled from './Modal';
@@ -19,6 +25,7 @@ const StyledInputBox = styled(InputBox)`
 `;
 
 const ModalListPage = ({ onClose }) => {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const [name, setName] = useState('');
 
@@ -36,6 +43,8 @@ const ModalListPage = ({ onClose }) => {
     setName(name);
   };
 
+=======
+>>>>>>> c6d9cee (feat: 모달창 구현, Nav Bar 일부 수정, checkLocalStorage 함수 구현)
   const handleCloseClick = () => {
     onClose(false);
   };
@@ -47,8 +56,13 @@ const ModalListPage = ({ onClose }) => {
         <Styled.ModalBackground>
           <StyledInputBox>
             <Styled.ModalTitle>계정이 있으신가요?</Styled.ModalTitle>
+<<<<<<< HEAD
             <InputField onChange={handleInputChange} />
             <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
+=======
+            <InputField />
+            <ButtonBox>답변하러 가기</ButtonBox>
+>>>>>>> c6d9cee (feat: 모달창 구현, Nav Bar 일부 수정, checkLocalStorage 함수 구현)
             <Styled.ModalCloseBtn onClick={handleCloseClick} />
           </StyledInputBox>
         </Styled.ModalBackground>
