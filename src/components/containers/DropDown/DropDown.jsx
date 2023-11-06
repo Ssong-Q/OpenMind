@@ -26,7 +26,7 @@ function DropDown() {
   };
 
   return (
-    <>
+    <Styled.Container>
       <Styled.Div onClick={handleDropDownClick} status={isOpen}>
         {sort}
         {isOpen === 'true' ? (
@@ -42,7 +42,7 @@ function DropDown() {
           sort={sort}
         />
       )}
-    </>
+    </Styled.Container>
   );
 }
 

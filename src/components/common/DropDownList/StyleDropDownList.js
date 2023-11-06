@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Ul = styled.ul`
+  position: absolute;
   width: 79px;
-  margin-top: 2px;
+  margin-top: 3px;
   padding: 4px 0px;
   border-radius: 8px;
   border: 1px solid var(--gray30);
