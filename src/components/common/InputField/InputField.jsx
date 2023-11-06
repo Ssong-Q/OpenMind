@@ -17,7 +17,7 @@ const InputField = ({ onChange }) => {
   };
 
   return (
-    <Styled.InputFieldBox isfocused={isFocused}>
+    <Styled.InputFieldBox focused={isFocused}>
       <Styled.PersonImg />
       <Styled.InputField
         onFocus={handleInputFocus}
