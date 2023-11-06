@@ -15,7 +15,7 @@ export const Container = styled.div`
   border-radius: 70%;
   overflow: hidden;
 
-  @media max-width: 767px {
+  @media (max-width: 767px) {
     width: ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
     height: 
