@@ -13,3 +13,4 @@ export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';
+export { default as ModalListPage } from './containers/Modal/ModalListPage';

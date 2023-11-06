@@ -4,7 +4,7 @@ import { ButtonBoxWithArrow } from 'components';
 import * as Styled from './StyleNavBar';
 import logoImg from 'assets/logo.svg';
 
-const NavBar = ({ children, link }) => {
+const NavBar = ({ children, onClick }) => {
   const imageBoxRef = useRef();
   const location = useLocation();
 
@@ -21,9 +21,7 @@ const NavBar = ({ children, link }) => {
           <Styled.NavBarLogo src={logoImg} />
         </Link>
       </Styled.NavBarLogoBox>
-      <Link to={link}>
-        <ButtonBoxWithArrow>{children}</ButtonBoxWithArrow>
-      </Link>
+      <ButtonBoxWithArrow onClick={onClick}>{children}</ButtonBoxWithArrow>
     </Styled.NavBarContainer>
   );
 };

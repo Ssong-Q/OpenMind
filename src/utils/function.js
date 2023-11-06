@@ -33,3 +33,16 @@ export const getLocalStorage = (name) => {
   }
   return userId;
 };
+
+export const checkLocalStorage = () => {
+  const userInfo = localStorage.getItem('user');
+  let userId;
+  if (!userInfo) {
+    // localStorage의 user property가 null 값일 때
+    userId = false;
+  } else {
+    // localStorage의 user property에 값이 있을 때
+    userId = true;
+  }
+  return userId;
+};
