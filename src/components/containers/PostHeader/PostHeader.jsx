@@ -3,6 +3,7 @@ import * as Styled from './StylePostHeader';
 import TwoGuysImg from 'assets/twoguys-image-half.svg';
 import LogoImg from 'assets/logo.svg';
 
+
 function PostHeader({ src, name }) {
   return (
     <>
