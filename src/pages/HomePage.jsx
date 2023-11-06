@@ -42,8 +42,7 @@ const HomePage = () => {
           <ButtonBox onClick={handleButtonClick}>질문 받기</ButtonBox>
         </Styled.InputBox>
       </Styled.MainContainer>
-      <Styled.TwoGuysImage />
-
+      <Styled.TwoGuysImg />
     </>
   );
 };

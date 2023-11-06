@@ -1,10 +1,11 @@
 import * as Styled from './StyleUserCard';
+import { ProfileImage } from 'components';
 
 function UserCard({ src, name, count }) {
   return (
     <Styled.Container>
       <Styled.ProfileContainer>
-        <Styled.Img src={src} alt="프로필 이미지" />
+        <ProfileImage src={src} />
         <Styled.Name>{name}</Styled.Name>
       </Styled.ProfileContainer>
       <Styled.InfoContainer>
