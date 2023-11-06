@@ -32,9 +32,13 @@ const HomePage = () => {
     setName(name);
   };
 
+  const handleNavClick = () => {
+    navigate('/list');
+  };
+
   return (
     <>
-      <NavBar link="/list">질문하러 가기</NavBar>
+      <NavBar onClick={handleNavClick}>질문하러 가기</NavBar>
       <Styled.MainContainer>
         <Styled.LogoImg />
         <Styled.InputBox>
