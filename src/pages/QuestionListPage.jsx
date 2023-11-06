@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NavBar, ModalListPage } from 'components';
+import { NavBar, ModalListPage, DropDown } from 'components';
 import { checkLocalStorage } from 'utils/function';
+import * as Styled from './StyleQuestionListPage';
 
 const QuestionListPage = () => {
   const navigate = useNavigate();
@@ -18,7 +19,11 @@ const QuestionListPage = () => {
   return (
     <>
       <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
-
+      <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
+      <Styled.cardSectionContainer>
+        <DropDown />
+        <Styled.cardSectionBox></Styled.cardSectionBox>
+      </Styled.cardSectionContainer>
       {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
     </>
   );
