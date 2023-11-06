@@ -18,9 +18,9 @@ export const Container = styled.div`
   @media (max-width: 767px) {
     width: ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
-    height: 
-    ${({ mobileSize }) =>
+    height: ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+  }
 `;
 
 export const Img = styled.img`

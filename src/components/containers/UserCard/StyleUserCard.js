@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { ReactComponent as Messages } from 'assets/icon/messages.svg';
 
 /* PC: 1200px 이상
 Tablet: 768px 이상 ~ 1199px 이하
 Mobile: 767px 이하*/
 
-export const MessageIcon = styled(Messages)`
+export const MessageIcon = styled.img`
   width: 18px;
   height: 18px;
 

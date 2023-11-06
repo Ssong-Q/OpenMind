@@ -1,5 +1,6 @@
-import * as Styled from './StyleUserCard';
 import { ProfileImage } from 'components';
+import * as Styled from './StyleUserCard';
+import messageImg from 'assets/icon/messages.svg';
 
 function UserCard({ src, name, count }) {
   return (
@@ -10,7 +11,7 @@ function UserCard({ src, name, count }) {
       </Styled.ProfileContainer>
       <Styled.InfoContainer>
         <Styled.Div>
-          <Styled.MessageIcon />
+          <Styled.MessageIcon src={messageImg} />
           <Styled.P>받은 질문</Styled.P>
         </Styled.Div>
         <Styled.P>{count}개</Styled.P>
