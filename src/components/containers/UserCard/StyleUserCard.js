@@ -32,15 +32,17 @@ export const Container = styled.div`
   }
 `;
 
-export const Img = styled.img`
-  width: 60px;
-  height: 60px;
+// export const Img = styled.img`
+//   width: 60px;
+//   height: 60px;
+//   border-radius: 70%;
+//   overflow: hidden;
 
-  @media (min-width: 375px) and (max-width: 767px) {
-    width: 48px;
-    height: 48px;
-  }
-`;
+//   @media (min-width: 375px) and (max-width: 767px) {
+//     width: 48px;
+//     height: 48px;
+//   }
+// `;
 
 export const Name = styled.p`
   font-family: Actor;
