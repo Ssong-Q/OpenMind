@@ -1,8 +1,8 @@
 import * as Styled from './StyleButtonBox';
 
-const ButtonBoxWithArrow = ({ children }) => {
+const ButtonBoxWithArrow = ({ children, onClick }) => {
   return (
-    <Styled.ButtonBox>
+    <Styled.ButtonBox onClick={onClick}>
       <Styled.ButtonText>{children}</Styled.ButtonText>
       <Styled.ArrowRight />
     </Styled.ButtonBox>
