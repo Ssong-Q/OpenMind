@@ -9,7 +9,9 @@ export { default as IncompleteBadge } from './common/ButtonBadge/IncompleteBadge
 export { default as DropDownList } from './common/DropDownList/DropDownList';
 export { default as ButtonShare } from './common/ButtonShare/ButtonShare';
 export { default as ProfileImage } from './common/ProfileImage/ProfileImage';
+export { default as QuestionBox } from './common/QuestionBox/QuestionBox';
 export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
 export { default as ModalListPage } from './containers/Modal/ModalListPage';
+export { default as QuestionList } from './containers/QuestionList/QuestionList';
