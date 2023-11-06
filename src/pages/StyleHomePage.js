@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import logoImg from 'assets/logo.svg';
 
-import twoGuysImage from 'assets/two-guys-image.png';
+import twoGuysImg from 'assets/two-guys-image.png';
 
 export const MainContainer = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ export const InputBox = styled.div`
   background-color: var(--gray10);
 `;
 
-export const TwoGuysImage = styled.div`
+export const TwoGuysImg = styled.div`
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -44,7 +44,7 @@ export const TwoGuysImage = styled.div`
   width: 100vw;
   max-width: 1800px;
   height: 100vh;
-  background-image: url(${twoGuysImage});
+  background-image: url(${twoGuysImg});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
