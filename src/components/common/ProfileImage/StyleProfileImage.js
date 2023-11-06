@@ -9,19 +9,23 @@ const SIZES = {
   xSmall: 28,
 };
 
-export const Div = styled.div`
-  border-radius: 70%;
-  overflow: hidden;
-`;
-
-export const Img = styled.img`
+export const Container = styled.div`
   width: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
   height: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
+  border-radius: 70%;
+  overflow: hidden;
 
-  @media max-width: 767px {
+  @media (max-width: 767px) {
     width: ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
     height: 
     ${({ mobileSize }) =>
       mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
