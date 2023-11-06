@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logoImg from 'assets/logo.svg';
+
 import twoGuysImage from 'assets/two-guys-image.png';
 
 export const MainContainer = styled.div`

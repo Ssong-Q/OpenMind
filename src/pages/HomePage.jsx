@@ -43,6 +43,7 @@ const HomePage = () => {
         </Styled.InputBox>
       </Styled.MainContainer>
       <Styled.TwoGuysImage />
+
     </>
   );
 };
