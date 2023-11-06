@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const SIZES = {
-  xLarge: 136,
-  large: 104,
-  medium: 60,
-  small: 48,
+  xLarge: 136, //header
+  large: 104, //header-mobile
+  mediumLarge: 60, //usercard
+  mediumSmall: 48, //usercard-mobile
+  small: 32,
   xSmall: 28,
 };
 
@@ -14,13 +15,13 @@ export const Div = styled.div`
 `;
 
 export const Img = styled.img`
-  width: ${({ size }) => (size ? SIZES[size] : SIZES['medium'])}px;
-  height: ${({ size }) => (size ? SIZES[size] : SIZES['medium'])}px;
+  width: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
+  height: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
 
   @media (min-width: 375px) and (max-width: 767px) {
-    width: ${({ size }) =>
-      size == 'xLarge' ? SIZES['large'] : SIZES['small']}px;
-    height: ${({ size }) =>
-      size == 'xLarge' ? SIZES['large'] : SIZES['small']}px;
-  }
+    width: ${({ mobileSize }) =>
+      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+    height: 
+    ${({ mobileSize }) =>
+      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
 `;
