@@ -8,6 +8,7 @@ import { getLocalStorage } from 'utils/function';
 import { getSubjects } from 'api/api';
 =======
 import styled from 'styled-components';
+import ModalPortal from 'Portal';
 import { StyledGlobal } from 'style/StyleGlobal';
 import ModalPortal from 'Portal';
 >>>>>>> c6d9cee (feat: 모달창 구현, Nav Bar 일부 수정, checkLocalStorage 함수 구현)
