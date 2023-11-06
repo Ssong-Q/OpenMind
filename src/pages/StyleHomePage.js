@@ -1,31 +1,26 @@
 import styled from 'styled-components';
-import logoImg from 'assets/logo.svg';
 
-import twoGuysImg from 'assets/two-guys-image.png';
+export const PageContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   gap: 20px;
   background-color: transparent;
 `;
 
-export const LogoImg = styled.div`
-  z-index: 10;
-  width: 450px;
-  height: 176px;
-  margin-top: 160px;
-  background-image: url(${logoImg});
-  background-size: cover;
-  background-position: center;
-`;
-
 export const InputBox = styled.div`
-  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -34,18 +29,4 @@ export const InputBox = styled.div`
   padding: 32px;
   border-radius: 16px;
   background-color: var(--gray10);
-`;
-
-export const TwoGuysImg = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100vw;
-  max-width: 1800px;
-  height: 100vh;
-  background-image: url(${twoGuysImg});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
 `;

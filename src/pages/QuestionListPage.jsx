@@ -17,7 +17,7 @@ const QuestionListPage = () => {
   };
 
   return (
-    <>
+    <Styled.PageContainer>
       <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
       <Styled.cardSectionContainer>
         <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
@@ -25,7 +25,7 @@ const QuestionListPage = () => {
         <Styled.cardSectionBox></Styled.cardSectionBox>
       </Styled.cardSectionContainer>
       {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
-    </>
+    </Styled.PageContainer>
   );
 };
 

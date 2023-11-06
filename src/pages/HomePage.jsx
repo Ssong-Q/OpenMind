@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { NavBar, InputField, ButtonBox } from 'components';
 import { getSubjects, postSubjects } from 'api/api';
 import { getLocalStorage, setLocalStorage } from 'utils/function';
+import { ReactComponent as TwoGuysImg } from 'assets/two-guys-home.svg';
+import { ReactComponent as LogoImg } from 'assets/logo.svg';
 import * as Styled from './StyleHomePage';
 
 const HomePage = () => {
@@ -37,17 +39,17 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <Styled.PageContainer>
       <NavBar onClick={handleNavClick}>질문하러 가기</NavBar>
       <Styled.MainContainer>
-        <Styled.LogoImg />
+        <LogoImg />
         <Styled.InputBox>
           <InputField onChange={handleInputChange} />
           <ButtonBox onClick={handleButtonClick}>질문 받기</ButtonBox>
         </Styled.InputBox>
       </Styled.MainContainer>
-      <Styled.TwoGuysImg />
-    </>
+      <TwoGuysImg width={'100%'} />
+    </Styled.PageContainer>
   );
 };
 
