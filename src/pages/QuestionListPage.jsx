@@ -19,8 +19,8 @@ const QuestionListPage = () => {
   return (
     <>
       <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
-      <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
       <Styled.cardSectionContainer>
+        <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
         <DropDown />
         <Styled.cardSectionBox></Styled.cardSectionBox>
       </Styled.cardSectionContainer>

@@ -6,7 +6,7 @@ export const ListPageHeader = styled.h1`
 `;
 
 export const cardSectionContainer = styled.section`
-  margin: 0 auto;
+  margin: 120px auto;
   width: 80%;
   display: flex;
   flex-direction: column;
