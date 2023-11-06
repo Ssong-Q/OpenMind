@@ -8,9 +8,9 @@ export const Header = styled.div`
   overflow: hidden;
 `;
 
-export const Background = styled(TwoGuysImg)`
-  min-width: 1200px;
 
+export const Background = styled.img`
+  min-width: 1200px;
   @media (max-width: 767px) {
     min-width: 906px;
   }
@@ -29,7 +29,8 @@ export const Container = styled.div`
   padding-top: 50px;
 `;
 
-export const Logo = styled(LogoImg)`
+
+export const Logo = styled.img`
   width: 170px;
   height: 67px;
 
