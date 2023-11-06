@@ -5,7 +5,7 @@ function UserCard({ src, name, count }) {
   return (
     <Styled.Container>
       <Styled.ProfileContainer>
-        <ProfileImage src={src} />
+        <ProfileImage src={src} size="mediumLarge" mobilesize="mediumSmall" />
         <Styled.Name>{name}</Styled.Name>
       </Styled.ProfileContainer>
       <Styled.InfoContainer>

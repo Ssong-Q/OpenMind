@@ -73,3 +73,11 @@ export const Div = styled.div`
   align-items: center;
   gap: 4px;
 `;
+
+export const Section = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, minmax(186px, auto));
+  gap: 20px;
+`;

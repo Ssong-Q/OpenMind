@@ -22,7 +22,3 @@ export const ListPageHeader = styled.h1`
   text-align: center;
   margin-bottom: 15px;
 `;
-
-export const cardSectionBox = styled.div`
-  display: grid;
-`;
