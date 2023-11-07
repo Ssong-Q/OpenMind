@@ -9,13 +9,17 @@ export const PageContainer = styled.div`
 `;
 
 export const cardSectionContainer = styled.section`
-  margin: 0 auto;
-  width: 80%;
+  width: 100%;
   height: 100%;
+  padding: 0 125px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 1199px) {
+    padding: 0 45px;
+  }
 `;
 
 export const ListPageHeader = styled.h1`

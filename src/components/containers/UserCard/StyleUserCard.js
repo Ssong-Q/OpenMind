@@ -19,7 +19,7 @@ export const Container = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
-  max-width: 220px;
+  min-width: 186px;
   height: 187px;
   padding: 20px;
   border: 1px solid var(--gray40);
@@ -77,6 +77,14 @@ export const Section = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(4, minmax(186px, auto));
+  grid-template-columns: repeat(4, auto);
   gap: 20px;
+
+  @media (max-width: 909px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, auto);
+  }
 `;

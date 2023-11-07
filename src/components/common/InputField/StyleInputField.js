@@ -11,6 +11,10 @@ export const InputFieldBox = styled.div`
   border: 1px solid
     ${({ focused }) =>
       focused === 'true' ? `var(--brown40)` : `var(--gray40)`};
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const PersonImg = styled.div`
