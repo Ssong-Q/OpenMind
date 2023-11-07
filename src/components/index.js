@@ -10,6 +10,7 @@ export { default as DropDownList } from './common/DropDownList/DropDownList';
 export { default as ButtonShare } from './common/ButtonShare/ButtonShare';
 export { default as ProfileImage } from './common/ProfileImage/ProfileImage';
 export { default as QuestionBox } from './common/QuestionBox/QuestionBox';
+export { default as Pagination } from './common/PageButton/Pagination';
 export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';

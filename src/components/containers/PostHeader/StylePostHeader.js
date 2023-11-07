@@ -1,13 +1,10 @@
 import styled from 'styled-components';
-import { ReactComponent as TwoGuysImg } from 'assets/twoguys-image-half.svg';
-import { ReactComponent as LogoImg } from 'assets/logo.svg';
 
 export const Header = styled.div`
   display: flex;
   justify-content: center;
   overflow: hidden;
 `;
-
 
 export const Background = styled.img`
   min-width: 1200px;
@@ -28,7 +25,6 @@ export const Container = styled.div`
   height: auto;
   padding-top: 50px;
 `;
-
 
 export const Logo = styled.img`
   width: 170px;
