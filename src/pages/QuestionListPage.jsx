@@ -10,7 +10,6 @@ import {
 } from 'components';
 import { getSubjects } from 'api/api';
 import { useWindowSizeCustom } from 'hooks/useWindowSize';
-import useAsync from 'hooks/useAsync';
 import { checkLocalStorage } from 'utils/localStorage';
 import * as Styled from './StyleQuestionListPage';
 
@@ -21,19 +20,31 @@ const QuestionListPage = () => {
   const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
   const [sort, setSort] = useState('time');
-  const [isLoading, loadingError, getSubjectsAsync] = useAsync(getSubjects);
+  const [total, setTotal] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [subjectData, setSubjectData] = useState({
     data: [],
   });
 
   const handleCardSection = async (...args) => {
-    const result = await getSubjectsAsync(...args);
-    const { results: subjectData } = result;
-    setSubjectData((prevData) => ({
-      ...prevData,
-      data: subjectData,
-    }));
-    if (loadingError) console.log(loadingError);
+    setIsLoading(true);
+    try {
+      const [result, total] = await Promise.all([
+        getSubjects(...args),
+        getSubjects(null, 9999, 0),
+      ]);
+      const { results: subjectData } = result;
+      const { count } = total;
+      setSubjectData((prevData) => ({
+        ...prevData,
+        data: subjectData,
+      }));
+      setTotal(count);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLimitChange = useCallback(() => {
@@ -69,7 +80,7 @@ const QuestionListPage = () => {
           <DropDown sort={sort} setSort={setSort} />
         </Styled.ListPageHeaderBox>
         <UserCardSection data={subjectData.data} />
-        <Pagination onClick={setOffset} />
+        <Pagination total={total} onClick={setOffset} limit={limit} />
       </Styled.cardSectionContainer>
       {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
       {isLoading && <ModalLoading />}

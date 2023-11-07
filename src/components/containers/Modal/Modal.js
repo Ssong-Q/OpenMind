@@ -10,7 +10,7 @@ const placeholderRotate = keyframes`
 
 export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   z-index: 9000;
   position: fixed;
