@@ -4,12 +4,11 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 684px;
-  height: 457px;
+  width: 100%;
   padding: 32px;
   border-radius: 16px;
   box-shadow: var(--shadow-1pt);
-  margin: 100px; //삭제
+  background: white;
 `;
 
 export const KebabImg = styled.img``;
@@ -71,6 +70,14 @@ export const AnswerDate = styled.div`
 `;
 
 export const AnswerContent = styled.div`
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+`;
+
+export const RefuseContent = styled.div`
+  color: var(--red);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

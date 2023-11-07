@@ -21,3 +21,4 @@ export { default as ModalListPage } from './containers/Modal/ModalListPage';
 export { default as FeedCard } from './containers/FeedCard/FeedCard';
 export { default as QuestionList } from './containers/QuestionList/QuestionList';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';
+export { default as ModalLoading } from './containers/Modal/ModalLoading';
