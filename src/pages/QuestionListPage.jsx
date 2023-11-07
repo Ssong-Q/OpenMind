@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   NavBar,
@@ -6,34 +6,43 @@ import {
   DropDown,
   UserCardSection,
   Pagination,
+  ModalLoading,
 } from 'components';
 import { getSubjects } from 'api/api';
-import { checkLocalStorage } from 'utils/function';
+import { useWindowSizeCustom } from 'hooks/useWindowSize';
+import useAsync from 'hooks/useAsync';
+import { checkLocalStorage } from 'utils/localStorage';
 import * as Styled from './StyleQuestionListPage';
-
-const LIMIT = 8;
 
 const QuestionListPage = () => {
   const navigate = useNavigate();
+  const { width: browserWidth } = useWindowSizeCustom();
   const [isAnsModal, setIsAnsModal] = useState(false);
+  const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
   const [sort, setSort] = useState('time');
+  const [isLoading, loadingError, getSubjectsAsync] = useAsync(getSubjects);
   const [subjectData, setSubjectData] = useState({
     data: [],
   });
 
   const handleCardSection = async (...args) => {
-    try {
-      const result = await getSubjects(...args);
-      const { results: subjectData } = result;
-      setSubjectData((prevData) => ({
-        ...prevData,
-        data: subjectData,
-      }));
-    } catch (err) {
-      console.log(err);
-    }
+    const result = await getSubjectsAsync(...args);
+    const { results: subjectData } = result;
+    setSubjectData((prevData) => ({
+      ...prevData,
+      data: subjectData,
+    }));
+    if (loadingError) console.log(loadingError);
   };
+
+  const handleLimitChange = useCallback(() => {
+    if (browserWidth >= 910) {
+      setLimit(8);
+    } else {
+      setLimit(6);
+    }
+  }, [browserWidth]);
 
   const handleNavClick = () => {
     if (checkLocalStorage()) {
@@ -44,8 +53,12 @@ const QuestionListPage = () => {
   };
 
   useEffect(() => {
-    handleCardSection(null, LIMIT, offset, sort);
-  }, [offset, sort]);
+    handleCardSection(null, limit, offset, sort);
+  }, [offset, sort, limit]);
+
+  useEffect(() => {
+    handleLimitChange();
+  }, [handleLimitChange]);
 
   return (
     <Styled.PageContainer>
@@ -59,6 +72,7 @@ const QuestionListPage = () => {
         <Pagination onClick={setOffset} />
       </Styled.cardSectionContainer>
       {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
+      {isLoading && <ModalLoading />}
     </Styled.PageContainer>
   );
 };

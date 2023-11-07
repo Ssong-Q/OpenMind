@@ -1,5 +1,12 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import closeBtnImg from 'assets/icon/close.svg';
+import spinnerImg from 'assets/spinner.png';
+
+const placeholderRotate = keyframes`
+  100% {
+      transform: rotate(360deg);
+  }
+`;
 
 export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
@@ -25,4 +32,18 @@ export const ModalCloseBtn = styled.div`
   width: 24px;
   height: 24px;
   cursor: pointer;
+`;
+
+export const Spinner = styled.div`
+  animation: ${placeholderRotate} 1.5s linear infinite;
+  z-index: 9999;
+  position: absolute;
+  top: 42%;
+  left: 46%;
+  width: 100px;
+  height: 100px;
+  background-image: url(${`${spinnerImg}`});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;

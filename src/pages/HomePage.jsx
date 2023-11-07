@@ -1,8 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { NavBar, InputField, ButtonBox, ButtonBoxWithArrow } from 'components';
+import {
+  NavBar,
+  InputField,
+  ButtonBox,
+  ButtonBoxWithArrow,
+  ModalLoading,
+} from 'components';
 import { getSubjects, postSubjects } from 'api/api';
-import { getLocalStorage, setLocalStorage } from 'utils/function';
+import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
 import { useWindowSizeCustom } from 'hooks/useWindowSize';
 import * as Styled from './StyleHomePage';
 
@@ -12,8 +18,10 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { width: browserWidth } = useWindowSizeCustom();
   const [name, setName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleButtonClick = async () => {
+    setIsLoading(true);
     try {
       if (getLocalStorage(name)) {
         // localStorage에 Input에 입력한 name에 맞는 userId가 있을 때
@@ -29,6 +37,8 @@ const HomePage = () => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,6 +66,7 @@ const HomePage = () => {
         </Styled.InputBox>
       </Styled.MainContainer>
       <Styled.TwoGuysImg />
+      {isLoading && <ModalLoading />}
     </Styled.PageContainer>
   );
 };
