@@ -1,3 +1,5 @@
-const QuestionFeedPage = () => {};
+const QuestionFeedPage = () => {
+  return <>dd</>;
+};
 
 export default QuestionFeedPage;

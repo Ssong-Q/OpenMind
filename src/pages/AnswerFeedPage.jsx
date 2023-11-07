@@ -1,5 +1,11 @@
+import { FeedCard } from 'components';
+
 const AnswerFeedPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <FeedCard />
+    </>
+  );
 };
 
 export default AnswerFeedPage;

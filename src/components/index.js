@@ -9,6 +9,8 @@ export { default as IncompleteBadge } from './common/ButtonBadge/IncompleteBadge
 export { default as DropDownList } from './common/DropDownList/DropDownList';
 export { default as ButtonShare } from './common/ButtonShare/ButtonShare';
 export { default as ProfileImage } from './common/ProfileImage/ProfileImage';
+export { default as ThumbsDownButton } from './common/ReactionButton/ThumbsDownDown';
+export { default as ThumbsUpButton } from './common/ReactionButton/ThumbsUpButton';
 export { default as QuestionBox } from './common/QuestionBox/QuestionBox';
 export { default as Pagination } from './common/PageButton/Pagination';
 export { default as DropDown } from './containers/DropDown/DropDown';
@@ -16,6 +18,6 @@ export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
 export { default as UserCardSection } from './containers/UserCard/UserCardSection';
 export { default as ModalListPage } from './containers/Modal/ModalListPage';
-export { default as ModalLoading } from './containers/Modal/ModalLoading';
+export { default as FeedCard } from './containers/FeedCard/FeedCard';
 export { default as QuestionList } from './containers/QuestionList/QuestionList';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';
