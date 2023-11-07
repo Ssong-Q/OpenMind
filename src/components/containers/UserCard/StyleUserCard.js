@@ -1,15 +1,14 @@
 import styled from 'styled-components';
-import { ReactComponent as Messages } from 'assets/icon/messages.svg';
 
 /* PC: 1200px 이상
 Tablet: 768px 이상 ~ 1199px 이하
 Mobile: 767px 이하*/
 
-export const MessageIcon = styled(Messages)`
+export const MessageIcon = styled.img`
   width: 18px;
   height: 18px;
 
-  @media max-width: 767px {
+  @media (max-width: 767px) {
     width: 16px;
     height: 16px;
   }
@@ -20,7 +19,7 @@ export const Container = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
-  max-width: 220px;
+  min-width: 186px;
   height: 187px;
   padding: 20px;
   border: 1px solid var(--gray40);
@@ -35,7 +34,7 @@ export const Container = styled.div`
 export const Name = styled.p`
   font-family: Actor;
   font-size: 2rem;
-  line-height: 2.5rem%;
+  line-height: 2.5rem;
   color: var(--gray60);
 
   @media (max-width: 767px) {
@@ -72,4 +71,25 @@ export const Div = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+`;
+
+export const Section = styled.div`
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, 220px);
+  gap: 20px;
+
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 909px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
