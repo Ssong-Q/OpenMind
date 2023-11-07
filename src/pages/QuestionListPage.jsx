@@ -51,8 +51,10 @@ const QuestionListPage = () => {
     <Styled.PageContainer>
       <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
       <Styled.cardSectionContainer>
-        <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
-        <DropDown sort={sort} setSort={setSort} />
+        <Styled.ListPageHeaderBox>
+          <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
+          <DropDown sort={sort} setSort={setSort} />
+        </Styled.ListPageHeaderBox>
         <UserCardSection data={subjectData.data} />
         <Pagination onClick={setOffset} />
       </Styled.cardSectionContainer>
