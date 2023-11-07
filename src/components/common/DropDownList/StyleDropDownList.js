@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Ul = styled.ul`
+  position: absolute;
   width: 79px;
-  margin-top: 2px;
+  margin-top: 3px;
   padding: 4px 0px;
   border-radius: 8px;
   border: 1px solid var(--gray30);
@@ -19,7 +20,8 @@ export const Button = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ select }) => (select ? `var(--blue)` : `var(--gray50)`)};
+  color: ${({ select }) =>
+    select === 'true' ? `var(--blue)` : `var(--gray50)`};
   cursor: pointer;
 
   &:hover {

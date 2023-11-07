@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  margin-top: -20px;
+  position: relative;
+`;
+
 export const Div = styled.div`
   display: flex;
   justify-content: space-between;

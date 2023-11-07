@@ -16,11 +16,11 @@ export const Container = styled.div`
   overflow: hidden;
 
   @media (max-width: 767px) {
-    width: ${({ mobileSize }) =>
-      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
-    height: 
-    ${({ mobileSize }) =>
-      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+    width: ${({ mobilesize }) =>
+      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
+    height: ${({ mobilesize }) =>
+      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
+  }
 `;
 
 export const Img = styled.img`

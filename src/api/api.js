@@ -1,8 +1,9 @@
 const BASE_URL = 'https://openmind-api.vercel.app/1-1';
 
-export async function getSubjects(id) {
+export async function getSubjects(id, limit = 8, offset = '', sort = 'time') {
   const subjectId = id ? `${id}/` : '';
-  const response = await fetch(`${BASE_URL}/subjects/${subjectId}`);
+  const query = id ? '' : `?limit=${limit}&offset=${offset}&sort=${sort}`;
+  const response = await fetch(`${BASE_URL}/subjects/${subjectId}${query}`);
   if (!response.ok) {
     throw new Error('질문 대상 조회에 실패했습니다');
   }

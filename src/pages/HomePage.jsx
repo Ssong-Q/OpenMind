@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { NavBar, InputField, ButtonBox } from 'components';
+import { NavBar, InputField, ButtonBox, ButtonBoxWithArrow } from 'components';
 import { getSubjects, postSubjects } from 'api/api';
 import { getLocalStorage, setLocalStorage } from 'utils/function';
+import { useWindowSizeCustom } from 'hooks/useWindowSize';
 import * as Styled from './StyleHomePage';
+
+const MOBILE_SIZE = 767;
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { width: browserWidth } = useWindowSizeCustom();
   const [name, setName] = useState('');
 
   const handleButtonClick = async () => {
@@ -37,17 +41,22 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <Styled.PageContainer>
       <NavBar onClick={handleNavClick}>질문하러 가기</NavBar>
       <Styled.MainContainer>
         <Styled.LogoImg />
+        {browserWidth <= MOBILE_SIZE && (
+          <ButtonBoxWithArrow onClick={handleNavClick}>
+            질문하러 가기
+          </ButtonBoxWithArrow>
+        )}
         <Styled.InputBox>
           <InputField onChange={handleInputChange} />
           <ButtonBox onClick={handleButtonClick}>질문 받기</ButtonBox>
         </Styled.InputBox>
       </Styled.MainContainer>
       <Styled.TwoGuysImg />
-    </>
+    </Styled.PageContainer>
   );
 };
 
