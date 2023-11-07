@@ -41,15 +41,13 @@ export const AnswerContainer = styled.div`
   width: 100%;
 `;
 
-export const ProfileImg = styled.img`
-  width: 48px;
-  height: 48px;
-`;
-
 export const AnswerBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 4px;
+  width: 120;
 `;
 
 export const AnswerProfile = styled.div`
@@ -103,9 +101,7 @@ export const FooterIcon = styled.img`
   color: var(--gray40);
 `;
 
-export const FooterIconContent = styled.div`
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 18px;
+export const ProfileImage = styled.img`
+  width: 49px;
+  height: 49px;
 `;

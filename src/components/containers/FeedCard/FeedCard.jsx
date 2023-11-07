@@ -1,16 +1,15 @@
 import * as Styled from './StyleFeedCard';
 import { CompleteBadge, ButtonEdit } from 'components';
-import more from 'assets/icon/more.svg';
-import thumbsUp from 'assets/icon/thumbs-up.svg';
-import thumbsDown from 'assets/icon/thumbs-down.svg';
-import profileImage from 'assets/profile-image.svg';
+import { ReactComponent as More } from 'assets/icon/more.svg';
+import { ThumbsDownButton, ThumbsUpButton, ProfileImage } from 'components';
+import logo from '../../../assets/icon/edit.svg'; //추후 삭제-테스트용
 
 function FeedCard() {
   return (
     <Styled.CardContainer>
       <Styled.Header>
         <CompleteBadge />
-        <Styled.KebabImg src={more} />
+        <More />
       </Styled.Header>
       <Styled.Question>
         <Styled.QuestionTime>질문</Styled.QuestionTime>
@@ -19,7 +18,7 @@ function FeedCard() {
         </Styled.QuestionContent>
       </Styled.Question>
       <Styled.AnswerContainer>
-        <Styled.ProfileImg src={profileImage} />
+        <ProfileImage src={logo} />
         <Styled.AnswerBox>
           <Styled.AnswerProfile>
             <Styled.AnswerName>아초는 고양이</Styled.AnswerName>
@@ -41,12 +40,10 @@ function FeedCard() {
       <Styled.Footer>
         <Styled.FooterIcons>
           <Styled.FooterIconContainer>
-            <Styled.FooterIcon src={thumbsUp} />
-            <Styled.FooterIconContent>좋아요12</Styled.FooterIconContent>
+            <ThumbsUpButton />
           </Styled.FooterIconContainer>
           <Styled.FooterIconContainer>
-            <Styled.FooterIcon src={thumbsDown} />
-            <Styled.FooterIconContent>싫어요12</Styled.FooterIconContent>
+            <ThumbsDownButton />
           </Styled.FooterIconContainer>
         </Styled.FooterIcons>
         <ButtonEdit />
