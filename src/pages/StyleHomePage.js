@@ -1,51 +1,74 @@
 import styled from 'styled-components';
 import logoImg from 'assets/logo.svg';
+import twoGuysImg from 'assets/two-guys-home.svg';
 
-import twoGuysImg from 'assets/two-guys-image.png';
+export const PageContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   gap: 20px;
   background-color: transparent;
+
+  @media (max-width: 767px) {
+    position: static;
+    gap: 15px;
+    width: 80vw;
+    height: 100%;
+    margin-top: 50px;
+  }
 `;
 
 export const LogoImg = styled.div`
-  z-index: 10;
   width: 450px;
-  height: 176px;
-  margin-top: 160px;
+  height: 180px;
   background-image: url(${logoImg});
-  background-size: cover;
   background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @media (max-width: 767px) {
+    margin-top: 20px;
+    width: 80%;
+    height: 140px;
+  }
 `;
 
 export const InputBox = styled.div`
-  z-index: 10;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   width: 400px;
-  height: 172px;
+  height: 170px;
   padding: 32px;
   border-radius: 16px;
   background-color: var(--gray10);
+
+  @media (max-width: 767px) {
+    width: 80%;
+    height: 125px;
+    padding: 16px;
+  }
 `;
 
 export const TwoGuysImg = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100vw;
-  max-width: 1800px;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-image: url(${twoGuysImg});
+  background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center bottom;
 `;

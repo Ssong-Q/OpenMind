@@ -11,6 +11,10 @@ export const ButtonBox = styled.button`
   border: 1px solid var(--brown40);
   background-color: var(--brown10);
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    padding: 8px 12px;
+  }
 `;
 
 export const ArrowRight = styled.div`

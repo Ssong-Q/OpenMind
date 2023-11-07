@@ -1,18 +1,25 @@
+// PC: 1200px 이상
+// Tablet: 768px 이상 ~ 1199px 이하
+// Mobile: 375px 이상 ~ 767px 이하
+
 import styled from 'styled-components';
 
 export const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 45px 125px 20px;
   z-index: 10;
+  padding: 35px 125px 20px;
 
   @media (max-width: 1199px) {
-    padding: 44px 45px 20px;
+    padding: 35px 45px 20px;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
   }
 `;
 

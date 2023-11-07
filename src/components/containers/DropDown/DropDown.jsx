@@ -4,9 +4,8 @@ import { ReactComponent as ArrowUp } from 'assets/icon/arrow-up.svg';
 import { DropDownList } from 'components';
 import * as Styled from './StyleDropDown';
 
-function DropDown() {
+function DropDown({ sort, setSort }) {
   const [isOpen, setIsOpen] = useState('false');
-  const [sort, setSort] = useState('이름순');
 
   //드롭다운 버튼 클릭
   const handleDropDownClick = () => {
@@ -16,19 +15,19 @@ function DropDown() {
 
   //드롭다운 리스트 중 하나 선택
   const handleNameClick = () => {
-    setSort('이름순');
+    setSort('name');
     setIsOpen('false');
   };
 
   const handleNewestClick = () => {
-    setSort('최신순');
+    setSort('time');
     setIsOpen('false');
   };
 
   return (
-    <>
+    <Styled.Container>
       <Styled.Div onClick={handleDropDownClick} status={isOpen}>
-        {sort}
+        {sort === 'time' ? '최신순' : '이름순'}
         {isOpen === 'true' ? (
           <ArrowUp width="14" height="14" fill="var(--gray60)" />
         ) : (
@@ -42,7 +41,7 @@ function DropDown() {
           sort={sort}
         />
       )}
-    </>
+    </Styled.Container>
   );
 }
 

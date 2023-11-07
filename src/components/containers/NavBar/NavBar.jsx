@@ -7,10 +7,12 @@ import logoImg from 'assets/logo.svg';
 const NavBar = ({ children, onClick }) => {
   const imageBoxRef = useRef();
   const location = useLocation();
+  // const [navProp, setNavProp] = useState('');
 
   useEffect(() => {
     if (location.pathname === '/') {
       imageBoxRef.current.style.visibility = 'hidden';
+      // setNavProp('homepage');
     }
   }, [location]);
 
