@@ -16,5 +16,6 @@ export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
 export { default as UserCardSection } from './containers/UserCard/UserCardSection';
 export { default as ModalListPage } from './containers/Modal/ModalListPage';
+export { default as ModalLoading } from './containers/Modal/ModalLoading';
 export { default as QuestionList } from './containers/QuestionList/QuestionList';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';

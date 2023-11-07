@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ModalPortal from 'Portal';
 import { StyledGlobal } from 'style/StyleGlobal';
-import { getLocalStorage } from 'utils/function';
+import { getLocalStorage } from 'utils/localStorage';
 import { getSubjects } from 'api/api';
 import { InputBox } from 'pages/StyleHomePage';
 import { InputField, ButtonBox } from 'components';

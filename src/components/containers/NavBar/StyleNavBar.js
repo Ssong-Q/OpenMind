@@ -19,7 +19,9 @@ export const NavBarContainer = styled.div`
   }
 
   @media (max-width: 767px) {
-    display: none;
+    display: ${({ location }) => (location === 'homepage' ? `none` : `flex`)};
+    flex-direction: column;
+    gap: 15px;
   }
 `;
 

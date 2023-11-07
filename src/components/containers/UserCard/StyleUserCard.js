@@ -76,15 +76,20 @@ export const Div = styled.div`
 export const Section = styled.div`
   width: 100%;
   display: grid;
+  place-content: center;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(4, 220px);
   gap: 20px;
 
+  @media (max-width: 1199px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   @media (max-width: 909px) {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media (max-width: 767px) {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
