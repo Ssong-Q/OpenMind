@@ -48,6 +48,7 @@ const QuestionListPage = () => {
   };
 
   const handleLimitChange = useCallback(() => {
+    if (!browserWidth) return;
     if (browserWidth >= 910) {
       setLimit(8);
     } else {
