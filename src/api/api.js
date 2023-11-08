@@ -26,6 +26,19 @@ export async function postSubjects(formData) {
   return body;
 }
 
+export async function getSubjectsQuestion(id, limit = 5, offset = '') {
+  const subjectId = id;
+  const query = `?limit=${limit}&offset=${offset}`;
+  const response = await fetch(
+    `${BASE_URL}/subjects/${subjectId}/questions/${query}`
+  );
+  if (!response.ok) {
+    throw new Error('질문 대상 조회에 실패했습니다');
+  }
+  const body = await response.json();
+  return body;
+}
+
 export async function postSubjectsQuestion(id, formData) {
   const response = await fetch(`${BASE_URL}/subjects/${id}/questions/`, {
     method: 'POST',

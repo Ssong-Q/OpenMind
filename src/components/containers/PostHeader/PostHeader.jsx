@@ -1,6 +1,5 @@
 import { ProfileImage, ButtonShare } from 'components';
 import * as Styled from './StylePostHeader';
-
 import LogoImg from 'assets/logo.svg';
 
 function PostHeader({ src, name }) {
