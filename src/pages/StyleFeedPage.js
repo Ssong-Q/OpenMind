@@ -6,13 +6,14 @@ export const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
-  margin-bottom: 120px;
+  margin-bottom: 140px;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: 0;
   width: 684px;
   margin-bottom: 9px;
 `;
@@ -35,6 +36,7 @@ export const CardContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   width: 684px;
+  margin-top: 54px;
   padding: 16px;
   border: 1px solid var(--brown30);
   border-radius: 16px;

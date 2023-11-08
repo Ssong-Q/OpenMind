@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import TwoGuysImg from 'assets/twoguys-image-half.svg';
 
 export const Header = styled.div`
-  display: flex;
+  display: block;
   justify-content: center;
-  overflow: hidden;
-`;
+  background-image: url(${TwoGuysImg});
+  background-position: top center;
+  background-size: auto;
+  background-repeat: no-repeat;
 
-export const Background = styled.img`
-  min-width: 1200px;
-  @media (max-width: 767px) {
-    min-width: 906px;
+  @media (max-width: 1199px) {
+    background-size: 1200px;
   }
 `;
 
@@ -18,12 +19,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: auto;
   padding-top: 50px;
+  margin-bottom: 10px;
 `;
 
 export const Logo = styled.img`

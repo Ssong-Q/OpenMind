@@ -1,6 +1,6 @@
 import { ProfileImage, ButtonShare } from 'components';
 import * as Styled from './StylePostHeader';
-import TwoGuysImg from 'assets/twoguys-image-half.svg';
+
 import LogoImg from 'assets/logo.svg';
 
 function PostHeader({ src, name }) {
@@ -13,7 +13,6 @@ function PostHeader({ src, name }) {
           <Styled.Name>{name}</Styled.Name>
           <ButtonShare name={name} image={src} />
         </Styled.Container>
-        <Styled.Background src={TwoGuysImg} />
       </Styled.Header>
     </>
   );
