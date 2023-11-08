@@ -13,6 +13,7 @@ export { default as ThumbsDownButton } from './common/ReactionButton/ThumbsDownD
 export { default as ThumbsUpButton } from './common/ReactionButton/ThumbsUpButton';
 export { default as QuestionBox } from './common/QuestionBox/QuestionBox';
 export { default as Pagination } from './common/PageButton/Pagination';
+export { default as ModalQuestionTitle } from './common/ModalQuestionTItle/ModalQuestionTItle';
 export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
@@ -22,3 +23,4 @@ export { default as FeedCard } from './containers/FeedCard/FeedCard';
 export { default as QuestionList } from './containers/QuestionList/QuestionList';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';
 export { default as ModalLoading } from './containers/Modal/ModalLoading';
+export { default as WriteQuestionModal} from './containers/Modal/WriteQuestionModal';

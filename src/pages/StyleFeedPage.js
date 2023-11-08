@@ -30,7 +30,7 @@ export const DeleteButton = styled.button`
   line-height: 25px;
 `;
 
-export const CardContiner = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -11,7 +11,7 @@ const AnswerFeedPage = () => {
         <Styled.ButtonContainer>
           <Styled.DeleteButton>삭제하기</Styled.DeleteButton>
         </Styled.ButtonContainer>
-        <Styled.CardContiner>
+        <Styled.CardContainer>
           <Styled.CountContainer>
             <Styled.CountIcon src={messages} />
             <Styled.CountContent>3개의 질문이 있습니다.</Styled.CountContent>
@@ -19,7 +19,7 @@ const AnswerFeedPage = () => {
           <FeedCard />
           <FeedCard />
           <FeedCard />
-        </Styled.CardContiner>
+        </Styled.CardContainer>
       </Styled.MainContainer>
     </>
   );
