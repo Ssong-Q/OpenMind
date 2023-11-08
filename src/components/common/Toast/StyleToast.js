@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 //'URL이 복사되었습니다' ToastButton으로 사용합니다
-export const ToastButton = styled.button`
+export const Toast = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,5 +13,4 @@ export const ToastButton = styled.button`
   line-height: 18px;
   color: var(--gray10);
   box-shadow: var(--shadow-2pt);
-  cursor: default;
 `;
