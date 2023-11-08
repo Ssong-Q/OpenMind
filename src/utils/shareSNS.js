@@ -8,7 +8,7 @@ export const shareFacebook = (sharedUrl) => {
   window.open(
     `http://www.facebook.com/sharer/sharer.php?u=${sharedUrl}`,
     'popup',
-    'width=500, height=500, scrollbars=yes'
+    'width=560, height=560, top=150, left=100. scrollbars=yes'
   );
 };
 
