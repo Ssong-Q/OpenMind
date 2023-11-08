@@ -8,10 +8,8 @@ export const CardContainer = styled.div`
   padding: 32px;
   border-radius: 16px;
   box-shadow: var(--shadow-1pt);
-  background: white;
 `;
 
-export const KebabImg = styled.img``;
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,67 +19,15 @@ export const Question = styled.div``;
 
 export const QuestionTime = styled.div`
   color: var(--gray40);
-  font-size: 14px;
-  font-style: normal;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 18px;
 `;
 
 export const QuestionContent = styled.div`
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px;
-`;
-
-export const AnswerContainer = styled.div`
-  display: flex;
-  gap: 12px;
-  width: 100%;
-`;
-
-export const AnswerBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 4px;
-  width: 120;
-`;
-
-export const AnswerProfile = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-export const AnswerName = styled.div`
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-`;
-
-export const AnswerDate = styled.div`
-  color: var(--gray40);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 18px;
-`;
-
-export const AnswerContent = styled.div`
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-`;
-
-export const RefuseContent = styled.div`
-  color: var(--red);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
 `;
 
 export const Footer = styled.div`

@@ -1,7 +1,13 @@
-import * as Styled from './StyleFeedCard';
-import { IncompleteBadge, CompleteBadge, ButtonEdit } from 'components';
+import {
+  IncompleteBadge,
+  CompleteBadge,
+  ButtonEdit,
+  ThumbsDownButton,
+  ThumbsUpButton,
+  ProfileImage,
+} from 'components';
 import { ReactComponent as More } from 'assets/icon/more.svg';
-import { ThumbsDownButton, ThumbsUpButton, ProfileImage } from 'components';
+import * as Styled from './StyleFeedCard';
 import logo from '../../../assets/icon/edit.svg'; //추후 삭제-테스트용
 
 function FeedCard({ isDone }) {

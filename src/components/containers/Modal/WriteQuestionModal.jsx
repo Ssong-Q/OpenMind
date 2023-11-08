@@ -3,7 +3,7 @@ import ModalPortal from 'Portal';
 import { InputTextArea, ModalQuestionTitle } from 'components';
 import { postSubjectsQuestion } from 'api/api';
 import { StyledGlobal } from 'style/StyleGlobal';
-import * as Style from './Modal';
+import * as Styled from './Modal';
 import randomImg from 'assets/profile-image.svg';
 
 const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
@@ -15,10 +15,14 @@ const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault;
-    const formData = JSON.stringify({ content: `${value}` });
-    const response = await postSubjectsQuestion(id, formData);
-    console.log(response)
+    e.preventDefault();
+    try {
+      const formData = JSON.stringify({ content: `${value}` });
+      const response = await postSubjectsQuestion(id, formData);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
     /*try{
       const{subjectId, content} = response;
       getCreateForm(subjectId, content);
@@ -41,26 +45,26 @@ const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
     <>
       <StyledGlobal />
       <ModalPortal>
-        <Style.ModalBackground onClick={handleClose} />
-        <Style.Container>
+        <Styled.ModalBackground onClick={handleClose} />
+        <Styled.Container>
           <ModalQuestionTitle onClick={handleClose} />
-          <Style.User>
+          <Styled.User>
             <span>To.</span>
             <img src={randomImg} />
             <span>{name}</span>
-          </Style.User>
-          <Style.Form onSubmit={handleSubmit}>
+          </Styled.User>
+          <Styled.Form onSubmit={handleSubmit}>
             <InputTextArea onChange={handleInputChange} value={value} />
-            <Style.Button
+            <Styled.Button
               type="submit"
               onClick={handleButtonClick}
               disabled={!active}
               $active={active}
             >
               질문 보내기
-            </Style.Button>
-          </Style.Form>
-        </Style.Container>
+            </Styled.Button>
+          </Styled.Form>
+        </Styled.Container>
       </ModalPortal>
     </>
   );
