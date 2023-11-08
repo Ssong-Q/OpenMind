@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import * as Styled from './StyleInputTextArea.js';
 
-const InputTextArea = () => {
-  const [isFocused, setIsFocused] = useState('false');
+const InputTextArea = ({ value, onChange }) => {
+  const [focused, setFocused] = useState('false');
 
   const handleInputFocus = () => {
-    setIsFocused('true');
+    setFocused('true');
   };
 
   const handleInputBlur = () => {
-    setIsFocused('false');
+    setFocused('false');
   };
 
   return (
     <Styled.InputTextArea
-      isFocused={isFocused}
+      $focused={focused}
       onFocus={handleInputFocus}
       onBlur={handleInputBlur}
-      placeholder="이름을 입력하세요"
+      placeholder="질문을 입력해주세요"
+      onChange={onChange}
+      value={value}
     />
   );
 };
