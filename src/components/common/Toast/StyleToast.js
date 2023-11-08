@@ -13,5 +13,4 @@ export const Toast = styled.div`
   line-height: 18px;
   color: var(--gray10);
   box-shadow: var(--shadow-2pt);
-  cursor: default;
 `;
