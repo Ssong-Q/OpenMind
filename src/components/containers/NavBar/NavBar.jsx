@@ -1,23 +1,31 @@
-import { useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ButtonBox } from 'components';
+import { useRef, useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { ButtonBoxWithArrow } from 'components';
 import * as Styled from './StyleNavBar';
 import logoImg from 'assets/logo.svg';
 
-const NavBar = ({ children }) => {
-  const imageRef = useRef();
+const NavBar = ({ children, onClick }) => {
+  const imageBoxRef = useRef();
   const location = useLocation();
+  const [navProp, setNavProp] = useState('');
 
   useEffect(() => {
     if (location.pathname === '/') {
-      imageRef.current.style.visibility = 'hidden';
+      imageBoxRef.current.style.visibility = 'hidden';
+      setNavProp('homepage');
+    } else {
+      setNavProp('list');
     }
   }, [location]);
 
   return (
-    <Styled.NavBarContainer>
-      <Styled.NavBarLogo src={logoImg} ref={imageRef} />
-      <ButtonBox>{children}</ButtonBox>
+    <Styled.NavBarContainer location={navProp}>
+      <Styled.NavBarLogoBox ref={imageBoxRef}>
+        <Link to={'/'}>
+          <Styled.NavBarLogo src={logoImg} />
+        </Link>
+      </Styled.NavBarLogoBox>
+      <ButtonBoxWithArrow onClick={onClick}>{children}</ButtonBoxWithArrow>
     </Styled.NavBarContainer>
   );
 };
