@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   padding: 32px;
   border-radius: 16px;
   box-shadow: var(--shadow-1pt);
+  background-color: var(--gray10);
 `;
 
 export const Header = styled.div`
@@ -15,7 +16,11 @@ export const Header = styled.div`
   justify-content: space-between;
 `;
 
-export const Question = styled.div``;
+export const Question = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 
 export const QuestionTime = styled.div`
   color: var(--gray40);
@@ -26,7 +31,6 @@ export const QuestionTime = styled.div`
 
 export const QuestionContent = styled.div`
   font-size: 18px;
-  font-weight: 400;
   line-height: 24px;
 `;
 

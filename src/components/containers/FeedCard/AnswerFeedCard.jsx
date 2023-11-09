@@ -14,7 +14,16 @@ import { ReactComponent as More } from 'assets/icon/more.svg';
 import * as Styled from './StyleAnswerFeedCard';
 
 function AnswerFeedCard({ data }) {
-  const { subjectId, content, like, dislike, createdAt, answer } = data;
+  const {
+    id: questionId,
+    subjectId,
+    content,
+    like,
+    dislike,
+    createdAt,
+    answer: initAnswer,
+  } = data;
+  const [answer, setAnswer] = useState(initAnswer);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
   const [isModify, setIsModify] = useState(false);
@@ -35,6 +44,7 @@ function AnswerFeedCard({ data }) {
   }, []);
 
   const handleModifyClick = () => {
+    // 수정하기 버튼 눌렀을 때
     setIsModify(true);
   };
 
@@ -50,27 +60,37 @@ function AnswerFeedCard({ data }) {
         </Styled.QuestionTime>
         <Styled.QuestionContent>{content}</Styled.QuestionContent>
       </Styled.Question>
-      {answer ? (
-        isModify ? (
-          <AnswerInputForm
-            isModify={isModify}
-            setIsModify={setIsModify}
-            subjectImg={subjectImg}
-            subjectName={subjectName}
+      {answer ? ( // 답변이 있다면?
+        isModify ? ( // 수정하기 버튼을 누른 상태라면?
+          <AnswerInputForm // 수정버튼 누른 상태-> input 폼 보여주기
+            data={[
+              isModify,
+              setIsModify,
+              subjectImg,
+              subjectName,
+              questionId,
+              answer,
+              setAnswer,
+            ]}
           />
         ) : (
-          <AnswerForm
+          <AnswerForm // 수정버튼 누르지 않은 상태-> 답변 보여주기
             data={answer}
             subjectImg={subjectImg}
             subjectName={subjectName}
           />
         )
       ) : (
-        <AnswerInputForm
-          isModify={isModify}
-          setIsModify={setIsModify}
-          subjectImg={subjectImg}
-          subjectName={subjectName}
+        <AnswerInputForm // 미답변 상태라면 input 폼 보여주기
+          data={[
+            isModify,
+            setIsModify,
+            subjectImg,
+            subjectName,
+            questionId,
+            answer,
+            setAnswer,
+          ]}
         />
       )}
       <Styled.Footer>
@@ -82,7 +102,10 @@ function AnswerFeedCard({ data }) {
             <ThumbsDownButton number={dislike} />
           </Styled.FooterIconContainer>
         </Styled.FooterIcons>
-        {answer && <ButtonEdit onClick={handleModifyClick} />}
+        {/* 답변이 있는 상태 + 답변 거절이 아닐 때 -> 수정하기 버튼 보이기 */}
+        {answer && !answer?.isRejected && (
+          <ButtonEdit onClick={handleModifyClick} />
+        )}
       </Styled.Footer>
     </Styled.CardContainer>
   );

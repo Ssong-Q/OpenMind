@@ -8,12 +8,13 @@ export const AnswerContainer = styled.div`
 `;
 
 export const AnswerBox = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 4px;
-  width: 120;
+  flex-grow: 1;
 `;
 
 export const AnswerProfile = styled.div`
@@ -22,9 +23,7 @@ export const AnswerProfile = styled.div`
   gap: 8px;
 `;
 export const AnswerName = styled.div`
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1.8rem;
   line-height: 24px;
 `;
 
@@ -52,7 +51,10 @@ export const RefuseContent = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 180px;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 767px) {
     height: 358px;
