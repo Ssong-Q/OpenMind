@@ -1,9 +1,29 @@
 import { ProfileImage, ButtonShare } from 'components';
+import { getSubjects } from 'api/api';
 import { Link } from 'react-router-dom';
 import * as Styled from './StylePostHeader';
 import LogoImg from 'assets/logo.svg';
+import { useEffect, useState } from 'react';
 
-function PostHeader({ src, name }) {
+function PostHeader({ id }) {
+  const [subjectName, setSubjectName] = useState('');
+  const [subjectImg, setSubjectImg] = useState('');
+
+  const getSubjectInfo = async (subjectId) => {
+    try {
+      const result = await getSubjects(subjectId);
+      const { name, imageSource } = result;
+      setSubjectName(name);
+      setSubjectImg(imageSource);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getSubjectInfo(id);
+  }, [id]);
+
   return (
     <>
       <Styled.Header>
@@ -11,9 +31,9 @@ function PostHeader({ src, name }) {
           <Link to={'/'}>
             <Styled.Logo src={LogoImg} />
           </Link>
-          <ProfileImage src={src} size="xLarge" mobilesize="large" />
-          <Styled.Name>{name}</Styled.Name>
-          <ButtonShare name={name} image={src} />
+          <ProfileImage src={subjectImg} size="xLarge" mobilesize="large" />
+          <Styled.Name>{subjectName}</Styled.Name>
+          <ButtonShare name={subjectName} image={subjectImg} />
         </Styled.Container>
       </Styled.Header>
     </>
