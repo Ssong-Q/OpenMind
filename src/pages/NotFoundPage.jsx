@@ -1,19 +1,25 @@
-import { Link } from 'react-router-dom';
-import { LogoImg } from './StyleHomePage';
 import * as Styled from './StyleNotFoundPage';
-import oops from 'https://media.giphy.com/media/1Y7ChRtbWnYONjDidg/giphy.gif?cid=ecf05e478cxycm5lpmezvl1bcx4hz3qcw73d9gwp6blve7zh&ep=v1_gifs_search&rid=giphy.gif&ct=g';
+import { Link } from 'react-router-dom';
+import logo from 'assets/logo.svg';
 
 const NotFoundPage = () => {
+  const gifUrl =
+    'https://media.giphy.com/media/3ohs7KViF6rA4aan5u/giphy.gif?cid=ecf05e47xhk2cqh66hl2qlmrhfd23c3s0gt2dbkcxl9y6cdq&ep=v1_gifs_search&rid=giphy.gif&ct=g';
+
   return (
-    <Styled.Div>
-      <Link to="/">
-        <LogoImg />
-      </Link>
-      <Styled.Container>
-        <h1>Oops! something went wrong</h1>
-        <img src={oops} width={'100'} height={'100'} />
-      </Styled.Container>
-    </Styled.Div>
+    <Styled.MainContainer>
+      <Styled.Nav>
+        <Link to="/">
+          <Styled.Logo src={logo} />
+        </Link>
+        <Styled.P>홈페이지로 돌아가기👆</Styled.P>
+      </Styled.Nav>
+      <Styled.ContentContainer>
+        <Styled.H1>Oops!</Styled.H1>
+        <Styled.H2>Something went wrong</Styled.H2>
+        <img src={gifUrl} width={'400'} height={'400'} />
+      </Styled.ContentContainer>
+    </Styled.MainContainer>
   );
 };
 
