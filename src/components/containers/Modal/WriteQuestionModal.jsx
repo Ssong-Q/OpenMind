@@ -4,9 +4,8 @@ import { InputTextArea, ModalQuestionTitle } from 'components';
 import { postSubjectsQuestion } from 'api/api';
 import { StyledGlobal } from 'style/StyleGlobal';
 import * as Styled from './Modal';
-import randomImg from 'assets/profile-image.svg';
 
-const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
+const WriteQuestionModal = ({ onClose, name, img, id }) => {
   const [value, setValue] = useState('');
   const [active, setActive] = useState(false);
 
@@ -15,7 +14,8 @@ const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
+    console.log(e);
     try {
       const formData = JSON.stringify({ content: `${value}` });
       const response = await postSubjectsQuestion(id, formData);
@@ -50,7 +50,7 @@ const WriteQuestionModal = ({ onClose, name = '뉴진스', id = 80 }) => {
           <ModalQuestionTitle onClick={handleClose} />
           <Styled.User>
             <span>To.</span>
-            <img src={randomImg} />
+            <img src={img} />
             <span>{name}</span>
           </Styled.User>
           <Styled.Form onSubmit={handleSubmit}>
