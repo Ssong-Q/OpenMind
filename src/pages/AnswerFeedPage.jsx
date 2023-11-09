@@ -37,7 +37,6 @@ const AnswerFeedPage = () => {
   }, [location, limit, offset, total]);
 
   console.log(setLimit, setOffset);
-
   return (
     <>
       <PostHeader id={subjectId} />
