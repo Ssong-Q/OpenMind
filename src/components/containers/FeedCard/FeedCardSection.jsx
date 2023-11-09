@@ -12,7 +12,6 @@ const FeedCardSection = ({ total, data }) => {
       {data.map((data) => {
         return <AnswerFeedCard key={data.id} data={data} />;
       })}
-      <AnswerFeedCard />
     </Styled.CardContainer>
   );
 };
