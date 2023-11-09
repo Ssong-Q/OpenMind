@@ -40,7 +40,7 @@ const AnswerFeedPage = () => {
 
   return (
     <>
-      <PostHeader />
+      <PostHeader id={subjectId} />
       <Styled.MainContainer>
         <Styled.ButtonContainer>
           <Styled.DeleteButton>삭제하기</Styled.DeleteButton>
