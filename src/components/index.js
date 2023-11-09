@@ -22,6 +22,7 @@ export { default as ModalListPage } from './containers/Modal/ModalListPage';
 export { default as FeedCard } from './containers/FeedCard/FeedCard';
 export { default as AnswerFeedCard } from './containers/FeedCard/AnswerFeedCard';
 export { default as FeedCardSection } from './containers/FeedCard/FeedCardSection';
+export { default as QuestionFeedCardSection } from './containers/FeedCard/QuestionFeedCardSection';
 export { default as QuestionList } from './containers/QuestionList/QuestionList';
 export { default as PostHeader } from './containers/PostHeader/PostHeader';
 export { default as ModalLoading } from './containers/Modal/ModalLoading';

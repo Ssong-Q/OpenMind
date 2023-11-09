@@ -1,38 +1,97 @@
-import { useState } from 'react';
-import { PostHeader, FeedCard, WriteQuestionModal } from 'components';
-import messages from 'assets/icon/messages.svg';
-import LogoImg from 'assets/icon/edit.svg';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import {
+  PostHeader,
+  QuestionFeedCardSection,
+  WriteQuestionModal,
+  ModalLoading,
+} from 'components';
+import { getSubjects } from 'api/api';
+import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
 const QuestionFeedPage = () => {
+  const location = useLocation();
+  const subjectId = location.pathname.split('/')[2];
+  const [subjectName, setSubjectName] = useState('');
+  const [subjectImg, setSubjectImg] = useState('');
   const [visible, setVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [limit, setLimit] = useState(5);
+  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(null); //전체 질문 수
+  const [questionData, setQuestionData] = useState({
+    data: [],
+  });
 
-  //complete인 경우: 답변완료 배지, content띄어줌/ refuse인 경우: 답변완료 배지, 답변 거절 문구/incomplete: 미답변 배지, content 빈 칸
-  const [isDone, setIsDone] = useState('complete'); //refuse, complete, incomplete
-  //추후 api통신 이후, 아래의 함수 변경
+  //질문 목록 데이터 호출
+  const handleFeedCardSection = async (...args) => {
+    setIsLoading(true);
+    try {
+      const result = await getSubjectsQuestion(...args);
+      const { count, results: questionData } = result;
+      setQuestionData((prevData) => ({
+        ...prevData,
+        data: questionData,
+      }));
+      setTotal(count);
+      console.log(questionData);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  //사용자 데이터 호출
+  const handleSubjectInfo = async () => {
+    try {
+      const result = await getSubjects(subjectId);
+      const { name, imageSource } = result;
+      setSubjectName(name);
+      setSubjectImg(imageSource);
+      console.log(name);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    handleSubjectInfo();
+  }, []);
+
+  useEffect(() => {
+    handleFeedCardSection(subjectId, limit, offset);
+  }, [location, limit, offset, total]);
+
   const handleWriteQuestion = () => {
-    setIsDone('refuse');
     setVisible(true);
   };
+
+  console.log(setLimit, setOffset);
   return (
     <>
-      <PostHeader src={LogoImg} name={'ddd'} />
+      <PostHeader id={subjectId} />
       <Styled.MainContainer>
-        <Styled.CardContainer>
-          <Styled.CountContainer>
-            <Styled.CountIcon src={messages} />
-            <Styled.CountContent>3개의 질문이 있습니다.</Styled.CountContent>
-          </Styled.CountContainer>
-          <FeedCard isDone={isDone} />
-          <FeedCard isDone={isDone} />
-          <FeedCard isDone={isDone} />
-        </Styled.CardContainer>
-        {/* setIsDone 미사용 오류 해결을 위해 임으로 onClick함수 추가 */}
+        <QuestionFeedCardSection
+          total={total}
+          data={questionData.data}
+          subjectName={subjectName}
+          subjectImg={subjectImg}
+        />
+        {isLoading && <ModalLoading />}
         <Styled.WriteButton onClick={handleWriteQuestion}>
           질문 작성하기
         </Styled.WriteButton>
       </Styled.MainContainer>
-      {visible && <WriteQuestionModal onClose={setVisible}/>}
+      {visible && (
+        <WriteQuestionModal
+          onClose={setVisible}
+          name={subjectName}
+          img={subjectImg}
+          id={subjectId}
+        />
+      )}
     </>
   );
 };
