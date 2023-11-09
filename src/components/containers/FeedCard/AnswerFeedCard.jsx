@@ -45,7 +45,7 @@ function AnswerFeedCard({ data }) {
 
   const handleModifyClick = () => {
     // 수정하기 버튼 눌렀을 때
-    setIsModify(true);
+    setIsModify(!isModify);
   };
 
   return (
@@ -104,7 +104,7 @@ function AnswerFeedCard({ data }) {
         </Styled.FooterIcons>
         {/* 답변이 있는 상태 + 답변 거절이 아닐 때 -> 수정하기 버튼 보이기 */}
         {answer && !answer?.isRejected && (
-          <ButtonEdit onClick={handleModifyClick} />
+          <ButtonEdit onClick={handleModifyClick} isModify={isModify} />
         )}
       </Styled.Footer>
     </Styled.CardContainer>

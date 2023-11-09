@@ -65,7 +65,7 @@ const AnswerInputForm = ({ data }) => {
         <Styled.Form onSubmit={handleSubmit}>
           <InputTextArea onChange={handleInputChange} value={value} />
           <Styled.Button disabled={!active} $active={active}>
-            답변 완료
+            {active ? (isModify ? `수정 완료` : `답변 완료`) : ``}
           </Styled.Button>
         </Styled.Form>
       </Styled.AnswerBox>
