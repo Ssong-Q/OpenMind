@@ -36,8 +36,8 @@ export default function More({
         content: 'rejected',
         isRejected: true,
       });
-      await postAnswer(id, formData);
-      setAnswer('reject');
+      const result = await postAnswer(id, formData);
+      setAnswer(result);
     } catch (err) {
       console.log(err);
     }
