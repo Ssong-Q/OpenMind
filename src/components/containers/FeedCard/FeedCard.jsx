@@ -9,25 +9,9 @@ import { timeForToday } from 'utils/moment';
 import { ReactComponent as More } from 'assets/icon/more.svg';
 import * as Styled from './StyleFeedCard';
 
-const FeedCard = ({ data, subjectName, subjectImg }) => {
+const FeedCard = ({ data, subjectData }) => {
   const { content, like, dislike, createdAt, answer } = data;
-
-  // //답변에 띄어줄 사용자 데이터 호출
-  // const handleSubjectInfo = async () => {
-  //   try {
-  //     const result = await getSubjects(subjectId);
-  //     const { name, imageSource } = result;
-  //     setSubjectName(name);
-  //     setSubjectImg(imageSource);
-  //     console.log(name);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   handleSubjectInfo();
-  // }, []);
+  const [subjectName, subjectImg] = subjectData;
 
   return (
     <Styled.CardContainer>
@@ -42,7 +26,7 @@ const FeedCard = ({ data, subjectName, subjectImg }) => {
         </Styled.QuestionTime>
         <Styled.QuestionContent>{content}</Styled.QuestionContent>
       </Styled.Question>
-      {answer !== null ? (
+      {answer ? (
         <Styled.AnswerContainer>
           <ProfileImage src={subjectImg} />
           <Styled.AnswerBox>
@@ -70,7 +54,6 @@ const FeedCard = ({ data, subjectName, subjectImg }) => {
             <ThumbsDownButton active={dislike} />
           </Styled.FooterIconContainer>
         </Styled.FooterIcons>
-        {/* <ButtonEdit /> */}
       </Styled.Footer>
     </Styled.CardContainer>
   );

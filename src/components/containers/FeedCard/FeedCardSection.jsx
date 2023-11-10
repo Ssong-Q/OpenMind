@@ -2,7 +2,7 @@ import { AnswerFeedCard } from 'components';
 import { ReactComponent as MessageImg } from 'assets/icon/messages.svg';
 import * as Styled from './StyleFeedCardSection';
 
-const FeedCardSection = ({ total, data }) => {
+const FeedCardSection = ({ total, data, subjectData }) => {
   return (
     <Styled.CardContainer>
       <Styled.CountContainer>
@@ -10,7 +10,9 @@ const FeedCardSection = ({ total, data }) => {
         <Styled.CountContent>{total}개의 질문이 있습니다.</Styled.CountContent>
       </Styled.CountContainer>
       {data.map((data) => {
-        return <AnswerFeedCard key={data.id} data={data} />;
+        return (
+          <AnswerFeedCard key={data.id} data={data} subjectData={subjectData} />
+        );
       })}
     </Styled.CardContainer>
   );
