@@ -15,12 +15,17 @@ export const Container = styled.div`
   border-radius: 70%;
   overflow: hidden;
   flex-shrink: 0;
+  cursor: pointer;
+
+  :hover {
+    filter: brightness(0.5);
+  }
 
   @media (max-width: 767px) {
-    width: ${({ mobilesize }) =>
-      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
-    height: ${({ mobilesize }) =>
-      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
+    width: ${({ mobileSize }) =>
+      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+    height: ${({ mobileSize }) =>
+      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
   }
 `;
 

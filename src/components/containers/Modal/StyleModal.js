@@ -1,6 +1,4 @@
-import { ButtonBox } from 'components/common/ButtonBox/StyleButtonBox';
 import styled, { keyframes } from 'styled-components';
-import closeBtnImg from 'assets/icon/close.svg';
 import spinnerImg from 'assets/spinner.png';
 
 const placeholderRotate = keyframes`
@@ -21,26 +19,6 @@ export const ModalBackground = styled.div`
   overflow-y: scroll;
 `;
 
-export const ModalTitle = styled.h3`
-  text-align: center;
-`;
-
-export const Alert = styled.div`
-  color: red;
-  font-size: 13px;
-  font-weight: 500;
-`;
-
-export const ModalCloseBtn = styled.div`
-  background-image: url(${closeBtnImg});
-  background-position: center;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-`;
 
 export const Spinner = styled.div`
   animation: ${placeholderRotate} 1.5s linear infinite;
@@ -60,7 +38,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 9999;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   width: 612px;
@@ -76,37 +54,4 @@ export const Container = styled.div`
     width: 327px;
     height: 568px;
   }
-`;
-
-export const User = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 40px;
-  margin-bottom: 15px;
-
-  img {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
-export const Form = styled.div`
-  height: 180px;
-
-  @media (max-width: 767px) {
-    height: 358px;
-  }
-`;
-
-export const Button = styled(ButtonBox)`
-  margin-top: 8px;
-  width: 100%;
-  height: 44px;
-  font-size: 1.3rem;
-  border: none;
-  color: #fff;
-  background-color: ${(props) =>
-    props.$active ? `var(--brown40)` : `var(--brown30)`};
-  cursor: ${({ $active }) => $active === false && `unset`};
 `;

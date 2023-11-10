@@ -54,6 +54,17 @@ export async function postSubjectsQuestion(id, formData) {
   return body;
 }
 
+export async function deleteSubjects(id){
+  const response = await fetch(`${BASE_URL}/subjects/${id}/`,{
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('계정 삭제 중 문제가 발생했습니다.')
+  } 
+  console.log(response)
+  return response.ok;
+}
+
 export async function postAnswer(id, formData) {
   const response = await fetch(`${BASE_URL}/questions/${id}/answers/`, {
     method: 'POST',
@@ -66,6 +77,7 @@ export async function postAnswer(id, formData) {
     throw new Error('답변 생성에 실패하였습니다');
   }
   const body = await response.json();
+  console.log(body)
   return body;
 }
 

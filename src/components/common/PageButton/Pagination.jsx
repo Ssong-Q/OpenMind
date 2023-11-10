@@ -21,7 +21,7 @@ const Pagination = ({ total, onClick, limit }) => {
           <Styled.PageButton
             key={index}
             onClick={() => handleButtonClick(item)}
-            select={num === item ? 'selected' : 'unselected'}
+            $select={num === item ? 'selected' : 'unselected'}
           >
             {String(item)}
           </Styled.PageButton>

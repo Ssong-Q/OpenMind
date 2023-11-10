@@ -5,8 +5,10 @@ import {
   QuestionFeedCardSection,
   WriteQuestionModal,
   ModalLoading,
+  Modal
 } from 'components';
-import { getSubjectsQuestion } from 'api/api';
+import useModal from 'hooks/useModal';
+import {  getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
 const OFFSET = 0;
@@ -14,10 +16,11 @@ const OFFSET = 0;
 const QuestionFeedPage = () => {
   const location = useLocation();
   const subjectId = location.pathname.split('/')[2];
+  const {isOpen, openModal, closeModal} = useModal();
+  const option =  { visible : true };
   const target = useRef();
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
-  const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [limit, setLimit] = useState(1);
   const [total, setTotal] = useState(null); //전체 질문 수
@@ -62,9 +65,8 @@ const QuestionFeedPage = () => {
     observer.observe(target.current);
   }, []);
 
-  const handleWriteQuestion = () => {
-    setVisible(true);
-  };
+
+
 
   return (
     <>
@@ -81,19 +83,18 @@ const QuestionFeedPage = () => {
         />
         <Styled.ObserveTargetBox ref={target} />
         {isLoading && <ModalLoading back="noBG" />}
-        <Styled.WriteButton onClick={handleWriteQuestion}>
+        <Styled.WriteButton onClick={openModal}>
           질문 작성하기
         </Styled.WriteButton>
       </Styled.MainContainer>
-      {visible && (
+      {isOpen && (<Modal title="질문을 작성하세요" trigger={
         <WriteQuestionModal
-          onClose={setVisible}
+          closeModal={closeModal}
           subjectData={[subjectName, subjectImg, subjectId]}
           setQuestionData={setQuestionData}
-          setVisible={setVisible}
           questionData={questionData}
           setTotal={setTotal}
-        />
+        />} option={option} closeModal={closeModal}/>
       )}
     </>
   );

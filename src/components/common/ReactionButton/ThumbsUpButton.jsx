@@ -25,7 +25,7 @@ const ThumbsUpButton = ({ number, questionId }) => {
   };
 
   return (
-    <Style.Container active={active} onClick={handleActiveClick}>
+    <Style.Container $active={active} onClick={handleActiveClick}>
       <ThumbsUp fill={active === 'blue' ? 'var(--blue)' : 'var(--gray40)'} />
       <span>좋아요 {likeNumber}</span>
     </Style.Container>

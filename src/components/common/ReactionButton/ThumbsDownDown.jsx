@@ -25,7 +25,7 @@ const ThumbsDownButton = ({ number, questionId }) => {
   };
 
   return (
-    <Style.Container active={active} onClick={handleActiveClick}>
+    <Style.Container $active={active} onClick={handleActiveClick}>
       <ThumbsDown fill={active === 'red' ? 'var(--red)' : 'var(--gray40)'} />
       <span>싫어요 {dislikeNumber}</span>
     </Style.Container>

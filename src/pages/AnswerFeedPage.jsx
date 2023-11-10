@@ -29,8 +29,8 @@ const AnswerFeedPage = () => {
         data: questionData,
       }));
       setTotal(count);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
