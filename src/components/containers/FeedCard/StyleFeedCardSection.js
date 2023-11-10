@@ -10,6 +10,10 @@ export const CardContainer = styled.div`
   border: 1px solid var(--brown30);
   border-radius: 16px;
   background: var(--brown10);
+
+  @media (max-width: 1199px) {
+    width: 100%;
+  }
 `;
 
 export const CountContainer = styled.div`

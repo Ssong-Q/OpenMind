@@ -6,6 +6,10 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
+
+  @media (max-width: 1199px) {
+    padding: 0 32px;
+  }
 `;
 
 export const ObserveTargetBox = styled.div`

@@ -6,7 +6,7 @@ const AnswerForm = ({ subjectImg, subjectName, data }) => {
   const { content, isRejected, createdAt } = data;
   return (
     <Styled.AnswerContainer>
-      <ProfileImage src={subjectImg} />
+      <ProfileImage src={subjectImg} size="mediumSmall" />
       <Styled.AnswerBox>
         <Styled.AnswerProfile>
           <Styled.AnswerName>{subjectName}</Styled.AnswerName>

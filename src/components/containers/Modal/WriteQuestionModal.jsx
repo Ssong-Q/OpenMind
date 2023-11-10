@@ -13,9 +13,7 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
     onClose(false);
   };
 
-  const handleSubmit = async (e) => {
-    //e.preventDefault();
-    console.log(e);
+  const handleSubmit = async () => {
     try {
       const formData = JSON.stringify({ content: `${value}` });
       const response = await postSubjectsQuestion(id, formData);
@@ -23,12 +21,6 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
     } catch (err) {
       console.log(err);
     }
-    /*try{
-      const{subjectId, content} = response;
-      getCreateForm(subjectId, content);
-    }catch(error){
-      setActive(true)imageSource={randomImg},
-    }*/
   };
 
   const handleInputChange = (e) => {
@@ -37,9 +29,7 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
     setActive(inputValue.trim() !== '');
   };
 
-  const handleButtonClick = (e) => {
-    e.preventDefault;
-  };
+  const handleButtonClick = () => {};
 
   return (
     <>

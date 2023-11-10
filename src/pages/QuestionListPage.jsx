@@ -73,19 +73,21 @@ const QuestionListPage = () => {
   }, [handleLimitChange]);
 
   return (
-    <Styled.PageContainer>
-      <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
-      <Styled.cardSectionContainer>
-        <Styled.ListPageHeaderBox>
-          <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
-          <DropDown sort={sort} setSort={setSort} />
-        </Styled.ListPageHeaderBox>
-        <UserCardSection data={subjectData.data} />
-        <Pagination total={total} onClick={setOffset} limit={limit} />
-      </Styled.cardSectionContainer>
-      {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
+    <>
+      <Styled.PageContainer>
+        <NavBar onClick={handleNavClick}>답변하러 가기</NavBar>
+        <Styled.cardSectionContainer>
+          <Styled.ListPageHeaderBox>
+            <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
+            <DropDown sort={sort} setSort={setSort} />
+          </Styled.ListPageHeaderBox>
+          <UserCardSection data={subjectData.data} />
+          <Pagination total={total} onClick={setOffset} limit={limit} />
+        </Styled.cardSectionContainer>
+      </Styled.PageContainer>
       {isLoading && <ModalLoading />}
-    </Styled.PageContainer>
+      {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
+    </>
   );
 };
 

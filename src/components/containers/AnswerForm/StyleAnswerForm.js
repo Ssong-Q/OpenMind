@@ -70,4 +70,5 @@ export const Button = styled(ButtonBox)`
   color: #fff;
   background-color: ${(props) =>
     props.$active ? `var(--brown40)` : `var(--brown30)`};
+  cursor: ${({ $active }) => $active === false && `unset`};
 `;
