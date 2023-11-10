@@ -12,7 +12,7 @@ import { timeForToday } from 'utils/moment';
 import { More } from 'components';
 import * as Styled from './StyleAnswerFeedCard';
 
-function AnswerFeedCard({ data, subjectData }) {
+function AnswerFeedCard({ data, subjectData, setTotal, setQuestionData }) {
   const {
     id: questionId,
     content,
@@ -39,6 +39,8 @@ function AnswerFeedCard({ data, subjectData }) {
           setAnswer={setAnswer}
           isRejected={answer?.isRejected}
           questionId={questionId}
+          setTotal={setTotal}
+          setQuestionData={setQuestionData}
         />
       </Styled.Header>
       <Styled.Question>

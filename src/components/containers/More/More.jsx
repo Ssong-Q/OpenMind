@@ -3,7 +3,14 @@ import { deleteQuestion, deleteAnswer, postAnswer } from 'api/api';
 import MoreMenu from '../../common/DropDownList/MoreMenu';
 import * as Styled from './StyleMore';
 
-export default function More({ answerId, setAnswer, questionId, isRejected }) {
+export default function More({
+  answerId,
+  setAnswer,
+  questionId,
+  isRejected,
+  setTotal,
+  setQuestionData,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnToggle = () => {
@@ -12,6 +19,10 @@ export default function More({ answerId, setAnswer, questionId, isRejected }) {
 
   const handleDeleteQuestion = async (id) => {
     await deleteQuestion(id);
+    setTotal((prevTotal) => prevTotal - 1);
+    setQuestionData((prevData) => ({
+      data: prevData.data.filter((question) => question.id !== questionId),
+    }));
   };
 
   const handleDeleteAnswer = async (id) => {
@@ -22,15 +33,14 @@ export default function More({ answerId, setAnswer, questionId, isRejected }) {
   const handleRejectAnswer = async (id) => {
     try {
       const formData = JSON.stringify({
-        content: 'reject',
+        content: 'rejected',
         isRejected: true,
       });
       await postAnswer(id, formData);
-      setAnswer();
+      setAnswer('reject');
     } catch (err) {
       console.log(err);
     }
-    console.log(id);
   };
 
   return (
