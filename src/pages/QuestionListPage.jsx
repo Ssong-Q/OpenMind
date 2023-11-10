@@ -84,6 +84,7 @@ const QuestionListPage = () => {
           <UserCardSection data={subjectData.data} />
           <Pagination total={total} onClick={setOffset} limit={limit} />
         </Styled.cardSectionContainer>
+        {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
       </Styled.PageContainer>
       {isLoading && <ModalLoading />}
       {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
