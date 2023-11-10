@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
 import { getSubjectsQuestion } from 'api/api';
-import * as Styled from './StyleAnswerFeedPage';
+import * as Styled from './StyleFeedPage';
 
 const OFFSET = 0;
 
@@ -13,6 +13,8 @@ const AnswerFeedPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [limit, setLimit] = useState(1);
   const [total, setTotal] = useState(null);
+  const [subjectName, setSubjectName] = useState('');
+  const [subjectImg, setSubjectImg] = useState('');
   const [questionData, setQuestionData] = useState({
     data: [],
   });
@@ -47,7 +49,7 @@ const AnswerFeedPage = () => {
 
   useEffect(() => {
     handleFeedCardSection(subjectId, limit, OFFSET);
-  }, [location, limit, total]);
+  }, [location, limit]);
 
   useEffect(() => {
     observer.observe(target.current);
@@ -55,12 +57,16 @@ const AnswerFeedPage = () => {
 
   return (
     <>
-      <PostHeader id={subjectId} />
+      <PostHeader
+        id={subjectId}
+        setterSubjectName={setSubjectName}
+        setterSubjectImg={setSubjectImg}
+      />
       <Styled.MainContainer>
         <FeedCardSection
           total={total}
           data={questionData.data}
-          setLimit={setLimit}
+          subjectData={[subjectName, subjectImg]}
         />
         <Styled.ObserveTargetBox ref={target} />
         {isLoading && <ModalLoading back="noBG" />}

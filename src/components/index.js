@@ -11,7 +11,7 @@ export { default as ButtonShare } from './common/ButtonShare/ButtonShare';
 export { default as ProfileImage } from './common/ProfileImage/ProfileImage';
 export { default as ThumbsDownButton } from './common/ReactionButton/ThumbsDownDown';
 export { default as ThumbsUpButton } from './common/ReactionButton/ThumbsUpButton';
-export { default as QuestionBox } from './common/QuestionBox/QuestionBox';
+export { default as NoQuestionBox } from './common/NoQuestionBox/NoQuestionBox';
 export { default as Pagination } from './common/PageButton/Pagination';
 export { default as ModalQuestionTitle } from './common/ModalQuestionTItle/ModalQuestionTItle';
 export { default as DropDown } from './containers/DropDown/DropDown';

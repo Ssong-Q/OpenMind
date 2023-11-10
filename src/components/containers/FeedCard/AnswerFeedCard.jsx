@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   IncompleteBadge,
   CompleteBadge,
@@ -8,15 +8,13 @@ import {
   AnswerForm,
   AnswerInputForm,
 } from 'components';
-import { getSubjects } from 'api/api';
 import { timeForToday } from 'utils/moment';
 import { ReactComponent as More } from 'assets/icon/more.svg';
 import * as Styled from './StyleAnswerFeedCard';
 
-function AnswerFeedCard({ data }) {
+function AnswerFeedCard({ data, subjectData }) {
   const {
     id: questionId,
-    subjectId,
     content,
     like,
     dislike,
@@ -24,24 +22,8 @@ function AnswerFeedCard({ data }) {
     answer: initAnswer,
   } = data;
   const [answer, setAnswer] = useState(initAnswer);
-  const [subjectName, setSubjectName] = useState('');
-  const [subjectImg, setSubjectImg] = useState('');
+  const [subjectName, subjectImg] = subjectData;
   const [isModify, setIsModify] = useState(false);
-
-  const handleSubjectInfo = async () => {
-    try {
-      const result = await getSubjects(subjectId);
-      const { name, imageSource } = result;
-      setSubjectName(name);
-      setSubjectImg(imageSource);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    handleSubjectInfo();
-  }, []);
 
   const handleModifyClick = () => {
     // 수정하기 버튼 눌렀을 때

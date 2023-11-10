@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 140px;
+  margin-bottom: 40px;
+
+  @media (max-width: 1199px) {
+    padding: 0 32px;
+  }
+`;
+
+export const ObserveTargetBox = styled.div`
+  width: 100%;
+  height: 120px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -76,7 +84,6 @@ export const WriteButton = styled.button`
   color: white;
   font-family: Actor;
   font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 25px;
+  box-shadow: var(--shadow-2pt);
 `;

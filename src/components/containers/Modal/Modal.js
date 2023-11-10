@@ -85,7 +85,7 @@ export const User = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   height: 180px;
 
   @media (max-width: 767px) {
@@ -96,8 +96,11 @@ export const Form = styled.form`
 export const Button = styled(ButtonBox)`
   margin-top: 8px;
   width: 100%;
+  height: 44px;
+  font-size: 1.3rem;
   border: none;
   color: #fff;
   background-color: ${(props) =>
     props.$active ? `var(--brown40)` : `var(--brown30)`};
+  cursor: ${({ $active }) => $active === false && `unset`};
 `;

@@ -5,7 +5,7 @@ import * as Styled from './StylePostHeader';
 import LogoImg from 'assets/logo.svg';
 import { useEffect, useState } from 'react';
 
-function PostHeader({ id }) {
+function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
 
@@ -15,6 +15,8 @@ function PostHeader({ id }) {
       const { name, imageSource } = result;
       setSubjectName(name);
       setSubjectImg(imageSource);
+      setterSubjectName(name);
+      setterSubjectImg(imageSource);
     } catch (err) {
       console.log(err);
     }
