@@ -55,7 +55,7 @@ const AnswerFeedPage = () => {
 
   return (
     <>
-      <PostHeader subjectId={subjectId} />
+      <PostHeader id={subjectId} />
       <Styled.MainContainer>
         <FeedCardSection
           total={total}
