@@ -10,7 +10,7 @@ import { ReactComponent as More } from 'assets/icon/more.svg';
 import * as Styled from './StyleFeedCard';
 
 const FeedCard = ({ data, subjectData }) => {
-  const { content, like, dislike, createdAt, answer } = data;
+  const { id: questionId, content, like, dislike, createdAt, answer } = data;
   const [subjectName, subjectImg] = subjectData;
 
   return (
@@ -48,10 +48,10 @@ const FeedCard = ({ data, subjectData }) => {
       <Styled.Footer>
         <Styled.FooterIcons>
           <Styled.FooterIconContainer>
-            <ThumbsUpButton active={like} />
+            <ThumbsUpButton number={like} questionId={questionId} />
           </Styled.FooterIconContainer>
           <Styled.FooterIconContainer>
-            <ThumbsDownButton active={dislike} />
+            <ThumbsDownButton number={dislike} questionId={questionId} />
           </Styled.FooterIconContainer>
         </Styled.FooterIcons>
       </Styled.Footer>
