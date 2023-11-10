@@ -1,25 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import ModalPortal from 'Portal';
-import { StyledGlobal } from 'style/StyleGlobal';
 import { getLocalStorage } from 'utils/localStorage';
 import { getSubjects } from 'api/api';
-import { InputBox } from 'pages/StyleHomePage';
 import { InputField, ButtonBox } from 'components';
-import * as Styled from './Modal';
-import { useEffect } from 'react';
+import * as Style from './StyleCheckAccount';
 
-const StyledInputBox = styled(InputBox)`
-  z-index: 9999;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 225px;
-  transform: translate(-50%, -50%);
-`;
-
-const ModalListPage = ({ onClose }) => {
+const CheckAccount = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [allList, setAllList] = useState([]);
@@ -60,12 +46,12 @@ const ModalListPage = ({ onClose }) => {
     }
   };
 
-  //모든 사용자 정보 받아오기
+    //모든 사용자 정보 받아오기
   useEffect(() => {
     handleAllList();
   }, []);
 
-  //이름 입력마다, 경고 문구 사라졌다가 버튼 클릭 시, 다시나타나도록 (사용성 높임)
+    //이름 입력마다, 경고 문구 사라졌다가 버튼 클릭 시, 다시나타나도록 (사용성 높임)
   useEffect(() => {
     setIsError(false);
   }, [name]);
@@ -74,25 +60,15 @@ const ModalListPage = ({ onClose }) => {
     setName(name);
   };
 
-  const handleCloseClick = () => {
-    onClose(false);
-  };
-
   return (
     <>
-      <StyledGlobal />
-      <ModalPortal>
-        <Styled.ModalBackground onClick={handleCloseClick} />
-        <StyledInputBox>
-          <Styled.ModalTitle>계정이 있으신가요?</Styled.ModalTitle>
-          <InputField onChange={handleInputChange} />
-          {isError ? <Styled.Alert>{errorMessage}</Styled.Alert> : null}
-          <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
-          <Styled.ModalCloseBtn onClick={handleCloseClick} />
-        </StyledInputBox>
-      </ModalPortal>
+      <Style.Input>
+        <InputField onChange={handleInputChange} />
+        {isError ? <Style.Alert>{errorMessage}</Style.Alert> : null}
+        <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
+      </Style.Input>
     </>
   );
 };
 
-export default ModalListPage;
+export default CheckAccount;

@@ -6,7 +6,7 @@ function DropDownList({ onNameClick, onNewestClick, sort }) {
       <li>
         <Styled.Button
           onClick={onNameClick}
-          select={sort === 'name' ? 'true' : 'false'}
+          $select={sort === 'name' ? 'true' : 'false'}
         >
           이름순
         </Styled.Button>
@@ -14,7 +14,7 @@ function DropDownList({ onNameClick, onNewestClick, sort }) {
       <li>
         <Styled.Button
           onClick={onNewestClick}
-          select={sort === 'time' ? 'true' : 'false'}
+          $select={sort === 'time' ? 'true' : 'false'}
         >
           최신순
         </Styled.Button>

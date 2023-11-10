@@ -19,7 +19,7 @@ const NavBar = ({ children, onClick }) => {
   }, [location]);
 
   return (
-    <Styled.NavBarContainer location={navProp}>
+    <Styled.NavBarContainer $location={navProp}>
       <Styled.NavBarLogoBox ref={imageBoxRef}>
         <Link to={'/'}>
           <Styled.NavBarLogo src={logoImg} />

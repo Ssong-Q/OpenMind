@@ -2,21 +2,23 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   NavBar,
-  ModalListPage,
   DropDown,
   UserCardSection,
   Pagination,
   ModalLoading,
+  Modal,
+  CheckAccount,
 } from 'components';
 import { getSubjects } from 'api/api';
-import { useWindowSizeCustom } from 'hooks/useWindowSize';
+import { useWindowSizeCustom, useModal} from 'hooks';
 import { checkLocalStorage } from 'utils/localStorage';
 import * as Styled from './StyleQuestionListPage';
 
 const QuestionListPage = () => {
   const navigate = useNavigate();
   const { width: browserWidth } = useWindowSizeCustom();
-  const [isAnsModal, setIsAnsModal] = useState(false);
+  const {isOpen, closeModal, openModal} = useModal();
+  const option = { center : true };
   const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
   const [sort, setSort] = useState('time');
@@ -58,7 +60,7 @@ const QuestionListPage = () => {
 
   const handleNavClick = () => {
     if (checkLocalStorage()) {
-      setIsAnsModal(true);
+      openModal(true);
     } else {
       navigate('/');
     }
@@ -84,10 +86,9 @@ const QuestionListPage = () => {
           <UserCardSection data={subjectData.data} />
           <Pagination total={total} onClick={setOffset} limit={limit} />
         </Styled.cardSectionContainer>
-        {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
+        {isOpen && <Modal title="계정이 있으신가요?" trigger={<CheckAccount />} option={option} closeModal={closeModal} />}
+        {isLoading && <ModalLoading />}
       </Styled.PageContainer>
-      {isLoading && <ModalLoading />}
-      {isAnsModal && <ModalListPage onClose={setIsAnsModal} />}
     </>
   );
 };

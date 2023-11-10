@@ -9,7 +9,7 @@ import {
 } from 'components';
 import { getSubjects, postSubjects } from 'api/api';
 import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
-import { useWindowSizeCustom } from 'hooks/useWindowSize';
+import { useWindowSizeCustom } from 'hooks';
 import * as Styled from './StyleHomePage';
 
 const MOBILE_SIZE = 767;
