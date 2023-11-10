@@ -26,10 +26,9 @@ export const PersonImg = styled.div`
 `;
 
 export const InputField = styled.input`
+  width: 100%;
   font-size: 1.4rem;
   color: var(--gray60);
-  flex-grow: 1;
-  border: none;
 
   &::placeholder {
     color: var(--gray40);
