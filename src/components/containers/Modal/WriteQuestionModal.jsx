@@ -10,6 +10,8 @@ const WriteQuestionModal = ({
   subjectData,
   setQuestionData,
   setVisible,
+  questionData,
+  setTotal,
 }) => {
   const [subjectName, subjectImg, subjectId] = subjectData;
   const [value, setValue] = useState('');
@@ -23,10 +25,15 @@ const WriteQuestionModal = ({
     try {
       const formData = JSON.stringify({ content: `${value}` });
       const response = await postSubjectsQuestion(subjectId, formData);
-      setQuestionData((prevData) => {
-        const { data: prevArray } = prevData;
-        return { data: [response, ...prevArray] };
-      });
+      if (questionData.data.length) {
+        setQuestionData((prevData) => {
+          const { data: prevArray } = prevData;
+          return { data: [response, ...prevArray] };
+        });
+      } else {
+        setQuestionData({ data: [response] });
+        setTotal(1);
+      }
     } catch (err) {
       console.log(err);
     } finally {
