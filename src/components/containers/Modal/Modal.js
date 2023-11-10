@@ -10,7 +10,8 @@ const placeholderRotate = keyframes`
 `;
 
 export const ModalBackground = styled.div`
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${({ back }) =>
+    back === 'noBG' ? `rgba(0, 0, 0, 0)` : `rgba(0, 0, 0, 0.4)`};
   width: 100vw;
   height: 100vh;
   z-index: 9000;
@@ -50,52 +51,53 @@ export const Spinner = styled.div`
 `;
 
 export const Container = styled.div`
-  display : flex;
-  flex-direction : column;
+  display: flex;
+  flex-direction: column;
   z-index: 9999;
   position: absolute;
   top: 50%;
   left: 50%;
-  width : 612px;
+  width: 612px;
   height: 454px;
   transform: translate(-50%, -50%);
-  padding : 40px 40px 70px;
+  padding: 40px 40px 70px;
   background-color: var(--gray10);
   border-radius: 24px;
   box-shadow: var(--shadow-3pt);
 
   @media (max-width: 767px) {
-    padding : 22.5px 24px 24px;
+    padding: 22.5px 24px 24px;
     width: 327px;
     height: 568px;
   }
 `;
 
 export const User = styled.div`
-  display : flex;
-  align-items : center;
-  gap : 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   margin-top: 40px;
-  margin-bottom : 15px;
+  margin-bottom: 15px;
 
-  img{
-    width : 28px; 
-    height : 28px;
+  img {
+    width: 28px;
+    height: 28px;
   }
-`
+`;
 
-export const Form = styled.form`  
-  height : 180px;
+export const Form = styled.form`
+  height: 180px;
 
   @media (max-width: 767px) {
     height: 358px;
   }
-`
+`;
 
 export const Button = styled(ButtonBox)`
   margin-top: 8px;
-  width : 100%;
-  border : none;
-  color : #fff;
-  background-color: ${(props) => props.$active ? `var(--brown40)` : `var(--brown30)`};
-`
+  width: 100%;
+  border: none;
+  color: #fff;
+  background-color: ${(props) =>
+    props.$active ? `var(--brown40)` : `var(--brown30)`};
+`;

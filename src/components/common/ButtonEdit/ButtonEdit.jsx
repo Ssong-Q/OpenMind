@@ -2,7 +2,7 @@ import { ReactComponent as EditIcon } from 'assets/icon/edit.svg';
 import * as Styled from './StyleButtonEdit';
 
 const ButtonEdit = ({ onClick, isModify }) => {
-  const modify = isModify && `modify`;
+  const modify = isModify ? `modify` : '';
   return (
     <Styled.Button onClick={onClick} modify={modify}>
       <EditIcon width="14" height="14" />
