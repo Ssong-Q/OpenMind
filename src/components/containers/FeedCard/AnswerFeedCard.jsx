@@ -34,7 +34,7 @@ function AnswerFeedCard({ data, subjectData }) {
     <Styled.CardContainer>
       <Styled.Header>
         {answer ? <CompleteBadge /> : <IncompleteBadge />}
-        <More />
+        <More isAnswer={answer ? true : false} questionId={questionId} />
       </Styled.Header>
       <Styled.Question>
         <Styled.QuestionTime>
