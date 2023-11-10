@@ -6,7 +6,6 @@ import {
   ProfileImage,
 } from 'components';
 import { timeForToday } from 'utils/moment';
-import { ReactComponent as More } from 'assets/icon/more.svg';
 import * as Styled from './StyleFeedCard';
 
 const FeedCard = ({ data, subjectData }) => {
@@ -17,7 +16,6 @@ const FeedCard = ({ data, subjectData }) => {
     <Styled.CardContainer>
       <Styled.Header>
         {answer ? <CompleteBadge /> : <IncompleteBadge />}
-        <More />
       </Styled.Header>
       <Styled.Question>
         {/* 질문 생성시간 */}
