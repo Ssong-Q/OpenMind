@@ -9,7 +9,7 @@ import {
   AnswerInputForm,
 } from 'components';
 import { timeForToday } from 'utils/moment';
-import { ReactComponent as More } from 'assets/icon/more.svg';
+import { More } from 'components';
 import * as Styled from './StyleAnswerFeedCard';
 
 function AnswerFeedCard({ data, subjectData }) {
