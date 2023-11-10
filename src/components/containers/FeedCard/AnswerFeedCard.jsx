@@ -37,6 +37,7 @@ function AnswerFeedCard({ data, subjectData }) {
         <More
           answerId={answer ? answer.id : null}
           setAnswer={setAnswer}
+          isRejected={answer?.isRejected}
           questionId={questionId}
         />
       </Styled.Header>

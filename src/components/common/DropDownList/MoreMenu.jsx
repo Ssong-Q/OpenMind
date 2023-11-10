@@ -1,10 +1,24 @@
 import * as Styled from './StyleDropDownList';
 
 function MoreList({ onClose, data }) {
-  const [questionId, answerId, handleDeleteQuestion, handleDeleteAnswer] = data;
+  const [
+    questionId,
+    answerId,
+    isRejected,
+    handleDeleteQuestion,
+    handleDeleteAnswer,
+    handleRejectAnswer,
+  ] = data;
 
   const list = [
-    { key: 1, value: '답변 거절', type: 'reject' },
+    {
+      key: 1,
+      value: '답변 거절',
+      type: 'reject',
+      handler: () => {
+        handleRejectAnswer(questionId);
+      },
+    },
     {
       key: 2,
       value: '답변 삭제',
@@ -28,11 +42,11 @@ function MoreList({ onClose, data }) {
       {list.map((item) => {
         if (item.key === 1 && answerId) return;
         {
-          /* 답변완료시 거절버튼 사라짐*/
+          /* 답변완료 거절버튼 사라짐*/
         }
-        if (item.key === 2 && !answerId) return;
+        if (item.key === 2 && (!answerId || isRejected)) return;
         {
-          /* 미답변시 답변삭제 버튼 사라짐*/
+          /* 미답변 또는 답변 거절시 답변삭제 버튼 사라짐*/
         }
         return (
           <li key={item.key}>
