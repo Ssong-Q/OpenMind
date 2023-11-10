@@ -33,4 +33,5 @@ export { default as AnswerForm } from './containers/AnswerForm/AnswerForm';
 export { default as AnswerInputForm } from './containers/AnswerForm/AnswerInputForm';
 export { default as AccountForm } from './containers/AccountForm/AccountForm';
 export { default as Modal } from './containers/Modal/Modal';
-export { default as CheckAccount} from './containers/CheckAccount/CheckAccount';
+export { default as CheckAccount } from './containers/CheckAccount/CheckAccount';
+export { default as More } from './containers/More/More';

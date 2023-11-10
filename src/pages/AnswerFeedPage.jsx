@@ -67,6 +67,8 @@ const AnswerFeedPage = () => {
           total={total}
           data={questionData.data}
           subjectData={[subjectName, subjectImg]}
+          setTotal={setTotal}
+          setQuestionData={setQuestionData}
         />
         <Styled.ObserveTargetBox ref={target} />
         {isLoading && <ModalLoading back="noBG" />}

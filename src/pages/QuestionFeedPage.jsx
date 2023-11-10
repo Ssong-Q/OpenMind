@@ -5,10 +5,10 @@ import {
   QuestionFeedCardSection,
   WriteQuestionModal,
   ModalLoading,
-  Modal
+  Modal,
 } from 'components';
 import useModal from 'hooks/useModal';
-import {  getSubjectsQuestion } from 'api/api';
+import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
 const OFFSET = 0;
@@ -16,8 +16,8 @@ const OFFSET = 0;
 const QuestionFeedPage = () => {
   const location = useLocation();
   const subjectId = location.pathname.split('/')[2];
-  const {isOpen, openModal, closeModal} = useModal();
-  const option =  { visible : true };
+  const { isOpen, openModal, closeModal } = useModal();
+  const option = { visible: true };
   const target = useRef();
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
@@ -27,7 +27,7 @@ const QuestionFeedPage = () => {
   const [questionData, setQuestionData] = useState({
     data: [],
   });
-  console.log(questionData);
+
   //질문 목록 데이터 호출
   const handleFeedCardSection = async (...args) => {
     setIsLoading(true);
@@ -65,9 +65,6 @@ const QuestionFeedPage = () => {
     observer.observe(target.current);
   }, []);
 
-
-
-
   return (
     <>
       <PostHeader
@@ -87,14 +84,21 @@ const QuestionFeedPage = () => {
           질문 작성하기
         </Styled.WriteButton>
       </Styled.MainContainer>
-      {isOpen && (<Modal title="질문을 작성하세요" trigger={
-        <WriteQuestionModal
+      {isOpen && (
+        <Modal
+          title="질문을 작성하세요"
+          trigger={
+            <WriteQuestionModal
+              closeModal={closeModal}
+              subjectData={[subjectName, subjectImg, subjectId]}
+              setQuestionData={setQuestionData}
+              questionData={questionData}
+              setTotal={setTotal}
+            />
+          }
+          option={option}
           closeModal={closeModal}
-          subjectData={[subjectName, subjectImg, subjectId]}
-          setQuestionData={setQuestionData}
-          questionData={questionData}
-          setTotal={setTotal}
-        />} option={option} closeModal={closeModal}/>
+        />
       )}
     </>
   );

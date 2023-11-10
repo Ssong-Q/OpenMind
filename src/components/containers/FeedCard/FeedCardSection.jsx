@@ -2,7 +2,13 @@ import { AnswerFeedCard, NoQuestionBox } from 'components';
 import { ReactComponent as MessageImg } from 'assets/icon/messages.svg';
 import * as Styled from './StyleFeedCardSection';
 
-const FeedCardSection = ({ total, data, subjectData }) => {
+const FeedCardSection = ({
+  total,
+  data,
+  subjectData,
+  setTotal,
+  setQuestionData,
+}) => {
   return (
     <Styled.CardContainer>
       <Styled.CountContainer>
@@ -14,7 +20,13 @@ const FeedCardSection = ({ total, data, subjectData }) => {
       {total ? null : <NoQuestionBox />}
       {data.map((data) => {
         return (
-          <AnswerFeedCard key={data.id} data={data} subjectData={subjectData} />
+          <AnswerFeedCard
+            key={data.id}
+            data={data}
+            subjectData={subjectData}
+            setTotal={setTotal}
+            setQuestionData={setQuestionData}
+          />
         );
       })}
     </Styled.CardContainer>

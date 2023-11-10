@@ -9,10 +9,10 @@ import {
   AnswerInputForm,
 } from 'components';
 import { timeForToday } from 'utils/moment';
-import { ReactComponent as More } from 'assets/icon/more.svg';
+import { More } from 'components';
 import * as Styled from './StyleAnswerFeedCard';
 
-function AnswerFeedCard({ data, subjectData }) {
+function AnswerFeedCard({ data, subjectData, setTotal, setQuestionData }) {
   const {
     id: questionId,
     content,
@@ -34,7 +34,14 @@ function AnswerFeedCard({ data, subjectData }) {
     <Styled.CardContainer>
       <Styled.Header>
         {answer ? <CompleteBadge /> : <IncompleteBadge />}
-        <More />
+        <More
+          answerId={answer ? answer.id : null}
+          setAnswer={setAnswer}
+          isRejected={answer?.isRejected}
+          questionId={questionId}
+          setTotal={setTotal}
+          setQuestionData={setQuestionData}
+        />
       </Styled.Header>
       <Styled.Question>
         <Styled.QuestionTime>
