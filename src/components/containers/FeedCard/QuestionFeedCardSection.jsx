@@ -11,7 +11,7 @@ const QuestionFeedCardSection = ({ total, data, subjectData }) => {
           {total ? `${total}개의 질문이 있습니다` : `아직 질문이 없습니다`}
         </Styled.CountContent>
       </Styled.CountContainer>
-      {total || <NoQuestionBox />}
+      {total ? null : <NoQuestionBox />}
       {data.map((data) => {
         return <FeedCard key={data.id} data={data} subjectData={subjectData} />;
       })}

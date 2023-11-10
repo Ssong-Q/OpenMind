@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import ModalPortal from 'Portal';
-import { InputTextArea, ModalQuestionTitle } from 'components';
+import { InputTextArea, ModalQuestionTitle, ProfileImage } from 'components';
 import { postSubjectsQuestion } from 'api/api';
 import { StyledGlobal } from 'style/StyleGlobal';
 import * as Styled from './Modal';
 
-const WriteQuestionModal = ({ onClose, name, img, id }) => {
+const WriteQuestionModal = ({
+  onClose,
+  subjectData,
+  setQuestionData,
+  setVisible,
+}) => {
+  const [subjectName, subjectImg, subjectId] = subjectData;
   const [value, setValue] = useState('');
   const [active, setActive] = useState(false);
 
@@ -13,13 +19,18 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
     onClose(false);
   };
 
-  const handleSubmit = async () => {
+  const handleButtonClick = async () => {
     try {
       const formData = JSON.stringify({ content: `${value}` });
-      const response = await postSubjectsQuestion(id, formData);
-      console.log(response);
+      const response = await postSubjectsQuestion(subjectId, formData);
+      setQuestionData((prevData) => {
+        const { data: prevArray } = prevData;
+        return { data: [response, ...prevArray] };
+      });
     } catch (err) {
       console.log(err);
+    } finally {
+      setVisible(false);
     }
   };
 
@@ -28,8 +39,6 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
     setValue(inputValue);
     setActive(inputValue.trim() !== '');
   };
-
-  const handleButtonClick = () => {};
 
   return (
     <>
@@ -40,18 +49,17 @@ const WriteQuestionModal = ({ onClose, name, img, id }) => {
           <ModalQuestionTitle onClick={handleClose} />
           <Styled.User>
             <span>To.</span>
-            <img src={img} />
-            <span>{name}</span>
+            <ProfileImage src={subjectImg} size="xSmall" />
+            <span>{subjectName}</span>
           </Styled.User>
-          <Styled.Form onSubmit={handleSubmit}>
+          <Styled.Form>
             <InputTextArea onChange={handleInputChange} value={value} />
             <Styled.Button
-              type="submit"
               onClick={handleButtonClick}
               disabled={!active}
               $active={active}
             >
-              질문 보내기
+              {active ? `질문 보내기` : ``}
             </Styled.Button>
           </Styled.Form>
         </Styled.Container>

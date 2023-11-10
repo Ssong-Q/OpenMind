@@ -88,9 +88,9 @@ const QuestionFeedPage = () => {
       {visible && (
         <WriteQuestionModal
           onClose={setVisible}
-          name={subjectName}
-          img={subjectImg}
-          id={subjectId}
+          subjectData={[subjectName, subjectImg, subjectId]}
+          setQuestionData={setQuestionData}
+          setVisible={setVisible}
         />
       )}
     </>
