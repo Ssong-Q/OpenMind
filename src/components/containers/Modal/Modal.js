@@ -25,6 +25,12 @@ export const ModalTitle = styled.h3`
   text-align: center;
 `;
 
+export const Alert = styled.div`
+  color: red;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const ModalCloseBtn = styled.div`
   background-image: url(${closeBtnImg});
   background-position: center;
