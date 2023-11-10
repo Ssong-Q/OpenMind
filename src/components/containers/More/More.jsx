@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { deleteSubjectsQuestion } from 'api/api';
+import { deleteQuestion, deleteAnswer } from 'api/api';
 import MoreMenu from '../../common/DropDownList/MoreMenu';
 import * as Styled from './StyleMore';
 
-export default function More({ isAnswer, questionId }) {
+export default function More({ answerId, setAnswer, questionId }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnToggle = () => {
@@ -11,8 +11,12 @@ export default function More({ isAnswer, questionId }) {
   };
 
   const handleDeleteQuestion = (id) => {
-    deleteSubjectsQuestion(id);
-    console.log('deleted: ' + id);
+    deleteQuestion(id);
+  };
+
+  const handleDeleteAnswer = (id) => {
+    deleteAnswer(id);
+    setAnswer(null);
   };
 
   return (
@@ -23,7 +27,12 @@ export default function More({ isAnswer, questionId }) {
       {isOpen && (
         <MoreMenu
           onClose={handleOnToggle}
-          data={[questionId, isAnswer, handleDeleteQuestion]}
+          data={[
+            questionId,
+            answerId,
+            handleDeleteQuestion,
+            handleDeleteAnswer,
+          ]}
         />
       )}
     </Styled.Container>

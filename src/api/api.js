@@ -65,7 +65,7 @@ export async function deleteSubjects(id) {
   return response.ok;
 }
 
-export async function deleteSubjectsQuestion(id) {
+export async function deleteQuestion(id) {
   const response = await fetch(`${BASE_URL}/questions/${id}/`, {
     method: 'DELETE',
   });
@@ -103,6 +103,15 @@ export async function putAnswer(id, formData) {
   }
   const body = await response.json();
   return body;
+}
+
+export async function deleteAnswer(id) {
+  const response = await fetch(`${BASE_URL}/answers/${id}/`, {
+    method: 'DELETE',
+  });
+  if (!response.ok) {
+    throw new Error('답변 삭제에 실패하였습니다');
+  }
 }
 
 export async function postReactionOnQuestion(id, formData) {

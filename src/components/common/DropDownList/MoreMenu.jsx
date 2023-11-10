@@ -1,7 +1,7 @@
 import * as Styled from './StyleDropDownList';
 
 function MoreList({ onClose, data }) {
-  const [questionId, isAnswer, handleDeleteQuestion] = data;
+  const [questionId, answerId, handleDeleteQuestion, handleDeleteAnswer] = data;
 
   const list = [
     { key: 1, value: '답변 거절', type: 'reject' },
@@ -9,6 +9,9 @@ function MoreList({ onClose, data }) {
       key: 2,
       value: '답변 삭제',
       type: 'delete',
+      handler: () => {
+        handleDeleteAnswer(answerId);
+      },
     },
     {
       key: 3,
@@ -23,11 +26,11 @@ function MoreList({ onClose, data }) {
   return (
     <Styled.Ul type="more" onClick={onClose}>
       {list.map((item) => {
-        if (item.key === 1 && isAnswer) return;
+        if (item.key === 1 && answerId) return;
         {
           /* 답변완료시 거절버튼 사라짐*/
         }
-        if (item.key === 2 && !isAnswer) return;
+        if (item.key === 2 && !answerId) return;
         {
           /* 미답변시 답변삭제 버튼 사라짐*/
         }
