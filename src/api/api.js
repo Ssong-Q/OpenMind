@@ -51,7 +51,6 @@ export async function postSubjectsQuestion(id, formData) {
     throw new Error('질문 생성에 실패하였습니다');
   }
   const body = await response.json();
-  console.log(body);
   return body;
 }
 
@@ -67,7 +66,6 @@ export async function postAnswer(id, formData) {
     throw new Error('답변 생성에 실패하였습니다');
   }
   const body = await response.json();
-  console.log(body);
   return body;
 }
 
@@ -83,6 +81,20 @@ export async function putAnswer(id, formData) {
     throw new Error('답변 수정에 실패하였습니다');
   }
   const body = await response.json();
-  console.log(body);
+  return body;
+}
+
+export async function postReactionOnQuestion(id, formData) {
+  const response = await fetch(`${BASE_URL}/questions/${id}/reaction/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error('질문 리액션에 실패하였습니다');
+  }
+  const body = await response.json();
   return body;
 }

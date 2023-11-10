@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
 import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleAnswerFeedPage';
 
+const OFFSET = 0;
+
 const AnswerFeedPage = () => {
   const location = useLocation();
   const subjectId = location.pathname.split('/')[2];
+  const target = useRef();
   const [isLoading, setIsLoading] = useState(false);
-  const [limit, setLimit] = useState(5);
-  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(1);
   const [total, setTotal] = useState(null);
   const [questionData, setQuestionData] = useState({
     data: [],
@@ -32,21 +34,36 @@ const AnswerFeedPage = () => {
     }
   };
 
-  useEffect(() => {
-    handleFeedCardSection(subjectId, limit, offset);
-  }, [location, limit, offset, total]);
+  const observeOptions = {
+    threshold: 0.6,
+  };
 
-  console.log(setLimit, setOffset);
+  const observeCallback = () => {
+    if (isLoading) return;
+    setLimit((prev) => prev + 1);
+  };
+
+  const observer = new IntersectionObserver(observeCallback, observeOptions);
+
+  useEffect(() => {
+    handleFeedCardSection(subjectId, limit, OFFSET);
+  }, [location, limit, total]);
+
+  useEffect(() => {
+    observer.observe(target.current);
+  }, []);
 
   return (
     <>
       <PostHeader id={subjectId} />
       <Styled.MainContainer>
-        <Styled.ButtonContainer>
-          <Styled.DeleteButton>삭제하기</Styled.DeleteButton>
-        </Styled.ButtonContainer>
-        <FeedCardSection total={total} data={questionData.data} />
-        {isLoading && <ModalLoading />}
+        <FeedCardSection
+          total={total}
+          data={questionData.data}
+          setLimit={setLimit}
+        />
+        <Styled.ObserveTargetBox ref={target} />
+        {isLoading && <ModalLoading back="noBG" />}
       </Styled.MainContainer>
     </>
   );

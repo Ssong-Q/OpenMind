@@ -2,12 +2,12 @@ import ModalPortal from 'Portal';
 import { StyledGlobal } from 'style/StyleGlobal';
 import * as Styled from './Modal';
 
-const ModalLoading = () => {
+const ModalLoading = ({ back }) => {
   return (
     <>
       <StyledGlobal />
       <ModalPortal>
-        <Styled.ModalBackground>
+        <Styled.ModalBackground back={back}>
           <Styled.Spinner />
         </Styled.ModalBackground>
       </ModalPortal>
