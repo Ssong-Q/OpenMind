@@ -1,4 +1,4 @@
-import AnswerBox from 'components/common/QuestionBox/QuestionBox';
+import NoQuestionBox from 'components/common/NoQuestionBox/NoQuestionBox';
 
 /*  데이터 총 갯수 {중괄호}에 넘겨주고
     <AnswerBox> ~</AnswerBox>사이에 데이터를 받아와서 
@@ -7,14 +7,15 @@ import AnswerBox from 'components/common/QuestionBox/QuestionBox';
 const items = [1, 2, 3, 4];
 
 const QuestionList = () => {
-  return(
+  return (
     <>
-      <AnswerBox num={items.length}>
-        {items.map((item, index) => <a key={index}>{item}</a>)}
-      </AnswerBox>
+      <NoQuestionBox num={items.length}>
+        {items.map((item, index) => (
+          <a key={index}>{item}</a>
+        ))}
+      </NoQuestionBox>
     </>
-  )
-
-}
+  );
+};
 
 export default QuestionList;
