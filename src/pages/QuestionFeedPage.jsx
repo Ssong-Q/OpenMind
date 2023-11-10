@@ -24,7 +24,7 @@ const QuestionFeedPage = () => {
   const [questionData, setQuestionData] = useState({
     data: [],
   });
-
+  console.log(questionData);
   //질문 목록 데이터 호출
   const handleFeedCardSection = async (...args) => {
     setIsLoading(true);
@@ -91,6 +91,8 @@ const QuestionFeedPage = () => {
           subjectData={[subjectName, subjectImg, subjectId]}
           setQuestionData={setQuestionData}
           setVisible={setVisible}
+          questionData={questionData}
+          setTotal={setTotal}
         />
       )}
     </>
