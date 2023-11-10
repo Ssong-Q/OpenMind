@@ -44,14 +44,13 @@ const ModalListPage = ({ onClose }) => {
     <>
       <StyledGlobal />
       <ModalPortal>
-        <Styled.ModalBackground>
-          <StyledInputBox>
-            <Styled.ModalTitle>계정이 있으신가요?</Styled.ModalTitle>
-            <InputField onChange={handleInputChange} />
-            <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
-            <Styled.ModalCloseBtn onClick={handleCloseClick} />
-          </StyledInputBox>
-        </Styled.ModalBackground>
+        <Styled.ModalBackground onClick={handleCloseClick} />
+        <StyledInputBox>
+          <Styled.ModalTitle>계정이 있으신가요?</Styled.ModalTitle>
+          <InputField onChange={handleInputChange} />
+          <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
+          <Styled.ModalCloseBtn onClick={handleCloseClick} />
+        </StyledInputBox>
       </ModalPortal>
     </>
   );
