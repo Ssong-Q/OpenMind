@@ -1,6 +1,6 @@
 import * as Styled from './StyleDropDownList';
 
-function MoreList({ onClose, data }) {
+function MoreList({ data }) {
   const [
     questionId,
     answerId,
@@ -38,7 +38,7 @@ function MoreList({ onClose, data }) {
   ];
 
   return (
-    <Styled.Ul type="more" onClick={onClose}>
+    <Styled.Ul type="more">
       {list.map((item) => {
         if (item.key === 1 && answerId) return;
         {

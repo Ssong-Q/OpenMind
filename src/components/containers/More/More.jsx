@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { deleteQuestion, deleteAnswer, postAnswer } from 'api/api';
 import MoreMenu from '../../common/DropDownList/MoreMenu';
 import * as Styled from './StyleMore';
@@ -11,6 +11,7 @@ export default function More({
   setTotal,
   setQuestionData,
 }) {
+  const buttonRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOnToggle = () => {
@@ -43,14 +44,26 @@ export default function More({
     }
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target !== buttonRef.current) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <Styled.Container>
       <button onClick={handleOnToggle}>
-        <Styled.Kebab />
+        <Styled.Kebab ref={buttonRef} />
       </button>
       {isOpen && (
         <MoreMenu
-          onClose={handleOnToggle}
           data={[
             questionId,
             answerId,
