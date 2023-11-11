@@ -22,7 +22,7 @@ export const Button = styled.button`
   line-height: 18px;
   color: ${({ $select }) =>
     $select === 'true' ? `var(--blue)` : `var(--gray50)`};
-  color: ${({ type }) => type === 'delete' && `red`};
+  color: ${({ type }) => type === 'delete' && `var(--red)`};
   cursor: pointer;
 
   &:hover {
