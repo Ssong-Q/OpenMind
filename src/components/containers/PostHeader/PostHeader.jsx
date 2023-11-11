@@ -7,10 +7,9 @@ import { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import useModal from 'hooks/useModal';
 
-
 function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
-  const {isOpen, openModal, closeModal} = useModal();
-  const option = {center: true};
+  const { isOpen, openModal, closeModal } = useModal();
+  const option = { center: true };
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
 
@@ -25,7 +24,7 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
     } catch (err) {
       console.log(err);
     }
-  }; 
+  };
 
   useEffect(() => {
     getSubjectInfo(id);
@@ -38,12 +37,26 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
           <Link to={'/'}>
             <Styled.Logo src={LogoImg} />
           </Link>
-          <ProfileImage src={subjectImg} size="xLarge" mobilesize="large" onClick={openModal}/>
+          <ProfileImage
+            src={subjectImg}
+            size="xLarge"
+            mobilesize="large"
+            onClick={openModal}
+          />
           <Styled.Name>{subjectName}</Styled.Name>
           <ButtonShare name={subjectName} image={subjectImg} />
         </Styled.Container>
       </Styled.Header>
-      {isOpen && <Modal title="계정 관리" trigger={<AccountForm image={subjectImg} name={subjectName} id={id} />} option={option} closeModal={closeModal}/>}
+      {isOpen && (
+        <Modal
+          title="계정 관리"
+          trigger={
+            <AccountForm image={subjectImg} name={subjectName} id={id} />
+          }
+          option={option}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 }
