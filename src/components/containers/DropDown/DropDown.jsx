@@ -25,13 +25,13 @@ function DropDown({ sort, setSort }) {
     setIsOpen('false');
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (isOpen === 'true' && e.target !== divRef.current) {
-        setIsOpen('false');
-      }
-    };
+  const handleOutsideClick = (e) => {
+    if (e.target !== divRef.current) {
+      setIsOpen('false');
+    }
+  };
 
+  useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
