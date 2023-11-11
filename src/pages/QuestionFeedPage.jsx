@@ -12,7 +12,7 @@ import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
 const OFFSET = 0;
-
+ 
 const QuestionFeedPage = () => {
   const location = useLocation();
   const subjectId = location.pathname.split('/')[2];
