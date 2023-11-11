@@ -47,7 +47,7 @@ const HomePage = () => {
   };
 
   const handleNavClick = () => {
-    navigate('/list');
+    navigate('/list/1');
   };
 
   return (
