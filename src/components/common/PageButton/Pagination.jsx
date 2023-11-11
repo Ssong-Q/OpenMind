@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as Styled from './StylePageButton';
-import getPageArray from './getPageArray';
+import createPageArray from './createPageArray';
 
 const Pagination = ({ total, onClick, limit, width }) => {
   const location = useLocation();
   const pageNum = location.pathname.split('/')[2];
   const [num, setNum] = useState(+pageNum);
   const TOTAL_PAGE = Math.ceil(total / limit);
-  let pageArr = [];
-  for (let i = 1; i <= TOTAL_PAGE; i++) {
-    pageArr.push(i);
-  }
 
   let arrLen = width > 767 ? 7 : 5;
-  let midArr = getPageArray(arrLen, pageArr, pageNum);
+  let pageArr = createPageArray(TOTAL_PAGE, pageNum, arrLen);
 
   const handleButtonClick = (num) => {
     onClick(limit * (num - 1));
@@ -28,7 +24,7 @@ const Pagination = ({ total, onClick, limit, width }) => {
 
   return (
     <Styled.PaginationBox>
-      {midArr[0] !== 1 && (
+      {pageArr[0] !== 1 && (
         <>
           <Link to={`/list/${1}`}>
             <Styled.PageButton>1</Styled.PageButton>
@@ -36,7 +32,7 @@ const Pagination = ({ total, onClick, limit, width }) => {
           <Styled.PageDot>...</Styled.PageDot>
         </>
       )}
-      {midArr.map((item, index) => {
+      {pageArr.map((item, index) => {
         return (
           <Link to={`/list/${item}`} key={index}>
             <Styled.PageButton
@@ -48,7 +44,7 @@ const Pagination = ({ total, onClick, limit, width }) => {
           </Link>
         );
       })}
-      {midArr[midArr.length - 1] !== TOTAL_PAGE && (
+      {pageArr[arrLen - 1] !== TOTAL_PAGE && (
         <>
           <Styled.PageDot>...</Styled.PageDot>
           <Link to={`/list/${TOTAL_PAGE}`}>
