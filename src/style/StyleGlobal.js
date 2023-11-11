@@ -38,6 +38,7 @@ export const StyledGlobal = createGlobalStyle`
   body {
     background-color: var(--gray20);
     font-size: 62.5%;
+    -webkit-tap-highlight-color : transparent;
   }
 
   h1 {
@@ -83,6 +84,5 @@ export const StyledGlobal = createGlobalStyle`
     border: none;
     background-color: unset;
     cursor: pointer;
-    -webkit-tap-highlight-color : transparent;
   }
 `;

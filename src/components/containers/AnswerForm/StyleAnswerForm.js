@@ -42,12 +42,8 @@ export const AnswerContent = styled.div`
   line-height: 22px;
 `;
 
-export const RefuseContent = styled.div`
+export const RefuseContent = styled(AnswerContent)`
   color: var(--red);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
 `;
 
 export const Form = styled.form`

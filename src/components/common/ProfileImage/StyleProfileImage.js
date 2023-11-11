@@ -10,11 +10,12 @@ const SIZES = {
 };
 
 export const Container = styled.div`
-  width: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
-  height: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
+  width: ${({ $size }) => ($size ? SIZES[$size] : SIZES['mediumLarge'])}px;
+  height: ${({ $size }) => ($size ? SIZES[$size] : SIZES['mediumLarge'])}px;
   border-radius: 70%;
   overflow: hidden;
   flex-shrink: 0;
+  text-align: center;
   cursor: pointer;
 
   :hover {
@@ -22,10 +23,10 @@ export const Container = styled.div`
   }
 
   @media (max-width: 767px) {
-    width: ${({ mobileSize }) =>
-      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
-    height: ${({ mobileSize }) =>
-      mobileSize ? SIZES[mobileSize] : SIZES['mediumSmall']}px;
+    width: ${({ $mobilesize }) =>
+      $mobilesize ? SIZES[$mobilesize] : SIZES['mediumSmall']}px;
+    height: ${({ $mobilesize }) =>
+      $mobilesize ? SIZES[$mobilesize] : SIZES['mediumSmall']}px;
   }
 `;
 
