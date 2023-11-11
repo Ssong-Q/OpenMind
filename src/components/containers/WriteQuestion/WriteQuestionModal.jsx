@@ -55,7 +55,7 @@ const WriteQuestionModal = ({
           disabled={!active}
           $active={active}
         >
-          질문 보내기
+          {active ? `질문 보내기` : ``}
         </Styled.Button>
       </Styled.Form>
     </>

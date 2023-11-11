@@ -8,8 +8,8 @@ const placeholderRotate = keyframes`
 `;
 
 export const ModalBackground = styled.div`
-  background-color: ${({ back }) =>
-    back === 'noBG' ? `rgba(0, 0, 0, 0)` : `rgba(0, 0, 0, 0.4)`};
+  background-color: ${({ $back }) =>
+    $back === 'noBG' ? `rgba(0, 0, 0, 0)` : `rgba(0, 0, 0, 0.4)`};
   width: 100vw;
   height: 100vh;
   z-index: 9000;
@@ -18,7 +18,6 @@ export const ModalBackground = styled.div`
   left: 0;
   overflow-y: scroll;
 `;
-
 
 export const Spinner = styled.div`
   animation: ${placeholderRotate} 1.5s linear infinite;

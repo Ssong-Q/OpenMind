@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ReactComponent as ArrowDown } from 'assets/icon/arrow-down.svg';
 import { ReactComponent as ArrowUp } from 'assets/icon/arrow-up.svg';
 import { DropDownList } from 'components';
 import * as Styled from './StyleDropDown';
 
 function DropDown({ sort, setSort }) {
+  const divRef = useRef();
   const [isOpen, setIsOpen] = useState('false');
 
   //드롭다운 버튼 클릭
@@ -24,9 +25,22 @@ function DropDown({ sort, setSort }) {
     setIsOpen('false');
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target !== divRef.current) {
+      setIsOpen('false');
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <Styled.Container>
-      <Styled.Div onClick={handleDropDownClick} $status={isOpen}>
+      <Styled.Div onClick={handleDropDownClick} $status={isOpen} ref={divRef}>
         {sort === 'time' ? '최신순' : '이름순'}
         {isOpen === 'true' ? (
           <ArrowUp width="14" height="14" fill="var(--gray60)" />

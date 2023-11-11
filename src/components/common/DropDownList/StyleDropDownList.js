@@ -20,8 +20,8 @@ export const Button = styled.button`
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 18px;
-  color: ${({ select }) =>
-    select === 'true' ? `var(--blue)` : `var(--gray50)`};
+  color: ${({ $select }) =>
+    $select === 'true' ? `var(--blue)` : `var(--gray50)`};
   color: ${({ type }) => type === 'delete' && `red`};
   cursor: pointer;
 
