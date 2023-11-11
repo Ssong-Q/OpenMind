@@ -13,4 +13,5 @@ export const Button = styled.button`
   line-height: 18px;
   color: ${({ color }) =>
     color === 'brown' ? `var(--brown40)` : `var(--gray40)`};
+  cursor: unset;
 `;
