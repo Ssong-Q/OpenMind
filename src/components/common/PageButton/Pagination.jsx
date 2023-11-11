@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import * as Styled from './StylePageButton';
 import createPageArray from './createPageArray';
 
+
 const Pagination = ({ total, onClick, limit, width }) => {
   const location = useLocation();
   const pageNum = location.pathname.split('/')[2];
@@ -11,6 +12,9 @@ const Pagination = ({ total, onClick, limit, width }) => {
 
   let arrLen = width > 767 ? 7 : 5;
   let pageArr = createPageArray(TOTAL_PAGE, pageNum, arrLen);
+
+  let arrLen = width > 767 ? 7 : 5;
+  let midArr = getPageArray(arrLen, pageArr, pageNum);
 
   const handleButtonClick = (num) => {
     onClick(limit * (num - 1));
