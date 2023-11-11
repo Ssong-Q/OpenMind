@@ -9,6 +9,7 @@ export const MainContainer = styled.div`
 `;
 
 export const Nav = styled.div`
+  z-index: 10;
   text-align: center;
   margin-top: 60px;
   width: 100%;
