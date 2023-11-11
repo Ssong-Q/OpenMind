@@ -18,7 +18,6 @@ export const Title = styled(TitleBox)`
   line-height: 30px;
   flex-grow: ${({ $visible }) => $visible && '1'};
   justify-content: ${({ $visible }) => $visible && 'center'};
-}}
 
   @media (max-width: 767px) {
     font-size: 2rem;
