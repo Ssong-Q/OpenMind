@@ -29,7 +29,7 @@ const Pagination = ({ total, onClick, limit }) => {
           <Link to={`/list/${item}`} key={index}>
             <Styled.PageButton
               onClick={() => handleButtonClick(item)}
-              select={num === item ? 'selected' : 'unselected'}
+              $select={num === item ? 'selected' : 'unselected'}
             >
               {String(item)}
             </Styled.PageButton>

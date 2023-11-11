@@ -10,15 +10,16 @@ import {
   CheckAccount,
 } from 'components';
 import { getSubjects } from 'api/api';
-import { useWindowSizeCustom, useModal} from 'hooks';
+import useWindowSizeCustom from 'hooks/useWindowSize';
+import useModal from 'hooks/useModal';
 import { checkLocalStorage } from 'utils/localStorage';
 import * as Styled from './StyleQuestionListPage';
 
 const QuestionListPage = () => {
   const navigate = useNavigate();
   const { width: browserWidth } = useWindowSizeCustom();
-  const {isOpen, closeModal, openModal} = useModal();
-  const option = { center : true };
+  const { isOpen, closeModal, openModal } = useModal();
+  const option = { center: true };
   const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
   const [sort, setSort] = useState('time');
@@ -86,7 +87,14 @@ const QuestionListPage = () => {
           <UserCardSection data={subjectData.data} />
           <Pagination total={total} onClick={setOffset} limit={limit} />
         </Styled.cardSectionContainer>
-        {isOpen && <Modal title="계정이 있으신가요?" trigger={<CheckAccount />} option={option} closeModal={closeModal} />}
+        {isOpen && (
+          <Modal
+            title="계정이 있으신가요?"
+            trigger={<CheckAccount />}
+            option={option}
+            closeModal={closeModal}
+          />
+        )}
         {isLoading && <ModalLoading />}
       </Styled.PageContainer>
     </>

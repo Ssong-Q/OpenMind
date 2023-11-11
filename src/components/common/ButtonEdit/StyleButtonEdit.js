@@ -24,8 +24,8 @@ export const Button = styled.button`
     fill: var(--gray60);
   }
 
-  ${({ modify }) =>
-    modify === 'modify' &&
+  ${({ $modify }) =>
+    $modify === 'modify' &&
     `
     background-color: var(--gray10);
     color: var(--blue);

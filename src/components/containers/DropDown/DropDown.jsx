@@ -40,7 +40,7 @@ function DropDown({ sort, setSort }) {
 
   return (
     <Styled.Container>
-      <Styled.Div onClick={handleDropDownClick} status={isOpen} ref={divRef}>
+      <Styled.Div onClick={handleDropDownClick} $status={isOpen} ref={divRef}>
         {sort === 'time' ? '최신순' : '이름순'}
         {isOpen === 'true' ? (
           <ArrowUp width="14" height="14" fill="var(--gray60)" />
