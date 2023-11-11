@@ -85,7 +85,14 @@ const QuestionListPage = () => {
             <DropDown sort={sort} setSort={setSort} />
           </Styled.ListPageHeaderBox>
           <UserCardSection data={subjectData.data} />
-          <Pagination total={total} onClick={setOffset} limit={limit} />
+          {isLoading || (
+            <Pagination
+              total={total}
+              onClick={setOffset}
+              limit={limit}
+              width={browserWidth}
+            />
+          )}
         </Styled.cardSectionContainer>
         {isOpen && (
           <Modal

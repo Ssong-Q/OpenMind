@@ -21,3 +21,10 @@ export const PageButton = styled.button`
     color: var(--gray60);
   }
 `;
+
+export const PageDot = styled(PageButton)`
+  cursor: unset;
+  &:hover {
+    color: var(--gray40);
+  }
+`;
