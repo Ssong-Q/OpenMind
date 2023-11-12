@@ -18,10 +18,6 @@ export default function createPageArray(total, pageNum, arrLen) {
   if (firstNum <= 2) firstNum = 1;
   if (lastNum >= total - 1) firstNum = total - (arrLen - 1);
 
-  console.log(lastNum);
-  console.log(total - 1);
-  console.log(firstNum);
-
   //배열만들기
   for (let i = firstNum; i <= firstNum + (arrLen - 1); i++) {
     pageArray.push(i);
