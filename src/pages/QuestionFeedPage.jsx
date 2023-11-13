@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   PostHeader,
@@ -9,24 +9,26 @@ import {
 } from 'components';
 import useModal from 'hooks/useModal';
 import { getSubjectsQuestion } from 'api/api';
+import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
 
-const OFFSET = 0;
- 
+const LIMIT = 1;
+
 const QuestionFeedPage = () => {
   const location = useLocation();
   const subjectId = location.pathname.split('/')[2];
   const { isOpen, openModal, closeModal } = useModal();
-  const option = { visible: true, filter : true};
+  const option = { visible: true, filter: true };
   const target = useRef();
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [limit, setLimit] = useState(1);
+  const [offset, setOffset] = useState(0);
   const [total, setTotal] = useState(null); //전체 질문 수
   const [questionData, setQuestionData] = useState({
     data: [],
   });
+  const observer = infiniteScroll(isLoading, LIMIT, setOffset);
 
   //질문 목록 데이터 호출
   const handleFeedCardSection = async (...args) => {
@@ -35,8 +37,7 @@ const QuestionFeedPage = () => {
       const result = await getSubjectsQuestion(...args);
       const { count, results: questionData } = result;
       setQuestionData((prevData) => ({
-        ...prevData,
-        data: questionData,
+        data: [...prevData.data, ...questionData],
       }));
       setTotal(count);
     } catch (err) {
@@ -46,20 +47,9 @@ const QuestionFeedPage = () => {
     }
   };
 
-  const observeOptions = {
-    threshold: 0.6,
-  };
-
-  const observeCallback = useCallback(() => {
-    if (isLoading) return;
-    setLimit((prev) => prev + 1);
-  }, []);
-
-  const observer = new IntersectionObserver(observeCallback, observeOptions);
-
   useEffect(() => {
-    handleFeedCardSection(subjectId, limit, OFFSET);
-  }, [location, limit]);
+    handleFeedCardSection(subjectId, LIMIT, offset);
+  }, [location, offset]);
 
   useEffect(() => {
     observer.observe(target.current);

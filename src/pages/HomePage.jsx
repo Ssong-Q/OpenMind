@@ -30,7 +30,6 @@ const HomePage = () => {
       const list = [];
       result[0].results.map((data) => list.push(data.name));
       setAllList((prevArray) => [...prevArray, list]);
-      console.log(list);
     } catch (error) {
       console.log(error);
     }
