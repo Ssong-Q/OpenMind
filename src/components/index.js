@@ -20,7 +20,6 @@ export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
 export { default as UserCardSection } from './containers/UserCard/UserCardSection';
-export { default as ModalListPage } from './containers/CheckAccount/CheckAccount';
 export { default as FeedCard } from './containers/FeedCard/FeedCard';
 export { default as AnswerFeedCard } from './containers/FeedCard/AnswerFeedCard';
 export { default as FeedCardSection } from './containers/FeedCard/FeedCardSection';

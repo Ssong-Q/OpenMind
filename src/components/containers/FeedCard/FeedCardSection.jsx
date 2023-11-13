@@ -2,6 +2,7 @@ import { AnswerFeedCard, NoQuestionBox } from 'components';
 import { ReactComponent as MessageImg } from 'assets/icon/messages.svg';
 import * as Styled from './StyleFeedCardSection';
 
+
 const FeedCardSection = ({
   total,
   data,
@@ -9,6 +10,8 @@ const FeedCardSection = ({
   setTotal,
   setQuestionData,
 }) => {
+
+
   return (
     <Styled.CardContainer>
       <Styled.CountContainer>
