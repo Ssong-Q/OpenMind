@@ -69,7 +69,7 @@ const HomePage = () => {
   };
 
   const handleNavClick = () => {
-    navigate('/list/1');
+    navigate('/list/1/time');
   };
 
   useEffect(() => {
