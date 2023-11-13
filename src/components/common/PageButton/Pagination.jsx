@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as Styled from './StylePageButton';
 import createPageArray from './createPageArray';
+import { ReactComponent as ArrowLeft } from 'assets/double-arrow-left.svg';
+import { ReactComponent as ArrowRight } from 'assets/double-arrow-right.svg';
+import * as Styled from './StylePageButton';
 
 const Pagination = ({ total, onClick, limit, width }) => {
   const location = useLocation();
@@ -11,7 +13,6 @@ const Pagination = ({ total, onClick, limit, width }) => {
 
   let arrLen = width > 767 ? 7 : 5;
   let pageArr = createPageArray(TOTAL_PAGE, pageNum, arrLen);
-  // let midArr = getPageArray(arrLen, pageArr, pageNum);
 
   const handleButtonClick = (num) => {
     onClick(limit * (num - 1));
@@ -25,12 +26,9 @@ const Pagination = ({ total, onClick, limit, width }) => {
   return (
     <Styled.PaginationBox>
       {pageArr[0] !== 1 && (
-        <>
-          <Link to={`/list/${1}`}>
-            <Styled.PageButton>1</Styled.PageButton>
-          </Link>
-          <Styled.PageDot>...</Styled.PageDot>
-        </>
+        <Link to={`/list/${1}`}>
+          <ArrowLeft width="16" height="16" />
+        </Link>
       )}
       {pageArr.map((item, index) => {
         return (
@@ -45,12 +43,9 @@ const Pagination = ({ total, onClick, limit, width }) => {
         );
       })}
       {pageArr[arrLen - 1] !== TOTAL_PAGE && (
-        <>
-          <Styled.PageDot>...</Styled.PageDot>
-          <Link to={`/list/${TOTAL_PAGE}`}>
-            <Styled.PageButton>{TOTAL_PAGE}</Styled.PageButton>
-          </Link>
-        </>
+        <Link to={`/list/${TOTAL_PAGE}`}>
+          <ArrowRight width="16" height="16" />
+        </Link>
       )}
     </Styled.PaginationBox>
   );

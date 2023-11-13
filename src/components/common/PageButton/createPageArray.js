@@ -15,8 +15,8 @@ export default function createPageArray(total, pageNum, arrLen) {
   let lastNum = +pageNum + SIDE;
 
   //배열의 시작 숫자 조정하기
-  if (firstNum <= 2) firstNum = 1;
-  if (lastNum >= total - 1) firstNum = total - (arrLen - 1);
+  if (firstNum < 1) firstNum = 1;
+  if (lastNum > total) firstNum = total - (arrLen - 1);
 
   //배열만들기
   for (let i = firstNum; i <= firstNum + (arrLen - 1); i++) {
