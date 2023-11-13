@@ -14,7 +14,7 @@ export const Container = styled.button`
   cursor: pointer;
 
   span {
-    color: ${({ active }) => FONT_COLOR[active] || 'var(--gray40)'};
+    color: ${({ $active }) => FONT_COLOR[$active] || 'var(--gray40)'};
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 18px;
