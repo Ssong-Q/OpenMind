@@ -45,7 +45,15 @@ function DropDown({ sort, setSort }) {
         {isOpen === 'true' ? (
           <ArrowUp width="14" height="14" fill="var(--gray60)" />
         ) : (
-          <ArrowDown width="14" height="14" fill="var(--gray40)" />
+          <ArrowDown
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen('true');
+            }}
+            width="14"
+            height="14"
+            fill="var(--gray40)"
+          />
         )}
       </Styled.Div>
       {isOpen === 'true' && (
