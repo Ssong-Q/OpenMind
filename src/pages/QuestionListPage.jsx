@@ -19,7 +19,7 @@ const QuestionListPage = () => {
   const navigate = useNavigate();
   const { width: browserWidth } = useWindowSizeCustom();
   const { isOpen, closeModal, openModal } = useModal();
-  const option = { center: true };
+  const option = { center: true, smallContainer : true };
   const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
   const [sort, setSort] = useState('time');

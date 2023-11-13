@@ -40,17 +40,35 @@ export const Container = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 612px;
-  height: 454px;
   transform: translate(-50%, -50%);
-  padding: 40px 40px 70px;
   background-color: var(--gray10);
-  border-radius: 24px;
   box-shadow: var(--shadow-3pt);
 
-  @media (max-width: 767px) {
-    padding: 22.5px 24px 24px;
-    width: 327px;
-    height: 568px;
+  ${({$smallContainer}) => $smallContainer ? `
+    justify-content: space-between;
+    gap: 10px;
+    width: 400px;
+    height: 196px;
+    padding: 32px;
+    border-radius: 16px;
+
+    @media (max-width: 767px) {
+      width: 300px;
+      height: 190px;
+      padding: 16px;
+    }
+    ` : `
+
+    width: 612px;
+    height: 454px;
+    padding: 40px 40px 70px;
+    border-radius: 24px;
+
+    @media (max-width: 767px) {
+      padding: 22.5px 24px 24px;
+      width: 327px;
+      height: 568px;
+    }
+  `
   }
 `;

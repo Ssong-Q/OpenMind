@@ -5,10 +5,14 @@ import closeBtnImg from 'assets/icon/close.svg';
 export const Input = styled(InputBox)`
   z-index: 9999;
   position: absolute;
-  top: 50%;
+  top: 73%;
   left: 50%;
-  height: 196px;
   transform: translate(-50%, -50%);
+
+  @media(max-width:767px){
+    top: 60%;
+    left: 50%;
+  }
 `;
 
 export const ModalCloseBtn = styled.div`

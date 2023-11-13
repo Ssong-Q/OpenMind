@@ -18,6 +18,7 @@ const AnswerFeedPage = () => {
   const [questionData, setQuestionData] = useState({
     data: [],
   });
+  const option = {filter : true};
 
   const handleFeedCardSection = async (...args) => {
     setIsLoading(true);
@@ -61,6 +62,7 @@ const AnswerFeedPage = () => {
         id={subjectId}
         setterSubjectName={setSubjectName}
         setterSubjectImg={setSubjectImg}
+        filter={option.filter}
       />
       <Styled.MainContainer>
         <FeedCardSection
