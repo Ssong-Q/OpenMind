@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowDown } from 'assets/icon/arrow-down.svg';
 import { ReactComponent as ArrowUp } from 'assets/icon/arrow-up.svg';
 import { DropDownList } from 'components';
 import * as Styled from './StyleDropDown';
 
-function DropDown({ sort, setSort }) {
+function DropDown({ offset, limit, sorted }) {
   const divRef = useRef();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState('false');
 
   //드롭다운 버튼 클릭
@@ -16,13 +18,13 @@ function DropDown({ sort, setSort }) {
 
   //드롭다운 리스트 중 하나 선택
   const handleNameClick = () => {
-    setSort('name');
     setIsOpen('false');
+    navigate(`/list/${Math.floor(offset / limit) + 1}/name`);
   };
 
   const handleNewestClick = () => {
-    setSort('time');
     setIsOpen('false');
+    navigate(`/list/${Math.floor(offset / limit) + 1}/time`);
   };
 
   const handleOutsideClick = (e) => {
@@ -41,7 +43,7 @@ function DropDown({ sort, setSort }) {
   return (
     <Styled.Container>
       <Styled.Div onClick={handleDropDownClick} $status={isOpen} ref={divRef}>
-        {sort === 'time' ? '최신순' : '이름순'}
+        {sorted === 'time' ? '최신순' : '이름순'}
         {isOpen === 'true' ? (
           <ArrowUp width="14" height="14" fill="var(--gray60)" />
         ) : (
@@ -60,7 +62,7 @@ function DropDown({ sort, setSort }) {
         <DropDownList
           onNameClick={handleNameClick}
           onNewestClick={handleNewestClick}
-          sort={sort}
+          sorted={sorted}
         />
       )}
     </Styled.Container>

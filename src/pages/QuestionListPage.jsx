@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   NavBar,
   DropDown,
@@ -17,12 +17,13 @@ import * as Styled from './StyleQuestionListPage';
 
 const QuestionListPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const sorted = location.pathname.split('/')[3];
   const { width: browserWidth } = useWindowSizeCustom();
   const { isOpen, closeModal, openModal } = useModal();
-  const option = { center: true, smallContainer : true };
+  const option = { center: true, smallContainer: true };
   const [limit, setLimit] = useState(8);
   const [offset, setOffset] = useState(0);
-  const [sort, setSort] = useState('time');
   const [total, setTotal] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [subjectData, setSubjectData] = useState({
@@ -68,8 +69,8 @@ const QuestionListPage = () => {
   };
 
   useEffect(() => {
-    handleCardSection(null, limit, offset, sort);
-  }, [offset, sort, limit]);
+    handleCardSection(null, limit, offset, sorted);
+  }, [location, offset, limit]);
 
   useEffect(() => {
     handleLimitChange();
@@ -82,7 +83,7 @@ const QuestionListPage = () => {
         <Styled.cardSectionContainer>
           <Styled.ListPageHeaderBox>
             <Styled.ListPageHeader>누구에게 질문할까요?</Styled.ListPageHeader>
-            <DropDown sort={sort} setSort={setSort} />
+            <DropDown offset={offset} limit={limit} sorted={sorted} />
           </Styled.ListPageHeaderBox>
           <UserCardSection data={subjectData.data} />
           {isLoading || (
@@ -91,6 +92,7 @@ const QuestionListPage = () => {
               onClick={setOffset}
               limit={limit}
               width={browserWidth}
+              sorted={sorted}
             />
           )}
         </Styled.cardSectionContainer>

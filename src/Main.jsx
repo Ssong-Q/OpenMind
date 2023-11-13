@@ -15,7 +15,7 @@ function Main() {
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
           <Route path="list">
-            <Route path=":page" element={<QuestionListPage />} />
+            <Route path=":page/:sorted" element={<QuestionListPage />} />
           </Route>
           <Route path="post">
             <Route path=":id" element={<QuestionFeedPage />} />
