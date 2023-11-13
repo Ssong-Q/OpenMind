@@ -1,7 +1,7 @@
 export default function createPageArray(total, pageNum, arrLen) {
   let pageArray = [];
 
-  //1. arrLen<=TotalPage
+  //1. arrLen>=TotalPage
   if (arrLen >= total) {
     for (let i = 1; i <= total; i++) {
       pageArray.push(i);
@@ -9,7 +9,7 @@ export default function createPageArray(total, pageNum, arrLen) {
     return pageArray;
   }
 
-  //2. arrLen>TotalPage
+  //2. arrLen<TotalPage
   let SIDE = Math.floor(arrLen / 2);
   let firstNum = +pageNum - SIDE;
   let lastNum = +pageNum + SIDE;
