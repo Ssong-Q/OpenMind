@@ -64,6 +64,12 @@ export const InputBox = styled.div`
   }
 `;
 
+export const Alert = styled.div`
+  color: red;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const TwoGuysImg = styled.div`
   width: 100%;
   height: 100%;
