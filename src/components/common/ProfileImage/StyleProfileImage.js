@@ -19,7 +19,7 @@ export const Container = styled.div`
   cursor: pointer;
 
   :hover {
-    filter: brightness(0.5);
+    filter: ${({$filter}) => $filter && `brightness(0.5)`};
   }
 
   @media (max-width: 767px) {

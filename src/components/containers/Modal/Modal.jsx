@@ -9,7 +9,7 @@ const Modal = ({ trigger, title, option, closeModal }) => {
     <>
       <ModalPortal>
         <Style.ModalBackground onClick={closeModal} />
-        <Style.Container>
+        <Style.Container $smallContainer={option.smallContainer}>
           <ModalQuestionTitle option={option} closeModal={closeModal}>{title}</ModalQuestionTitle>
           {trigger}
         </Style.Container>

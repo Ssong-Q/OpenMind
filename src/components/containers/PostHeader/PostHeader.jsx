@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import useModal from 'hooks/useModal';
 
-function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
+function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
   const { isOpen, openModal, closeModal } = useModal();
-  const option = { center: true };
+  const option = { center: true};
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
 
@@ -42,6 +42,7 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg }) {
             size="xLarge"
             mobilesize="large"
             onClick={openModal}
+            filter={filter}
           />
           <Styled.Name>{subjectName}</Styled.Name>
           <ButtonShare name={subjectName} image={subjectImg} />

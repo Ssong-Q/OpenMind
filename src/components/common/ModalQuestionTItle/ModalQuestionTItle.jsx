@@ -4,11 +4,10 @@ import * as Styled from './StyleModalQuestionTitle';
 
 
 const ModalQuestionTitle = ({children, option, closeModal}) => {
-
   return (
     <>
-      <Styled.TitleBox $visible={option.center}>
-        <Styled.Title $visible={option.center}>
+      <Styled.TitleBox $option={option}>
+        <Styled.Title $option={option}>
           {option.visible && <Message width={28} height={28} fill={'var(--gray60)'}/> }
           {children}
         </Styled.Title>

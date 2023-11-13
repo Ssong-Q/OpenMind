@@ -17,7 +17,6 @@ const Pagination = ({ total, onClick, limit, width }) => {
     onClick(limit * (num - 1));
     setNum(num);
   };
-
   useEffect(() => {
     onClick(limit * (Number(pageNum) - 1));
     setNum(+pageNum);
