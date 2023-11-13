@@ -29,6 +29,14 @@ export const Container = styled.div`
   @media (max-width: 767px) {
     padding: 16px;
   }
+  &:hover {
+    box-shadow:
+      0 0 20px rgba(0, 0, 0, 0.3),
+      4px 0 20px rgba(0, 0, 0, 0.3),
+      0 10px 20px rgba(0, 0, 0, 0.3),
+      -4px 0 20px rgba(0, 0, 0, 0.3);
+    transform: translate(0, -10%);
+  }
 `;
 
 export const Name = styled.p`

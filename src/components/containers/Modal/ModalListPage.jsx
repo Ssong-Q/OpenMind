@@ -1,11 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import ModalPortal from 'Portal';
+import { StyledGlobal } from 'style/StyleGlobal';
 import { getLocalStorage } from 'utils/localStorage';
 import { getSubjects } from 'api/api';
+import { InputBox } from 'pages/StyleHomePage';
 import { InputField, ButtonBox } from 'components';
-import * as Style from './StyleCheckAccount';
+import * as Styled from './Modal';
+import { useEffect } from 'react';
 
-const CheckAccount = () => {
+const StyledInputBox = styled(InputBox)`
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 225px;
+  transform: translate(-50%, -50%);
+`;
+
+const ModalListPage = ({ onClose }) => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [allList, setAllList] = useState([]);
@@ -60,15 +74,25 @@ const CheckAccount = () => {
     setName(name);
   };
 
+  const handleCloseClick = () => {
+    onClose(false);
+  };
+
   return (
     <>
-      <Style.Input>
-        <InputField onChange={handleInputChange} />
-        {isError ? <Style.Alert>{errorMessage}</Style.Alert> : null}
-        <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
-      </Style.Input>
+      <StyledGlobal />
+      <ModalPortal>
+        <Styled.ModalBackground onClick={handleCloseClick} />
+        <StyledInputBox>
+          <Styled.ModalTitle>계정이 있으신가요?</Styled.ModalTitle>
+          <InputField onChange={handleInputChange} />
+          {isError ? <Styled.Alert>{errorMessage}</Styled.Alert> : null}
+          <ButtonBox onClick={handleButtonClick}>답변하러 가기</ButtonBox>
+          <Styled.ModalCloseBtn onClick={handleCloseClick} />
+        </StyledInputBox>
+      </ModalPortal>
     </>
   );
 };
 
-export default CheckAccount;
+export default ModalListPage;
