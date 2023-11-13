@@ -3,7 +3,7 @@ import * as Styled from './StyleButtonBox';
 
 const StyledButtonBox = styled(Styled.ButtonBox)`
   display: flex;
-  background-color: var(--brown40);
+  background-color: ${({theme}) => theme.button.button2};
   width: 100%;
 `;
 

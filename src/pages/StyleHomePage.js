@@ -73,8 +73,8 @@ export const Alert = styled.div`
 export const TwoGuysImg = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url(${twoGuysImg});
-  background-position: center bottom;
-  background-size: contain;
+  background-image: url(${({theme}) => !theme.snow &&`${twoGuysImg}`});
+  background-position: ${({theme}) => !theme.snow &&`center bottom`};
+  background-size: ${({theme}) => !theme.snow &&`contain`};
   background-repeat: no-repeat;
 `;

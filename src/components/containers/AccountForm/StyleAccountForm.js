@@ -33,9 +33,9 @@ export const Button = styled.button`
   border-radius: 8px;
   font-size: 1rem;
   color : #fff;
-  background-color: var(--brown30);
+  background-color: ${({theme}) => theme.button.button3};
 
   &:hover {
-    background-color: var(--brown40);
+    background-color: ${({theme}) => theme.button.button2};
   }
 `

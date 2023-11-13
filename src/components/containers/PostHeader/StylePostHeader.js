@@ -4,7 +4,7 @@ import TwoGuysImg from 'assets/twoguys-image-half.svg';
 export const Header = styled.div`
   display: block;
   justify-content: center;
-  background-image: url(${TwoGuysImg});
+  background-image: url(${({theme}) => !theme.snow &&`${TwoGuysImg}`});
   background-position: top center;
   background-size: auto;
   background-repeat: no-repeat;

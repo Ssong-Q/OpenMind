@@ -8,8 +8,8 @@ export const ButtonBox = styled.button`
   align-items: center;
   gap: 8px;
   border-radius: 8px;
-  border: 1px solid var(--brown40);
-  background-color: var(--brown10);
+  border: 1px solid ${({theme}) => theme.border.border2};
+  background-color: ${({theme}) => theme.button.button1};
   cursor: pointer;
 
   @media (max-width: 767px) {
@@ -26,7 +26,7 @@ export const ArrowRight = styled.div`
 `;
 
 export const ButtonText = styled.span`
-  color: var(--brown40);
+  color: ${({theme}) => theme.color.color2};
   font-family: 'Actor';
   font-size: 1.6rem;
 `;

@@ -80,7 +80,7 @@ export const WriteButton = styled.button`
   padding: 12px 28px;
   flex-shrink: 0;
   border-radius: 200px;
-  background: var(--brown40);
+  background: ${({theme}) => theme.button.button2};
   color: white;
   font-family: Actor;
   font-size: 20px;
