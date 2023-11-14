@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getSubjects } from 'api/api';
 import { ThemeContext } from 'styled-components';
 import { ProfileImage, ButtonShare, AccountForm } from 'components';
@@ -10,6 +10,7 @@ import christmasLogoImg from 'assets/christmas-logo.png';
 import * as Styled from './StylePostHeader';
 
 function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
+  const navigate = useNavigate();
   const { isOpen, openModal, closeModal } = useModal();
   const option = { center: true };
   const [subjectName, setSubjectName] = useState('');
@@ -26,6 +27,7 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
       setterSubjectImg(imageSource);
     } catch (err) {
       console.log(err);
+      navigate(`/InvalidQuestionSubject`);
     }
   };
 

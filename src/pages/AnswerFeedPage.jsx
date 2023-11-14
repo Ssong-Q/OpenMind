@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
 import { getSubjectsQuestion } from 'api/api';
 import { infiniteScroll } from 'api/infiniteScroll';
@@ -9,6 +9,7 @@ const LIMIT = 2;
 
 const AnswerFeedPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const subjectId = location.pathname.split('/')[2];
   const target = useRef();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,8 +32,9 @@ const AnswerFeedPage = () => {
         data: [...prevData.data, ...questionData],
       }));
       setTotal(count);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
+      navigate(`/InvalidQuestionSubject`);
     } finally {
       setIsLoading(false);
     }

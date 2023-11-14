@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import {
   NavBar,
   InputField,
@@ -17,6 +17,7 @@ const MOBILE_SIZE = 767;
 const HomePage = () => {
   const navigate = useNavigate();
   const { width: browserWidth } = useWindowSizeCustom();
+  const { setTheme } = useOutletContext();
   const [name, setName] = useState('');
   const [allList, setAllList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -82,7 +83,9 @@ const HomePage = () => {
 
   return (
     <Styled.PageContainer>
-      <NavBar onClick={handleNavClick}>질문하러 가기</NavBar>
+      <NavBar onClick={handleNavClick} setTheme={setTheme}>
+        질문하러 가기
+      </NavBar>
       <Styled.MainContainer>
         <Styled.LogoImg />
         {browserWidth <= MOBILE_SIZE && (

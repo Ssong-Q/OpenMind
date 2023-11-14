@@ -1,19 +1,29 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Snowfall from 'react-snowfall';
 import { StyledGlobal } from 'style/StyleGlobal';
 import THEME from 'style/theme';
-import Snowfall from 'react-snowfall';
 
 const App = () => {
-  const [ theme, setTheme ] = useState(THEME['christmas'])  //'christmas'& 'basic'으로 변경
+  const [theme, setTheme] = useState(THEME['basic']);
 
   return (
     <>
-      <ThemeProvider theme={theme} setTheme={setTheme}>
-        {theme.snow &&  <div><Snowfall /></div>}
+      <ThemeProvider theme={theme}>
+        {theme.snow && (
+          <div>
+            <Snowfall
+              style={{
+                position: 'fixed',
+                width: '100vw',
+                height: '100vh',
+              }}
+            />
+          </div>
+        )}
         <StyledGlobal />
-        <Outlet />
+        <Outlet context={{ setTheme }} />
       </ThemeProvider>
     </>
   );

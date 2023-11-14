@@ -16,6 +16,7 @@ export { default as Pagination } from './common/PageButton/Pagination';
 export { default as ModalQuestionTitle } from './common/ModalQuestionTItle/ModalQuestionTItle';
 export { default as InputImage } from './common/InputImage/InputImage';
 export { default as AccountDelete } from './common/AccountDelete/AccountDelete';
+export { default as Toggle } from './common/Toggle/Toggle';
 export { default as DropDown } from './containers/DropDown/DropDown';
 export { default as NavBar } from './containers/NavBar/NavBar';
 export { default as UserCard } from './containers/UserCard/UserCard';
