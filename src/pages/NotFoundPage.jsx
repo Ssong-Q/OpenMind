@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
 import * as Styled from './StyleNotFoundPage';
 import logo from 'assets/logo.svg';
 
@@ -7,9 +8,10 @@ const NotFoundPage = () => {
   const location = useLocation();
   const whatErrorFrom = location.pathname.split('/')[1];
   const [message, setMessage] = useState('');
-
-  const gifUrl =
-    'https://media.giphy.com/media/3ohs7KViF6rA4aan5u/giphy.gif?cid=ecf05e47xhk2cqh66hl2qlmrhfd23c3s0gt2dbkcxl9y6cdq&ep=v1_gifs_search&rid=giphy.gif&ct=g';
+  const theme = useContext(ThemeContext);
+  const gifUrl = theme.snow
+    ? 'https://media.giphy.com/media/3orifiKw74WT9ADnsQ/giphy.gif'
+    : 'https://media.giphy.com/media/3ohs7KViF6rA4aan5u/giphy.gif?cid=ecf05e47xhk2cqh66hl2qlmrhfd23c3s0gt2dbkcxl9y6cdq&ep=v1_gifs_search&rid=giphy.gif&ct=g';
 
   const handlePrintMessage = (message) => {
     if (message === 'UseYourOwnAccount') {
