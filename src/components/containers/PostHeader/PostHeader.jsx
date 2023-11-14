@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getSubjects } from 'api/api';
 import { ThemeContext } from 'styled-components';
 import { ProfileImage, ButtonShare, AccountForm } from 'components';
