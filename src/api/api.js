@@ -26,7 +26,7 @@ export async function postSubjects(formData) {
   return body;
 }
 
-export async function getSubjectsQuestion(id, limit = 1, offset = '') {
+export async function getSubjectsQuestion(id, limit = 2, offset = '') {
   const subjectId = id;
   const query = `?limit=${limit}&offset=${offset}`;
   const response = await fetch(

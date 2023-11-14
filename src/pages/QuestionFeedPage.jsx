@@ -12,7 +12,7 @@ import { getSubjectsQuestion } from 'api/api';
 import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
 
-const LIMIT = 1;
+const LIMIT = 2;
 
 const QuestionFeedPage = () => {
   const location = useLocation();
