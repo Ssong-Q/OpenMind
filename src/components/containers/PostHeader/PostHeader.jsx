@@ -1,17 +1,20 @@
-import { ProfileImage, ButtonShare, AccountForm } from 'components';
-import { getSubjects } from 'api/api';
+import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import * as Styled from './StylePostHeader';
-import LogoImg from 'assets/logo.svg';
-import { useEffect, useState } from 'react';
+import { getSubjects } from 'api/api';
+import { ThemeContext } from 'styled-components';
+import { ProfileImage, ButtonShare, AccountForm } from 'components';
 import Modal from '../Modal/Modal';
 import useModal from 'hooks/useModal';
+import logoImg from 'assets/logo.svg';
+import christmasLogoImg from 'assets/christmas-logo.png';
+import * as Styled from './StylePostHeader';
 
 function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
   const { isOpen, openModal, closeModal } = useModal();
-  const option = { center: true};
+  const option = { center: true };
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
+  const theme = useContext(ThemeContext);
 
   const getSubjectInfo = async (subjectId) => {
     try {
@@ -35,7 +38,7 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
       <Styled.Header>
         <Styled.Container>
           <Link to={'/'}>
-            <Styled.Logo src={LogoImg} />
+            <Styled.Logo src={theme.snow ? christmasLogoImg : logoImg} />
           </Link>
           <ProfileImage
             src={subjectImg}
