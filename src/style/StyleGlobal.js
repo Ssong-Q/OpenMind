@@ -37,12 +37,13 @@ export const StyledGlobal = createGlobalStyle`
 
   html,
   body {
-    background-color: ${({theme}) => !theme.snow && theme.backgroundColor};
+    background-color: ${({ theme }) => !theme.snow && theme.backgroundColor};
     font-size: 62.5%;
     -webkit-tap-highlight-color : transparent;
-    background-image: url(${({theme}) => theme.snow && `${snowingImg}`});
-    background-position: ${({theme}) => theme.snow &&`center bottom`};
-    background-size: ${({theme}) => theme.snow &&`cover`};
+    background-image: url(${({ theme }) => theme.snow && `${snowingImg}`});
+    background-size: ${({ theme }) => theme.snow && `100vw 100vh`};
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   h1 {

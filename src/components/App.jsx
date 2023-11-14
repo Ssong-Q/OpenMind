@@ -6,12 +6,22 @@ import THEME from 'style/theme';
 import Snowfall from 'react-snowfall';
 
 const App = () => {
-  const [ theme, setTheme ] = useState(THEME['christmas'])  //'christmas'& 'basic'으로 변경
+  const [theme, setTheme] = useState(THEME['christmas']); //'christmas'& 'basic'으로 변경
 
   return (
     <>
       <ThemeProvider theme={theme} setTheme={setTheme}>
-        {theme.snow &&  <div><Snowfall /></div>}
+        {theme.snow && (
+          <div>
+            <Snowfall
+              style={{
+                position: 'fixed',
+                width: '100vw',
+                height: '100vh',
+              }}
+            />
+          </div>
+        )}
         <StyledGlobal />
         <Outlet />
       </ThemeProvider>

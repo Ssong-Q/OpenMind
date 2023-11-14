@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PostHeader,
   QuestionFeedCardSection,
@@ -16,6 +16,7 @@ const LIMIT = 2;
 
 const QuestionFeedPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const subjectId = location.pathname.split('/')[2];
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
@@ -42,6 +43,7 @@ const QuestionFeedPage = () => {
       setTotal(count);
     } catch (err) {
       console.log(err);
+      navigate(`/InvalidQuestionSubject`);
     } finally {
       setIsLoading(false);
     }
