@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import arrowRightImg from 'assets/icon/arrow-right.svg';
+import arrowRightBrownImg from 'assets/icon/arrow-right-brown.svg';
+import arrowRightWhiteImg from 'assets/icon/arrow-right-white.svg';
 
 export const ButtonBox = styled.button`
   display: inline-flex;
@@ -8,8 +9,8 @@ export const ButtonBox = styled.button`
   align-items: center;
   gap: 8px;
   border-radius: 8px;
-  border: 1px solid ${({theme}) => theme.border.border2};
-  background-color: ${({theme}) => theme.button.button1};
+  border: 1px solid ${({ theme }) => theme.border.border2};
+  background-color: ${({ theme }) => theme.button.button1};
   cursor: pointer;
 
   @media (max-width: 767px) {
@@ -18,7 +19,10 @@ export const ButtonBox = styled.button`
 `;
 
 export const ArrowRight = styled.div`
-  background-image: url(${arrowRightImg});
+  background-image: ${({ $color }) =>
+    $color === 'brown'
+      ? `url(${arrowRightBrownImg})`
+      : `url(${arrowRightWhiteImg})`};
   background-position: center;
   background-size: cover;
   width: 18px;
@@ -26,7 +30,7 @@ export const ArrowRight = styled.div`
 `;
 
 export const ButtonText = styled.span`
-  color: ${({theme}) => theme.color.color2};
+  color: ${({ theme }) => theme.color.color2};
   font-family: 'Actor';
   font-size: 1.6rem;
 `;

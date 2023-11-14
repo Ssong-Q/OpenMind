@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Snowfall from 'react-snowfall';
 import { StyledGlobal } from 'style/StyleGlobal';
 import THEME from 'style/theme';
-import Snowfall from 'react-snowfall';
 
 const App = () => {
-  const [theme, setTheme] = useState(THEME['christmas']); //'christmas'& 'basic'으로 변경
+  const [theme, setTheme] = useState(THEME['basic']);
 
   return (
     <>
-      <ThemeProvider theme={theme} setTheme={setTheme}>
+      <ThemeProvider theme={theme}>
         {theme.snow && (
           <div>
             <Snowfall
@@ -23,7 +23,7 @@ const App = () => {
           </div>
         )}
         <StyledGlobal />
-        <Outlet />
+        <Outlet context={{ setTheme }} />
       </ThemeProvider>
     </>
   );
