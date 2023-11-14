@@ -31,6 +31,6 @@ export const Button = styled(ButtonBox)`
   border: none;
   color: #fff;
   cursor: ${({ $active }) => !$active && `default`};
-  background-color: ${({ $active }) =>
-    $active ? `var(--brown40)` : `var(--brown30)`};
+  background-color: ${({ $active, theme }) =>
+    $active ? `${theme.button.button2}` : `${theme.button.button4}`};
 `;
