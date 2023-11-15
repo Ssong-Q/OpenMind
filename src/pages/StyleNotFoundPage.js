@@ -44,6 +44,13 @@ export const H2 = styled(H1)`
   font-size: 4rem;
 `;
 
+export const H3 = styled.h3`
+  font-family: Pretendard;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--red);
+`;
+
 export const P = styled.p`
   margin-top: 20px;
   font-size: 1.5rem;

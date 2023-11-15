@@ -1,5 +1,9 @@
-const findKeyByValue = (object, value) => {
-  return Object.keys(object).find((key) => object[key] === value);
+const findKeyByValue = (object, name) => {
+  return Object.keys(object).find((key) => object[key] === name);
+};
+
+const existKeyById = (object, id) => {
+  return Object.keys(object).includes(id);
 };
 
 export const deleteLocalStorage = (id) => {
@@ -55,6 +59,20 @@ export const checkLocalStorage = () => {
   } else {
     // localStorage의 user property에 값이 있을 때
     userId = true;
+  }
+  return userId;
+};
+
+export const checkLocalStorageById = (id) => {
+  const userInfo = localStorage.getItem('user');
+  let userId;
+  if (!userInfo) {
+    // localStorage의 user property가 null 값일 때
+    userId = false;
+  } else {
+    // localStorage의 user property에 값이 있을 때
+    const parsedInfo = JSON.parse(userInfo);
+    userId = existKeyById(parsedInfo, id);
   }
   return userId;
 };
