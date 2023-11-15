@@ -2,7 +2,6 @@ import { UserCard } from 'components';
 import * as Styled from './StyleUserCard';
 
 const UserCardSection = ({ data }) => {
-  console.log(data);
   return (
     <Styled.Section>
       {data.map((data) => {

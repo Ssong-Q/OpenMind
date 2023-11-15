@@ -1,5 +1,6 @@
 // user agent stylesheet 초기화
 import { createGlobalStyle } from 'styled-components';
+import snowingImg from 'assets/christmas-background.png';
 
 export const StyledGlobal = createGlobalStyle`
   :root {
@@ -36,8 +37,13 @@ export const StyledGlobal = createGlobalStyle`
 
   html,
   body {
-    background-color: var(--gray20);
+    background-color: ${({ theme }) => !theme.snow && theme.backgroundColor};
     font-size: 62.5%;
+    -webkit-tap-highlight-color : transparent;
+    background-image: url(${({ theme }) => theme.snow && `${snowingImg}`});
+    background-size: ${({ theme }) => theme.snow && `100vw 100vh`};
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   h1 {
@@ -83,6 +89,5 @@ export const StyledGlobal = createGlobalStyle`
     border: none;
     background-color: unset;
     cursor: pointer;
-    -webkit-tap-highlight-color : transparent;
   }
 `;

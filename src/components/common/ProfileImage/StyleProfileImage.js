@@ -10,16 +10,23 @@ const SIZES = {
 };
 
 export const Container = styled.div`
-  width: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
-  height: ${({ size }) => (size ? SIZES[size] : SIZES['mediumLarge'])}px;
+  width: ${({ $size }) => ($size ? SIZES[$size] : SIZES['mediumLarge'])}px;
+  height: ${({ $size }) => ($size ? SIZES[$size] : SIZES['mediumLarge'])}px;
   border-radius: 70%;
   overflow: hidden;
+  flex-shrink: 0;
+  text-align: center;
+  cursor: pointer;
+
+  :hover {
+    filter: ${({$filter}) => $filter && `brightness(0.5)`};
+  }
 
   @media (max-width: 767px) {
-    width: ${({ mobilesize }) =>
-      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
-    height: ${({ mobilesize }) =>
-      mobilesize ? SIZES[mobilesize] : SIZES['mediumSmall']}px;
+    width: ${({ $mobilesize }) =>
+      $mobilesize ? SIZES[$mobilesize] : SIZES['mediumSmall']}px;
+    height: ${({ $mobilesize }) =>
+      $mobilesize ? SIZES[$mobilesize] : SIZES['mediumSmall']}px;
   }
 `;
 

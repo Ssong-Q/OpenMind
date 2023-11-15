@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import logoImg from 'assets/logo.svg';
 import twoGuysImg from 'assets/two-guys-home.svg';
+import christmasLogoImg from 'assets/christmas-logo.png';
 
 export const PageContainer = styled.div`
   width: 100%;
@@ -34,7 +35,8 @@ export const MainContainer = styled.div`
 export const LogoImg = styled.div`
   width: 450px;
   height: 180px;
-  background-image: url(${logoImg});
+  background-image: url(${({ theme }) =>
+    theme.snow ? christmasLogoImg : logoImg});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -64,11 +66,17 @@ export const InputBox = styled.div`
   }
 `;
 
+export const Alert = styled.div`
+  color: red;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const TwoGuysImg = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url(${twoGuysImg});
-  background-position: center bottom;
-  background-size: contain;
+  background-image: url(${({ theme }) => !theme.snow && `${twoGuysImg}`});
+  background-position: ${({ theme }) => !theme.snow && `center bottom`};
+  background-size: ${({ theme }) => !theme.snow && `contain`};
   background-repeat: no-repeat;
 `;

@@ -1,19 +1,68 @@
-import { ProfileImage, ButtonShare } from 'components';
+import { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getSubjects } from 'api/api';
+import { ThemeContext } from 'styled-components';
+import { ProfileImage, ButtonShare, AccountForm } from 'components';
+import Modal from '../Modal/Modal';
+import useModal from 'hooks/useModal';
+import logoImg from 'assets/logo.svg';
+import christmasLogoImg from 'assets/christmas-logo.png';
 import * as Styled from './StylePostHeader';
 
-import LogoImg from 'assets/logo.svg';
+function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
+  const navigate = useNavigate();
+  const { isOpen, openModal, closeModal } = useModal();
+  const option = { center: true };
+  const [subjectName, setSubjectName] = useState('');
+  const [subjectImg, setSubjectImg] = useState('');
+  const theme = useContext(ThemeContext);
 
-function PostHeader({ src, name }) {
+  const getSubjectInfo = async (subjectId) => {
+    try {
+      const result = await getSubjects(subjectId);
+      const { name, imageSource } = result;
+      setSubjectName(name);
+      setSubjectImg(imageSource);
+      setterSubjectName(name);
+      setterSubjectImg(imageSource);
+    } catch (err) {
+      console.log(err);
+      navigate(`/InvalidQuestionSubject`);
+    }
+  };
+
+  useEffect(() => {
+    getSubjectInfo(id);
+  }, [id]);
+
   return (
     <>
       <Styled.Header>
         <Styled.Container>
-          <Styled.Logo src={LogoImg} />
-          <ProfileImage src={src} size="xLarge" mobilesize="large" />
-          <Styled.Name>{name}</Styled.Name>
-          <ButtonShare name={name} image={src} />
+          <Link to={'/'}>
+            <Styled.Logo src={theme.snow ? christmasLogoImg : logoImg} />
+          </Link>
+          <ProfileImage
+            src={subjectImg}
+            size="xLarge"
+            mobilesize="large"
+            onClick={openModal}
+            filter={filter}
+          />
+          <Styled.Name>{subjectName}</Styled.Name>
+          <ButtonShare name={subjectName} image={subjectImg} />
         </Styled.Container>
       </Styled.Header>
+      {isOpen && (
+        <Modal
+          title="계정 관리"
+          trigger={
+            <AccountForm image={subjectImg} name={subjectName} id={id} />
+          }
+          option={option}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 }

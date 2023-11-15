@@ -7,7 +7,8 @@ export const copyUrl = async (sharedUrl) => {
 export const shareFacebook = (sharedUrl) => {
   window.open(
     `http://www.facebook.com/sharer/sharer.php?u=${sharedUrl}`,
-    '_blank'
+    'popup',
+    'width=560, height=560, top=150, left=100. scrollbars=yes'
   );
 };
 

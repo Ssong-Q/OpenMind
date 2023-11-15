@@ -1,38 +1,98 @@
-import { useState } from 'react';
-import { PostHeader, FeedCard, WriteQuestionModal } from 'components';
-import messages from 'assets/icon/messages.svg';
-import LogoImg from 'assets/icon/edit.svg';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  PostHeader,
+  QuestionFeedCardSection,
+  WriteQuestionModal,
+  ModalLoading,
+  Modal,
+} from 'components';
+import useModal from 'hooks/useModal';
+import { getSubjectsQuestion } from 'api/api';
+import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
 
-const QuestionFeedPage = () => {
-  const [visible, setVisible] = useState(false);
+const LIMIT = 2;
 
-  //complete인 경우: 답변완료 배지, content띄어줌/ refuse인 경우: 답변완료 배지, 답변 거절 문구/incomplete: 미답변 배지, content 빈 칸
-  const [isDone, setIsDone] = useState('complete'); //refuse, complete, incomplete
-  //추후 api통신 이후, 아래의 함수 변경
-  const handleWriteQuestion = () => {
-    setIsDone('refuse');
-    setVisible(true);
+const QuestionFeedPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const subjectId = location.pathname.split('/')[2];
+  const { isOpen, openModal, closeModal } = useModal();
+  const option = { visible: true, filter: true };
+  const target = useRef();
+  const [subjectName, setSubjectName] = useState('');
+  const [subjectImg, setSubjectImg] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [total, setTotal] = useState(null); //전체 질문 수
+  const [questionData, setQuestionData] = useState({
+    data: [],
+  });
+  const observer = infiniteScroll(isLoading, LIMIT, setOffset);
+
+  //질문 목록 데이터 호출
+  const handleFeedCardSection = async (...args) => {
+    setIsLoading(true);
+    try {
+      const result = await getSubjectsQuestion(...args);
+      const { count, results: questionData } = result;
+      setQuestionData((prevData) => ({
+        data: [...prevData.data, ...questionData],
+      }));
+      setTotal(count);
+    } catch (err) {
+      console.log(err);
+      navigate(`/InvalidQuestionSubject`);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  useEffect(() => {
+    handleFeedCardSection(subjectId, LIMIT, offset);
+  }, [location, offset]);
+
+  useEffect(() => {
+    observer.observe(target.current);
+  }, []);
+
   return (
     <>
-      <PostHeader src={LogoImg} name={'ddd'} />
+      <PostHeader
+        id={subjectId}
+        setterSubjectName={setSubjectName}
+        setterSubjectImg={setSubjectImg}
+        filter={option.filter}
+      />
       <Styled.MainContainer>
-        <Styled.CardContainer>
-          <Styled.CountContainer>
-            <Styled.CountIcon src={messages} />
-            <Styled.CountContent>3개의 질문이 있습니다.</Styled.CountContent>
-          </Styled.CountContainer>
-          <FeedCard isDone={isDone} />
-          <FeedCard isDone={isDone} />
-          <FeedCard isDone={isDone} />
-        </Styled.CardContainer>
-        {/* setIsDone 미사용 오류 해결을 위해 임으로 onClick함수 추가 */}
-        <Styled.WriteButton onClick={handleWriteQuestion}>
+        <QuestionFeedCardSection
+          total={total}
+          data={questionData.data}
+          subjectData={[subjectName, subjectImg]}
+        />
+        <Styled.ObserveTargetBox ref={target} />
+        {isLoading && <ModalLoading back="noBG" />}
+        <Styled.WriteButton onClick={openModal}>
           질문 작성하기
         </Styled.WriteButton>
       </Styled.MainContainer>
-      {visible && <WriteQuestionModal onClose={setVisible}/>}
+      {isOpen && (
+        <Modal
+          title="질문을 작성하세요"
+          trigger={
+            <WriteQuestionModal
+              closeModal={closeModal}
+              subjectData={[subjectName, subjectImg, subjectId]}
+              setQuestionData={setQuestionData}
+              questionData={questionData}
+              setTotal={setTotal}
+            />
+          }
+          option={option}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };

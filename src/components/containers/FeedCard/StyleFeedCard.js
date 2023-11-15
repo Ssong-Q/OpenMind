@@ -100,8 +100,8 @@ export const FooterIconContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  var(--gray40)
 `;
+
 export const FooterIcon = styled.img`
   width: 16px;
   height: 16px;

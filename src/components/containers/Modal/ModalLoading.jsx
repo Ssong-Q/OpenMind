@@ -1,13 +1,13 @@
 import ModalPortal from 'Portal';
 import { StyledGlobal } from 'style/StyleGlobal';
-import * as Styled from './Modal';
+import * as Styled from './StyleModal';
 
-const ModalLoading = () => {
+const ModalLoading = ({ back }) => {
   return (
     <>
       <StyledGlobal />
       <ModalPortal>
-        <Styled.ModalBackground>
+        <Styled.ModalBackground $back={back}>
           <Styled.Spinner />
         </Styled.ModalBackground>
       </ModalPortal>
