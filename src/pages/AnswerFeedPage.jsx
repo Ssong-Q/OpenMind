@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
-import { getLocalStorage } from 'utils/localStorage';
+import { checkLocalStorageById } from 'utils/localStorage';
 import { getSubjectsQuestion } from 'api/api';
 import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
@@ -42,7 +42,7 @@ const AnswerFeedPage = () => {
   };
 
   const handleCheckValidation = (id) => {
-    if (!getLocalStorage(id)) {
+    if (!checkLocalStorageById(id)) {
       navigate('/UseYourOwnAccount');
     }
   };
