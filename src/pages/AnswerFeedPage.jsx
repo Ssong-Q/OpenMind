@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
+import { getLocalStorage } from 'utils/localStorage';
 import { getSubjectsQuestion } from 'api/api';
 import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
@@ -33,14 +34,21 @@ const AnswerFeedPage = () => {
       }));
       setTotal(count);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       navigate(`/InvalidQuestionSubject`);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const handleCheckValidation = (id) => {
+    if (!getLocalStorage(id)) {
+      navigate('/UseYourOwnAccount');
+    }
+  };
+
   useEffect(() => {
+    handleCheckValidation(subjectId);
     handleFeedCardSection(subjectId, LIMIT, offset);
   }, [location, offset]);
 
