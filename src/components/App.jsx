@@ -6,7 +6,8 @@ import { StyledGlobal } from 'style/StyleGlobal';
 import THEME from 'style/theme';
 
 const App = () => {
-  const [theme, setTheme] = useState(THEME['basic']);
+  const initTheme = localStorage.getItem('theme');
+  const [theme, setTheme] = useState(THEME[initTheme]);
 
   return (
     <>

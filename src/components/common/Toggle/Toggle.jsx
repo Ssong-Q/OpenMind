@@ -3,7 +3,9 @@ import THEME from 'style/theme';
 import * as Styled from './StyleToggle';
 
 const Toggle = ({ setTheme }) => {
-  const [isOn, setIsOn] = useState(false);
+  const initTheme =
+    localStorage.getItem('theme') === 'christmas' ? true : false;
+  const [isOn, setIsOn] = useState(initTheme);
 
   const toggleHandler = () => {
     setIsOn(!isOn);
@@ -12,8 +14,10 @@ const Toggle = ({ setTheme }) => {
   useEffect(() => {
     if (isOn) {
       setTheme(THEME['christmas']);
+      localStorage.setItem('theme', 'christmas');
     } else {
       setTheme(THEME['basic']);
+      localStorage.setItem('theme', 'basic');
     }
   }, [isOn]);
 
