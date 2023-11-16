@@ -16,7 +16,7 @@ export const Container = styled.div`
   overflow: hidden;
   flex-shrink: 0;
   text-align: center;
-  cursor: pointer;
+  cursor: ${({$filter}) => $filter && 'pointer'};
 
   :hover {
     filter: ${({$filter}) => $filter && `brightness(0.5)`};
