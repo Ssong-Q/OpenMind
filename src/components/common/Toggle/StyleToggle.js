@@ -4,6 +4,14 @@ export const ToggleContainer = styled.div`
   position: relative;
   left: 47%;
   cursor: pointer;
+  display: ${({ $mobile }) => $mobile === 'mobile' && 'none'};
+
+  @media (max-width: 767px) {
+    display: unset;
+    position: absolute;
+    top: 46px;
+    left: 67px;
+  }
 `;
 
 export const ToggleBox = styled.div`

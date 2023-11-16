@@ -6,6 +6,7 @@ import {
   ButtonBox,
   ButtonBoxWithArrow,
   ModalLoading,
+  Toggle,
 } from 'components';
 import { getSubjects, postSubjects } from 'api/api';
 import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
@@ -92,6 +93,7 @@ const HomePage = () => {
 
   return (
     <Styled.PageContainer>
+      <Toggle setTheme={setTheme} mobile="mobile" />
       <NavBar onClick={handleNavClick} setTheme={setTheme}>
         질문하러 가기
       </NavBar>
