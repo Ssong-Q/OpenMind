@@ -29,18 +29,6 @@ const NotFoundPage = () => {
     handlePrintMessage(whatErrorFrom);
   }, [location]);
 
-  const handlePrintMessage = (message) => {
-    if (message === 'UseYourOwnAccount') {
-      setMessage('Use Your Own Account!');
-    } else if (message === 'InvalidQuestionSubject') {
-      setMessage('Invalid Question Subject!');
-    }
-  };
-
-  useEffect(() => {
-    handlePrintMessage(whatErrorFrom);
-  }, [location]);
-
   return (
     <Styled.MainContainer>
       <Styled.Nav>
