@@ -45,7 +45,8 @@ const QuestionListPage = () => {
       }));
       setTotal(count);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      navigate('/FailToLoadData');
     } finally {
       setIsLoading(false);
     }
