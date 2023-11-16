@@ -50,3 +50,9 @@ export const H3 = styled.h3`
   font-weight: 500;
   color: var(--red);
 `;
+
+export const P = styled.p`
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: var(--gray40);
+`;
