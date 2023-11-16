@@ -81,7 +81,6 @@ export const WriteButton = styled.button`
   flex-shrink: 0;
   border-radius: 200px;
   background: ${({ theme }) => theme.button.button2};
-
   color: white;
   font-family: Actor;
   font-size: 20px;

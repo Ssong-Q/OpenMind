@@ -18,18 +18,6 @@ export const deleteLocalStorage = (id) => {
   }
 };
 
-export const deleteLocalStorage = (id) => {
-  const userObject = { ...JSON.parse(localStorage.getItem('user')) };
-  delete userObject[id];
-
-  //결과가 빈배열이라면
-  if (Object.keys(userObject).length === 0) {
-    localStorage.removeItem('user');
-  } else {
-    localStorage.setItem('user', JSON.stringify(userObject));
-  }
-};
-
 export const setLocalStorage = (id, name) => {
   // localStorage에 user property 값이 없을 때,
   if (!localStorage.getItem('user')) {
