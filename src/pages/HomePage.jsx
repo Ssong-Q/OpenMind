@@ -37,6 +37,13 @@ const HomePage = () => {
   };
 
   const handleButtonClick = async () => {
+    let regex = /^[a-zA-Z0-9가-힣]*$/;
+    if (!regex.test(name)) {
+      setIsError(true);
+      setErrorMessage('올바르지 않는 닉네임 입니다. 다시 입력해주세요.');
+      return;
+    }
+
     setIsLoading(true);
     try {
       if (getLocalStorage(name)) {

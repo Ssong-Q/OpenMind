@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { getSubjects } from 'api/api';
 import { ThemeContext } from 'styled-components';
 import { ProfileImage, ButtonShare, AccountForm } from 'components';
@@ -11,6 +11,8 @@ import * as Styled from './StylePostHeader';
 
 function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAnswerPage = location.pathname.split('/')[3];
   const { isOpen, openModal, closeModal } = useModal();
   const option = { center: true };
   const [subjectName, setSubjectName] = useState('');
@@ -46,8 +48,8 @@ function PostHeader({ id, setterSubjectName, setterSubjectImg, filter }) {
             src={subjectImg}
             size="xLarge"
             mobilesize="large"
-            onClick={openModal}
-            filter={filter}
+            onClick={isAnswerPage ? openModal : closeModal}
+            filter={isAnswerPage && filter}
           />
           <Styled.Name>{subjectName}</Styled.Name>
           <ButtonShare name={subjectName} image={subjectImg} />

@@ -1,19 +1,19 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
+import { checkLocalStorageById } from 'utils/localStorage';
 import { getSubjectsQuestion } from 'api/api';
-import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
 
-const LIMIT = 2;
+const LIMIT = 3;
 
 const AnswerFeedPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const subjectId = location.pathname.split('/')[2];
   const target = useRef();
+  const offset = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
   const [total, setTotal] = useState(null);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
@@ -21,32 +21,52 @@ const AnswerFeedPage = () => {
     data: [],
   });
   const option = { filter: true };
-  const observer = infiniteScroll(isLoading, LIMIT, setOffset);
 
-  const handleFeedCardSection = async (...args) => {
+  const handleFeedCardSection = async (id, limit, offset) => {
     setIsLoading(true);
     try {
-      const result = await getSubjectsQuestion(...args);
+      const result = await getSubjectsQuestion(id, limit, offset.current);
       const { count, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
       }));
       setTotal(count);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       navigate(`/InvalidQuestionSubject`);
     } finally {
+      offset.current += limit;
       setIsLoading(false);
     }
   };
 
+  const handleCheckValidation = (id) => {
+    if (!checkLocalStorageById(id)) {
+      navigate('/UseYourOwnAccount');
+    }
+  };
+
+  const observeCallback = (entries) => {
+    if (isLoading) return;
+
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        handleFeedCardSection(subjectId, LIMIT, offset);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observeCallback, {
+    threshold: 0.4,
+  });
+
   useEffect(() => {
-    handleFeedCardSection(subjectId, LIMIT, offset);
-  }, [location, offset]);
+    handleCheckValidation(subjectId);
+  }, [location]);
 
   useEffect(() => {
     observer.observe(target.current);
-  }, []);
+  }, [location, offset]);
 
   return (
     <>

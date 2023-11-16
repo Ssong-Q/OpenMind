@@ -23,8 +23,7 @@ const InputField = ({ onChange, onKeyPress }) => {
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         onChange={handleInputChange}
-        onKeyPress={onKeyPress}
-        placeholder="이름을 입력하세요"
+        placeholder="닉네임을 입력하세요"
       />
     </Styled.InputFieldBox>
   );
