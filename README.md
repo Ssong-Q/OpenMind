@@ -65,7 +65,7 @@
       + <span style="background-color:#f4f4bf">브랜치 전략</span>
       : <span style="background-color:#fff5dd">Main(배포용) 브랜치> Dev(Development; 개발) 브랜치> feature/(기능) 브랜치
   
-- [eslint, prettier]() <span style="background-color:#fff5dd">를 통해 일관된 코드를 작성하여 작업 환경 개선</span>
+- <img src="https://img.shields.io/badge/eslint-F7B93E?style=flat-square&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-4B32C3?style=flat-square&logo=prettier&logoColor=white"/> <span style="background-color:#fff5dd">를 통해 일관된 코드를 작성하여 작업 환경 개선</span>
 
   <br/>
   
