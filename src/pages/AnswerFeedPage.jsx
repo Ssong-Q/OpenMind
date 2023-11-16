@@ -15,6 +15,7 @@ const AnswerFeedPage = () => {
   const offset = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(null);
+  const [hasNext, setHasNext] = useState(true);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
   const [questionData, setQuestionData] = useState({
@@ -26,11 +27,12 @@ const AnswerFeedPage = () => {
     setIsLoading(true);
     try {
       const result = await getSubjectsQuestion(id, limit, offset.current);
-      const { count, results: questionData } = result;
+      const { count, next, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
       }));
       setTotal(count);
+      setHasNext(next);
     } catch (err) {
       console.error(err);
       navigate(`/InvalidQuestionSubject`);
@@ -47,12 +49,10 @@ const AnswerFeedPage = () => {
   };
 
   const observeCallback = (entries) => {
-    if (isLoading) return;
-
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        handleFeedCardSection(subjectId, LIMIT, offset);
-      }
+      if (isLoading) return;
+      if (!entry.isIntersecting) return;
+      handleFeedCardSection(subjectId, LIMIT, offset);
     });
   };
 
@@ -84,7 +84,7 @@ const AnswerFeedPage = () => {
           setTotal={setTotal}
           setQuestionData={setQuestionData}
         />
-        <Styled.ObserveTargetBox ref={target} />
+        {hasNext && <Styled.ObserveTargetBox ref={target} />}
         {isLoading && <ModalLoading back="noBG" />}
       </Styled.MainContainer>
     </>

@@ -1,8 +1,3 @@
-//링크 복사
-export const copyUrl = async (sharedUrl) => {
-  await navigator.clipboard.writeText(sharedUrl);
-};
-
 //Facebook
 export const shareFacebook = (sharedUrl) => {
   window.open(

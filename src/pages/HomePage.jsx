@@ -6,6 +6,7 @@ import {
   ButtonBox,
   ButtonBoxWithArrow,
   ModalLoading,
+  Toggle,
 } from 'components';
 import { getSubjects, postSubjects } from 'api/api';
 import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
@@ -32,7 +33,8 @@ const HomePage = () => {
       result[0].results.map((data) => list.push(data.name));
       setAllList((prevArray) => [...prevArray, list]);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      navigate(`/FailToLoadData`);
     }
   };
 
@@ -65,8 +67,9 @@ const HomePage = () => {
           navigate(`/post/${userId}/answer`);
         }
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error(error);
+      navigate(`/WrongInformation`);
     } finally {
       setIsLoading(false);
     }
@@ -90,6 +93,7 @@ const HomePage = () => {
 
   return (
     <Styled.PageContainer>
+      <Toggle setTheme={setTheme} mobile="mobile" />
       <NavBar onClick={handleNavClick} setTheme={setTheme}>
         질문하러 가기
       </NavBar>

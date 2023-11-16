@@ -8,5 +8,5 @@ export default function Toast({ setStatus, children }) {
     }, 5000);
   }, []);
 
-  return <Styled.Toast>{children}.</Styled.Toast>;
+  return <Styled.Toast>{children}</Styled.Toast>;
 }
