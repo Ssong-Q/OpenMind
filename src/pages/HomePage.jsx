@@ -32,7 +32,8 @@ const HomePage = () => {
       result[0].results.map((data) => list.push(data.name));
       setAllList((prevArray) => [...prevArray, list]);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      navigate(`/FailToLoadData`);
     }
   };
 
@@ -65,8 +66,9 @@ const HomePage = () => {
           navigate(`/post/${userId}/answer`);
         }
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error(error);
+      navigate(`/WrongInformation`);
     } finally {
       setIsLoading(false);
     }

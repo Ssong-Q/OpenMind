@@ -18,6 +18,10 @@ const NotFoundPage = () => {
       setMessage('Use Your Own Account!');
     } else if (message === 'InvalidQuestionSubject') {
       setMessage('Invalid Question Subject!');
+    } else if (message === 'FailToLoadData') {
+      setMessage('Fail to load data. Try again!');
+    } else if (message === 'WrongInformation') {
+      setMessage('Wrong information. Try again!');
     }
   };
 
