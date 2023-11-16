@@ -9,10 +9,9 @@ import {
 } from 'components';
 import useModal from 'hooks/useModal';
 import { getSubjectsQuestion } from 'api/api';
-import { infiniteScroll } from 'api/infiniteScroll';
 import * as Styled from './StyleFeedPage';
 
-const LIMIT = 2;
+const LIMIT = 3;
 
 const QuestionFeedPage = () => {
   const location = useLocation();
@@ -21,21 +20,20 @@ const QuestionFeedPage = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
   const target = useRef();
+  const offset = useRef(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState(null); //전체 질문 수
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const [total, setTotal] = useState(null); //전체 질문 수
   const [questionData, setQuestionData] = useState({
     data: [],
   });
-  const observer = infiniteScroll(isLoading, LIMIT, setOffset);
 
   //질문 목록 데이터 호출
-  const handleFeedCardSection = async (...args) => {
+  const handleFeedCardSection = async (id, limit, offset) => {
     setIsLoading(true);
     try {
-      const result = await getSubjectsQuestion(...args);
+      const result = await getSubjectsQuestion(id, limit, offset.current);
       const { count, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
@@ -45,17 +43,28 @@ const QuestionFeedPage = () => {
       console.log(err);
       navigate(`/InvalidQuestionSubject`);
     } finally {
+      offset.current += limit;
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    handleFeedCardSection(subjectId, LIMIT, offset);
-  }, [location, offset]);
+  const observeCallback = (entries) => {
+    if (isLoading) return;
+
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        handleFeedCardSection(subjectId, LIMIT, offset);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observeCallback, {
+    threshold: 0.4,
+  });
 
   useEffect(() => {
     observer.observe(target.current);
-  }, []);
+  }, [location, offset]);
 
   return (
     <>
