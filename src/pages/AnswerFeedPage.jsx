@@ -5,7 +5,7 @@ import { checkLocalStorageById } from 'utils/localStorage';
 import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
-const LIMIT = 3;
+const LIMIT = 5;
 
 const AnswerFeedPage = () => {
   const location = useLocation();
@@ -57,7 +57,7 @@ const AnswerFeedPage = () => {
   };
 
   const observer = new IntersectionObserver(observeCallback, {
-    threshold: 0.4,
+    threshold: 0.2,
   });
 
   useEffect(() => {

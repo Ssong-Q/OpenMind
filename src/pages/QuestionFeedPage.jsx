@@ -20,10 +20,10 @@ const QuestionFeedPage = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
   const target = useRef();
-  const [hasNext, setHasNext] = useState(true);
   const offset = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(null); //전체 질문 수
+  const [hasNext, setHasNext] = useState(true);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
   const [questionData, setQuestionData] = useState({
@@ -51,12 +51,10 @@ const QuestionFeedPage = () => {
   };
 
   const observeCallback = (entries) => {
-    if (isLoading) return;
-
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        handleFeedCardSection(subjectId, LIMIT, offset);
-      }
+      if (isLoading) return;
+      if (!entry.isIntersecting) return;
+      handleFeedCardSection(subjectId, LIMIT, offset);
     });
   };
 
