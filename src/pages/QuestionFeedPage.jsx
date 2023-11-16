@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PostHeader,
@@ -20,9 +20,9 @@ const QuestionFeedPage = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
   const target = useRef();
-  const offset = useRef(0);
+  const offsetRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [total, setTotal] = useState(null); //전체 질문 수
+  const [total, setTotal] = useState(null);
   const [hasNext, setHasNext] = useState(true);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
@@ -30,31 +30,38 @@ const QuestionFeedPage = () => {
     data: [],
   });
 
-  //질문 목록 데이터 호출
-  const handleFeedCardSection = async (id, limit, offset) => {
-    setIsLoading(true);
-    try {
-      const result = await getSubjectsQuestion(id, limit, offset.current);
-      const { count, next, results: questionData } = result;
-      setQuestionData((prevData) => ({
-        data: [...prevData.data, ...questionData],
-      }));
-      setTotal(count);
-      setHasNext(next);
-    } catch (err) {
-      console.log(err);
-      navigate(`/InvalidQuestionSubject`);
-    } finally {
-      offset.current += limit;
-      setIsLoading(false);
-    }
+  //질문데이터 가져오기
+  const handleLoad = useCallback(
+    async (id, limit, offset) => {
+      try {
+        setIsLoading(true);
+        const result = await getSubjectsQuestion(id, limit, offset);
+        const { count, next, results: questionData } = result;
+        setQuestionData((prevData) => ({
+          data: [...prevData.data, ...questionData],
+        }));
+        setTotal(count);
+        setHasNext(next);
+        offsetRef.current += limit;
+      } catch (err) {
+        console.log(err);
+        navigate(`/InvalidQuestionSubject`);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [getSubjectsQuestion]
+  );
+
+  const handleLoadMore = async () => {
+    await handleLoad(subjectId, LIMIT, offsetRef.current);
   };
 
   const observeCallback = (entries) => {
     entries.forEach((entry) => {
       if (isLoading) return;
       if (!entry.isIntersecting) return;
-      handleFeedCardSection(subjectId, LIMIT, offset);
+      handleLoadMore();
     });
   };
 
@@ -64,7 +71,11 @@ const QuestionFeedPage = () => {
 
   useEffect(() => {
     observer.observe(target.current);
-  }, [location, offset]);
+  }, [location, offsetRef]);
+
+  useEffect(() => {
+    handleLoad(subjectId, LIMIT, 0);
+  }, []);
 
   return (
     <>

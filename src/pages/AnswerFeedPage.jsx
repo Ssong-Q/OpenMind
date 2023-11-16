@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
 import { checkLocalStorageById } from 'utils/localStorage';
@@ -12,7 +12,7 @@ const AnswerFeedPage = () => {
   const navigate = useNavigate();
   const subjectId = location.pathname.split('/')[2];
   const target = useRef();
-  const offset = useRef(0);
+  const offsetRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(null);
   const [hasNext, setHasNext] = useState(true);
@@ -23,24 +23,28 @@ const AnswerFeedPage = () => {
   });
   const option = { filter: true };
 
-  const handleFeedCardSection = async (id, limit, offset) => {
-    setIsLoading(true);
-    try {
-      const result = await getSubjectsQuestion(id, limit, offset.current);
-      const { count, next, results: questionData } = result;
-      setQuestionData((prevData) => ({
-        data: [...prevData.data, ...questionData],
-      }));
-      setTotal(count);
-      setHasNext(next);
-    } catch (err) {
-      console.error(err);
-      navigate(`/InvalidQuestionSubject`);
-    } finally {
-      offset.current += limit;
-      setIsLoading(false);
-    }
-  };
+  //질문데이터 가져오기
+  const handleLoad = useCallback(
+    async (id, limit, offset) => {
+      try {
+        setIsLoading(true);
+        const result = await getSubjectsQuestion(id, limit, offset);
+        const { count, next, results: questionData } = result;
+        setQuestionData((prevData) => ({
+          data: [...prevData.data, ...questionData],
+        }));
+        setTotal(count);
+        setHasNext(next);
+        offsetRef.current += limit;
+      } catch (err) {
+        console.log(err);
+        navigate(`/InvalidQuestionSubject`);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [getSubjectsQuestion]
+  );
 
   const handleCheckValidation = (id) => {
     if (!checkLocalStorageById(id)) {
@@ -48,11 +52,15 @@ const AnswerFeedPage = () => {
     }
   };
 
+  const handleLoadMore = async () => {
+    await handleLoad(subjectId, LIMIT, offsetRef.current);
+  };
+
   const observeCallback = (entries) => {
     entries.forEach((entry) => {
       if (isLoading) return;
       if (!entry.isIntersecting) return;
-      handleFeedCardSection(subjectId, LIMIT, offset);
+      handleLoadMore();
     });
   };
 
@@ -66,7 +74,11 @@ const AnswerFeedPage = () => {
 
   useEffect(() => {
     observer.observe(target.current);
-  }, [location, offset]);
+  }, [location, offsetRef]);
+
+  useEffect(() => {
+    handleLoad(subjectId, LIMIT, 0);
+  }, []);
 
   return (
     <>
