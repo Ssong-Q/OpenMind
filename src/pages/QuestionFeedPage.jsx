@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PostHeader,
@@ -30,39 +30,34 @@ const QuestionFeedPage = () => {
     data: [],
   });
 
-  //질문데이터 가져오기
-  const handleLoad = useCallback(
-    async (id, limit, offset) => {
-      try {
-        setIsLoading(true);
-        const result = await getSubjectsQuestion(id, limit, offset);
-        const { count, next, results: questionData } = result;
-        setQuestionData((prevData) => ({
-          data: [...prevData.data, ...questionData],
-        }));
-        setTotal(count);
-        setHasNext(next);
-        offsetRef.current += limit;
-      } catch (err) {
-        console.log(err);
-        navigate(`/InvalidQuestionSubject`);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [getSubjectsQuestion]
-  );
-
-  const handleLoadMore = async () => {
-    await handleLoad(subjectId, LIMIT, offsetRef.current);
+  //질문 목록 데이터 호출
+  const handleFeedCardSection = async (id, limit, offset) => {
+    setIsLoading(true);
+    try {
+      const result = await getSubjectsQuestion(id, limit, offset);
+      const { count, next, results: questionData } = result;
+      setQuestionData((prevData) => ({
+        data: [...prevData.data, ...questionData],
+      }));
+      setTotal(count);
+      setHasNext(next);
+    } catch (err) {
+      console.log(err);
+      navigate(`/InvalidQuestionSubject`);
+    } finally {
+      offsetRef.current += limit;
+      setIsLoading(false);
+    }
   };
 
   const observeCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (isLoading) return;
-      if (!entry.isIntersecting) return;
-      handleLoadMore();
-    });
+    if (offsetRef.current !== 0) {
+      entries.forEach((entry) => {
+        if (isLoading) return;
+        if (!entry.isIntersecting) return;
+        handleFeedCardSection(subjectId, LIMIT, offsetRef.current);
+      });
+    }
   };
 
   const observer = new IntersectionObserver(observeCallback, {
@@ -70,12 +65,12 @@ const QuestionFeedPage = () => {
   });
 
   useEffect(() => {
-    observer.observe(target.current);
-  }, [location, offsetRef]);
+    handleFeedCardSection(subjectId, LIMIT, 0);
+  }, []);
 
   useEffect(() => {
-    handleLoad(subjectId, LIMIT, 0);
-  }, []);
+    observer.observe(target.current);
+  }, [location, offsetRef]);
 
   return (
     <>

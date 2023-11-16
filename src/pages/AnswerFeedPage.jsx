@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PostHeader, ModalLoading, FeedCardSection } from 'components';
 import { checkLocalStorageById } from 'utils/localStorage';
@@ -23,28 +23,24 @@ const AnswerFeedPage = () => {
   });
   const option = { filter: true };
 
-  //질문데이터 가져오기
-  const handleLoad = useCallback(
-    async (id, limit, offset) => {
-      try {
-        setIsLoading(true);
-        const result = await getSubjectsQuestion(id, limit, offset);
-        const { count, next, results: questionData } = result;
-        setQuestionData((prevData) => ({
-          data: [...prevData.data, ...questionData],
-        }));
-        setTotal(count);
-        setHasNext(next);
-        offsetRef.current += limit;
-      } catch (err) {
-        console.log(err);
-        navigate(`/InvalidQuestionSubject`);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [getSubjectsQuestion]
-  );
+  const handleFeedCardSection = async (id, limit, offset) => {
+    setIsLoading(true);
+    try {
+      const result = await getSubjectsQuestion(id, limit, offset.current);
+      const { count, next, results: questionData } = result;
+      setQuestionData((prevData) => ({
+        data: [...prevData.data, ...questionData],
+      }));
+      setTotal(count);
+      setHasNext(next);
+    } catch (err) {
+      console.error(err);
+      navigate(`/InvalidQuestionSubject`);
+    } finally {
+      offsetRef.current += limit;
+      setIsLoading(false);
+    }
+  };
 
   const handleCheckValidation = (id) => {
     if (!checkLocalStorageById(id)) {
@@ -52,16 +48,14 @@ const AnswerFeedPage = () => {
     }
   };
 
-  const handleLoadMore = async () => {
-    await handleLoad(subjectId, LIMIT, offsetRef.current);
-  };
-
   const observeCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (isLoading) return;
-      if (!entry.isIntersecting) return;
-      handleLoadMore();
-    });
+    if (offsetRef.current !== 0) {
+      entries.forEach((entry) => {
+        if (isLoading) return;
+        if (!entry.isIntersecting) return;
+        handleFeedCardSection(subjectId, LIMIT, offsetRef.current);
+      });
+    }
   };
 
   const observer = new IntersectionObserver(observeCallback, {
@@ -73,12 +67,12 @@ const AnswerFeedPage = () => {
   }, [location]);
 
   useEffect(() => {
-    observer.observe(target.current);
-  }, [location, offsetRef]);
+    handleFeedCardSection(subjectId, LIMIT, 0);
+  }, []);
 
   useEffect(() => {
-    handleLoad(subjectId, LIMIT, 0);
-  }, []);
+    observer.observe(target.current);
+  }, [location, offsetRef]);
 
   return (
     <>
