@@ -93,7 +93,7 @@ const HomePage = () => {
 
   return (
     <Styled.PageContainer>
-      <Toggle setTheme={setTheme} mobile="mobile" />
+      <Toggle setTheme={setTheme} />
       <NavBar onClick={handleNavClick} setTheme={setTheme}>
         질문하러 가기
       </NavBar>
