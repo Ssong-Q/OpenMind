@@ -11,7 +11,7 @@ import useModal from 'hooks/useModal';
 import { getSubjectsQuestion } from 'api/api';
 import * as Styled from './StyleFeedPage';
 
-const LIMIT = 3;
+const LIMIT = 5;
 
 const QuestionFeedPage = () => {
   const location = useLocation();
@@ -20,6 +20,7 @@ const QuestionFeedPage = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
   const target = useRef();
+  const [hasNext, setHasNext] = useState(true);
   const offset = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(null); //전체 질문 수
@@ -34,11 +35,12 @@ const QuestionFeedPage = () => {
     setIsLoading(true);
     try {
       const result = await getSubjectsQuestion(id, limit, offset.current);
-      const { count, results: questionData } = result;
+      const { count, next, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
       }));
       setTotal(count);
+      setHasNext(next);
     } catch (err) {
       console.log(err);
       navigate(`/InvalidQuestionSubject`);
@@ -80,7 +82,7 @@ const QuestionFeedPage = () => {
           data={questionData.data}
           subjectData={[subjectName, subjectImg]}
         />
-        <Styled.ObserveTargetBox ref={target} />
+        {hasNext && <Styled.ObserveTargetBox ref={target} />}
         {isLoading && <ModalLoading back="noBG" />}
         <Styled.WriteButton onClick={openModal}>
           질문 작성하기
