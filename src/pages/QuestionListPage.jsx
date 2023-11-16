@@ -68,7 +68,14 @@ const QuestionListPage = () => {
     }
   };
 
+  const handleRedirect = (queryString) => {
+    if (queryString.trim() !== 'name' && queryString.trim() !== 'time') {
+      navigate(`/${queryString}`);
+    }
+  };
+
   useEffect(() => {
+    handleRedirect(sorted);
     handleCardSection(null, limit, offset, sorted);
   }, [location, offset, limit]);
 
