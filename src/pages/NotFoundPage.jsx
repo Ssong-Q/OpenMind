@@ -35,6 +35,7 @@ const NotFoundPage = () => {
         <Styled.H1>Oops!</Styled.H1>
         <Styled.H2>Something went wrong</Styled.H2>
         <Styled.H3>{message}</Styled.H3>
+
         <img src={gifUrl} alt="not found page" width={'400'} height={'400'} />
       </Styled.ContentContainer>
     </Styled.MainContainer>

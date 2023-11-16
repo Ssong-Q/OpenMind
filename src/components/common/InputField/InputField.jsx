@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as Styled from './StyleInputField';
 
-const InputField = ({ onChange }) => {
+const InputField = ({ onChange, onKeyPress }) => {
   const [isFocused, setIsFocused] = useState('false');
 
   const handleInputFocus = () => {
