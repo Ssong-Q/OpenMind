@@ -20,7 +20,7 @@
 
 
 ### 🌐 Demo 
-[오픈마인드](https://deploy-preview-63--stirring-starburst-4ddb41.netlify.app)
+[오픈마인드](https://open-your-mind.netlify.app/)
 
 
 <br/>
