@@ -12,7 +12,7 @@ const AnswerFeedPage = () => {
   const navigate = useNavigate();
   const subjectId = location.pathname.split('/')[2];
   const target = useRef();
-  const offset = useRef(0);
+  const offsetRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const [total, setTotal] = useState(null);
   const [hasNext, setHasNext] = useState(true);
@@ -37,7 +37,7 @@ const AnswerFeedPage = () => {
       console.error(err);
       navigate(`/InvalidQuestionSubject`);
     } finally {
-      offset.current += limit;
+      offsetRef.current += limit;
       setIsLoading(false);
     }
   };
@@ -49,11 +49,13 @@ const AnswerFeedPage = () => {
   };
 
   const observeCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (isLoading) return;
-      if (!entry.isIntersecting) return;
-      handleFeedCardSection(subjectId, LIMIT, offset);
-    });
+    if (offsetRef.current !== 0) {
+      entries.forEach((entry) => {
+        if (isLoading) return;
+        if (!entry.isIntersecting) return;
+        handleFeedCardSection(subjectId, LIMIT, offsetRef.current);
+      });
+    }
   };
 
   const observer = new IntersectionObserver(observeCallback, {
@@ -65,8 +67,12 @@ const AnswerFeedPage = () => {
   }, [location]);
 
   useEffect(() => {
+    handleFeedCardSection(subjectId, LIMIT, 0);
+  }, []);
+
+  useEffect(() => {
     observer.observe(target.current);
-  }, [location, offset]);
+  }, [location, offsetRef]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PostHeader,
@@ -20,9 +20,9 @@ const QuestionFeedPage = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const option = { visible: true, filter: true };
   const target = useRef();
-  const offset = useRef(0);
+  const offsetRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [total, setTotal] = useState(null); //전체 질문 수
+  const [total, setTotal] = useState(null);
   const [hasNext, setHasNext] = useState(true);
   const [subjectName, setSubjectName] = useState('');
   const [subjectImg, setSubjectImg] = useState('');
@@ -34,7 +34,7 @@ const QuestionFeedPage = () => {
   const handleFeedCardSection = async (id, limit, offset) => {
     setIsLoading(true);
     try {
-      const result = await getSubjectsQuestion(id, limit, offset.current);
+      const result = await getSubjectsQuestion(id, limit, offset);
       const { count, next, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
@@ -45,17 +45,19 @@ const QuestionFeedPage = () => {
       console.log(err);
       navigate(`/InvalidQuestionSubject`);
     } finally {
-      offset.current += limit;
+      offsetRef.current += limit;
       setIsLoading(false);
     }
   };
 
   const observeCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (isLoading) return;
-      if (!entry.isIntersecting) return;
-      handleFeedCardSection(subjectId, LIMIT, offset);
-    });
+    if (offsetRef.current !== 0) {
+      entries.forEach((entry) => {
+        if (isLoading) return;
+        if (!entry.isIntersecting) return;
+        handleFeedCardSection(subjectId, LIMIT, offsetRef.current);
+      });
+    }
   };
 
   const observer = new IntersectionObserver(observeCallback, {
@@ -63,8 +65,12 @@ const QuestionFeedPage = () => {
   });
 
   useEffect(() => {
+    handleFeedCardSection(subjectId, LIMIT, 0);
+  }, []);
+
+  useEffect(() => {
     observer.observe(target.current);
-  }, [location, offset]);
+  }, [location, offsetRef]);
 
   return (
     <>
