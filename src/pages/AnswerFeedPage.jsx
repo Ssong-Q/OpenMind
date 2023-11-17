@@ -26,7 +26,7 @@ const AnswerFeedPage = () => {
   const handleFeedCardSection = async (id, limit, offset) => {
     setIsLoading(true);
     try {
-      const result = await getSubjectsQuestion(id, limit, offset.current);
+      const result = await getSubjectsQuestion(id, limit, offset);
       const { count, next, results: questionData } = result;
       setQuestionData((prevData) => ({
         data: [...prevData.data, ...questionData],
